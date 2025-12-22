@@ -28,10 +28,6 @@ Create a production build:
 npm run build
 ```
 
-## Styling
-
-We use [Tailwind CSS](https://tailwindcss.com/).
-
 ## License
 
 Just MIT. See [license](LICENSE.md).
