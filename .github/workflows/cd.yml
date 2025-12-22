@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: build
-          path: build
+          path: build/client
 
   deploy:
     needs:
@@ -71,8 +71,9 @@ jobs:
         uses: actions/download-artifact@v6
         with:
           name: build
+          path: build
       - name: Deploy website
-        run: aws s3 sync ./build/client s3://pencilcase-website-prod --endpoint-url https://s3.fr-par.scw.cloud --delete
+        run: aws s3 sync ./build s3://pencilcase-website-prod --endpoint-url https://s3.fr-par.scw.cloud --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.SCW_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SCW_SECRET_KEY }}
