@@ -38,9 +38,10 @@ jobs:
       - name: Build
         run: npm run build
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           name: build
+          path: build
 
   deploy:
     needs:
@@ -67,7 +68,7 @@ jobs:
           TF_VAR_project_id: ${{ secrets.SCW_PROJECT_ID }}
           TF_VAR_stage: prod
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v6
         with:
           name: build
       - name: Deploy website
