@@ -37,6 +37,10 @@ jobs:
         uses: bahmutov/npm-install@v1
       - name: Build
         run: npm run build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
 
   deploy:
     needs:
@@ -62,3 +66,12 @@ jobs:
           TF_VAR_organization_id: ${{ secrets.SCW_ORGANIZATION_ID }}
           TF_VAR_project_id: ${{ secrets.SCW_PROJECT_ID }}
           TF_VAR_stage: prod
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+      - name: Deploy website
+        run: aws s3 sync ./build/client s3://pencilcase-website-prod --endpoint-url https://s3.fr-par.scw.cloud --delete
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.SCW_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SCW_SECRET_KEY }}
