@@ -1,0 +1,64 @@
+name: 🚀 Deploy
+on:
+  push:
+    branches:
+      - main
+
+env:
+  CI: "true"
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install deps
+        uses: bahmutov/npm-install@v1
+      - name: Transpile TypeScript
+        run: npm run typecheck
+
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install deps
+        uses: bahmutov/npm-install@v1
+      - name: Build
+        run: npm run build
+
+  deploy:
+    needs:
+      - typecheck
+      - build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    concurrency: deploy-${{ github.ref }}
+    environment:
+      name: prod
+      url: https://pencilcase.app
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: opentofu/setup-opentofu@v1
+      - name: Deploy infra
+        run: cd infra && tofu apply -auto-approve
+        env:
+          SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
+          SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.SCW_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SCW_SECRET_KEY }}
+          TF_VAR_organization_id: ${{ secrets.SCW_ORGANIZATION_ID }}
+          TF_VAR_project_id: ${{ secrets.SCW_PROJECT_ID }}
+          TF_VAR_stage: prod
