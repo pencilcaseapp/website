@@ -78,4 +78,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.SCW_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SCW_SECRET_KEY }}
       - name: Purge CDN cache
-        run: curl -X POST https://api.bunny.net/pullzone/${{ secrets.BUNNY_PULL_ZONE_ID }}/purgeCache -H 'AccessKey: ${{ secrets.BUNNY_API_KEY }}'
+        run: curl -X POST https://api.bunny.net/pullzone/${{ secrets.BUNNY_PULL_ZONE_ID }}/purgeCache -H "AccessKey: ${{ secrets.BUNNY_API_KEY }}"
