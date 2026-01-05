@@ -34,3 +34,18 @@ jobs:
         uses: bahmutov/npm-install@v1
       - name: Build
         run: npm run build
+
+  build-storybook:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install deps
+        uses: bahmutov/npm-install@v1
+      - name: Build Storybook
+        run: npm run build-storybook
