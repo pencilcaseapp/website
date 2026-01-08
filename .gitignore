@@ -14,3 +14,6 @@
 # Storybook
 *storybook.log
 storybook-static
+
+# Tests
+.vitest-attachments
