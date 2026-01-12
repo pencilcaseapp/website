@@ -53,6 +53,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      pull-requests: write
+      contents: write
+    concurrency:
+      group: build-${{ github.ref }}
+      cancel-in-progress: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -64,6 +70,10 @@ jobs:
         uses: bahmutov/npm-install@v1
       - name: Build
         run: npm run build
+      - name: Preview Pages
+        uses: rajyan/preview-pages@v1
+        with:
+          source-dir: build
 
   build-storybook:
     runs-on: ubuntu-latest
