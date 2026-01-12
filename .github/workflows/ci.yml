@@ -79,6 +79,7 @@ jobs:
           branch-per-commit: false
           branch-comment: none
           pr-comment: recreate
+          clean: true
 
   build-storybook:
     runs-on: ubuntu-latest
