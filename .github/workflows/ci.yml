@@ -77,6 +77,8 @@ jobs:
         with:
           source-dir: build/client
           branch-per-commit: false
+          branch-comment: none
+          pr-comment: recreate
 
   build-storybook:
     runs-on: ubuntu-latest
