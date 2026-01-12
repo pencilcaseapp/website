@@ -35,7 +35,7 @@ jobs:
       - name: Start server (in background)
         run: npm run dev &
       - name: Lost Pixel
-        uses: lost-pixel/lost-pixel@v3.16.0
+        run: npm run lost-pixel
         env:
           LOST_PIXEL_API_KEY: ${{ secrets.LOST_PIXEL_API_KEY }}
 
