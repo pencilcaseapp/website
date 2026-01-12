@@ -73,7 +73,7 @@ jobs:
       - name: Preview Pages
         uses: rajyan/preview-pages@v1
         with:
-          source-dir: build
+          source-dir: build/client
 
   build-storybook:
     runs-on: ubuntu-latest
