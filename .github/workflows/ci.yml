@@ -52,6 +52,7 @@ jobs:
         with:
           name: snapshots
           path: .vitest-attachments/
+          include-hidden-files: true
 
   typecheck:
     runs-on: ubuntu-latest
