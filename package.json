@@ -11,7 +11,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "chromatic": "npx chromatic --exit-zero-on-changes --project-token=chpt_eb6f376ce8b0a63"
   },
   "dependencies": {
     "@react-router/node": "7.10.1",
@@ -32,6 +33,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
     "@vitest/browser-playwright": "^4.0.16",
+    "chromatic": "^13.3.5",
     "eslint": "^9.39.2",
     "eslint-plugin-react-hooks": "^7.0.1",
     "storybook": "^10.1.11",
