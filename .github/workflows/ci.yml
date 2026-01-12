@@ -70,10 +70,13 @@ jobs:
         uses: bahmutov/npm-install@v1
       - name: Build
         run: npm run build
+        env:
+          REACT_ROUTER_BASENAME: /website/{{ github.ref_name }}
       - name: Preview Pages
         uses: rajyan/preview-pages@v1
         with:
           source-dir: build/client
+          branch-per-commit: false
 
   build-storybook:
     runs-on: ubuntu-latest
