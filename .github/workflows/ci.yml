@@ -20,24 +20,24 @@ jobs:
       - name: Lint
         run: npm run lint
   
-  chromatic:
+  visual:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 24
       - name: Install deps
         uses: bahmutov/npm-install@v1
-      - name: Run Chromatic
-        uses: chromaui/action@latest
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      - name: Start server (in background)
+        run: npm run dev &
+      - name: Lost Pixel
+        uses: lost-pixel/lost-pixel@v3.16.0
+        env:
+          LOST_PIXEL_API_KEY: ${{ secrets.LOST_PIXEL_API_KEY }}
 
   typecheck:
     runs-on: ubuntu-latest
