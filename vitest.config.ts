@@ -10,18 +10,19 @@ export default defineConfig({
     setupFiles: ['./test/setup.ts'],
     browser: {
       enabled: true,
-      headless: true,
       provider: playwright(),
       // https://vitest.dev/config/browser/playwright
       instances: [
         {
           browser: 'chromium',
-          viewport: {
-            width: 1280,
-            height: 720,
-          },
         },
       ],
+      expect: {
+        toMatchScreenshot: {
+          resolveScreenshotPath: ({ arg, ext, testFileName, root, testFileDirectory, screenshotDirectory }) =>
+            `${root}/${testFileDirectory}/${screenshotDirectory}/${testFileName}/${arg}${ext}`,
+        },
+      },
     },
   },
 });
