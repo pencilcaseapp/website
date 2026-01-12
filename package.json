@@ -11,8 +11,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "chromatic": "npx chromatic --exit-zero-on-changes --project-token=chpt_eb6f376ce8b0a63"
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@react-router/node": "7.10.1",
