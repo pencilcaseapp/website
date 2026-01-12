@@ -7,17 +7,17 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 export default defineConfig({
   plugins: [tailwindcss(), react(), tsconfigPaths()],
   test: {
+    include: ['app/**/*.test.tsx'],
     setupFiles: ['./test/setup.ts'],
     browser: {
-      enabled: true,
       provider: playwright(),
+      enabled: true,
+      headless: true,
       // https://vitest.dev/config/browser/playwright
       instances: [
         {
           browser: 'chromium',
-          viewport: { width: 1280, height: 720 },
-        },
-      ],
+        }],
       expect: {
         toMatchScreenshot: {
           resolveScreenshotPath: ({ arg, ext, testFileName, root, testFileDirectory, screenshotDirectory }) =>
