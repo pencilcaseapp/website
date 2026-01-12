@@ -8,7 +8,7 @@ export function meta() {
 
 export default function Home() {
   return (
-    <div className="inline-flex gap-4 flex-col" data-testid="page-home">
+    <div className="inline-flex gap-4 flex-col">
       <h1>pencil case</h1>
       <Link to={hrefWithTrailingSlash('/legal-notice')}>
         Go to legal notice

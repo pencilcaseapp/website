@@ -20,7 +20,7 @@ jobs:
       - name: Lint
         run: npm run lint
   
-  visual:
+  test:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -32,12 +32,8 @@ jobs:
           node-version: 24
       - name: Install deps
         uses: bahmutov/npm-install@v1
-      - name: Start server (in background)
-        run: npm run dev &
-      - name: Lost Pixel
-        run: npm run lost-pixel
-        env:
-          LOST_PIXEL_API_KEY: ${{ secrets.LOST_PIXEL_API_KEY }}
+      - name: Tests
+        run: npm run test
 
   typecheck:
     runs-on: ubuntu-latest
