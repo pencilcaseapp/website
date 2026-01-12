@@ -47,12 +47,11 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
       - name: Run Tests
         run: npm run test
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         if: always()
         with:
           name: snapshots
-          path: |
-            .vitest-attachments/
+          path: .vitest-attachments/
 
   typecheck:
     runs-on: ubuntu-latest
