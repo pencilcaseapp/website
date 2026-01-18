@@ -71,13 +71,15 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_BASE_PATH: /website/pr-${{ github.event.pull_request.number }}/
-      - name: Preview Pages
+          REACT_ROUTER_BASE_PATH: /website/pr-${{ github.event.pull_request.number }}/
+      - name: Clean up build
+        run: cp -R build/client/website/pr-${{ github.event.pull_request.number }}/ build/client/ && rm -rf build/client/website/
+      - name: Upload PR preview
         uses: rajyan/preview-pages@v1
         with:
           source-dir: build/client
           pr-per-commit: false
-          pr-comment: recreate
+          pr-comment: sticky
 
   build-storybook:
     runs-on: ubuntu-latest
