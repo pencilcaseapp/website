@@ -71,14 +71,13 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_BASE_PATH: /website/${{ github.ref_name }}/
+          VITE_BASE_PATH: /website/pr-${{ github.ref_name }}/
       - name: Preview Pages
         uses: rajyan/preview-pages@v1
         with:
           source-dir: build/client
           pr-per-commit: false
           pr-comment: recreate
-          clean: true
 
   build-storybook:
     runs-on: ubuntu-latest
