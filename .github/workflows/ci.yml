@@ -71,7 +71,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          REACT_ROUTER_BASENAME: /website/${{ github.ref_name }}
+          VITE_BASE_PATH: /website/${{ github.ref_name }}/
       - name: Preview Pages
         uses: rajyan/preview-pages@v1
         with:
