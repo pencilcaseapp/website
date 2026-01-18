@@ -73,7 +73,7 @@ jobs:
         env:
           REACT_ROUTER_BASE_PATH: /website/pr-${{ github.event.pull_request.number }}/
       - name: Clean up build
-        run: cp -R build/client/website/pr-${{ github.event.pull_request.number }}/ build/client/ && rm -rf build/client/website/
+        run: mv build/client/website/pr-${{ github.event.pull_request.number }}/* build/client/ && rm -rf build/client/website/
       - name: Upload PR preview
         uses: rajyan/preview-pages@v1
         with:
