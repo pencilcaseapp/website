@@ -106,7 +106,7 @@ jobs:
         uses: actions/checkout@v4
       - uses: opentofu/setup-opentofu@v1
       - name: Deploy infra
-        run: cd infra && tofu init && tofu apply -auto-approve
+        run: cd infra && tofu init -backend-config=backends/prod.tfbackend && tofu apply -auto-approve
         env:
           SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
           SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
@@ -121,7 +121,7 @@ jobs:
           name: build
           path: build
       - name: Deploy website
-        run: aws s3 sync ./build s3://pencilcase-website-prod --endpoint-url https://s3.fr-par.scw.cloud --delete
+        run: aws s3 sync ./build s3://pencilcase-web-prod --endpoint-url https://s3.fr-par.scw.cloud --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.SCW_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SCW_SECRET_KEY }}
