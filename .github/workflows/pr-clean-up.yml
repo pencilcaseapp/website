@@ -4,15 +4,15 @@ on:
     types:
       - closed
 
-permissions:
-  pull-requests: write
-  contents: write
-
-concurrency:
-  group: gh-pages-${{ github.ref }}
-
 jobs:
   clean-up:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pull-requests: write
+      contents: write
+    concurrency:
+      group: gh-pages-${{ github.ref }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
