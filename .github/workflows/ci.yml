@@ -57,7 +57,7 @@ jobs:
       pull-requests: write
       contents: write
     concurrency:
-      group: build-${{ github.ref }}
+      group: gh-pages-${{ github.ref }}
       cancel-in-progress: true
     steps:
       - name: Checkout
@@ -76,8 +76,7 @@ jobs:
         uses: rajyan/preview-pages@v1
         with:
           source-dir: build/client
-          branch-per-commit: false
-          branch-comment: none
+          pr-per-commit: false
           pr-comment: recreate
           clean: true
 
