@@ -4,7 +4,7 @@ provider "scaleway" {
 }
 
 locals {
-  bucket_name = format("pencilcase-website-%s", var.stage)
+  bucket_name = format("pencilcase-web-%s", var.stage)
 }
 
 resource "scaleway_object_bucket" "website_bucket" {

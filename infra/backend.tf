@@ -1,7 +1,6 @@
 terraform {
   backend "s3" {
-    bucket                      = "pencilcase-state-prod"
-    key                         = "website.tfstate"
+    # Configure via backend config file: terraform init -backend-config=backends/<stage>.tfbackend
     region                      = "fr-par"
     skip_credentials_validation = true
     skip_region_validation      = true
