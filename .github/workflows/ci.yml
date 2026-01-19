@@ -73,7 +73,9 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy infra
-        run: cd infra && tofu init -backend-config=backends/dev.tfbackend -backend-config="key=website-${{ env.PR_NAME }}.tfstate" && tofu apply -auto-approve
+        if: github.actor != 'dependabot[bot]'
+        working-directory: infra
+        run: tofu init -backend-config=backends/dev.tfbackend -backend-config="key=website-${{ env.PR_NAME }}.tfstate" && tofu apply -auto-approve
         env:
           SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
           SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
@@ -84,6 +86,7 @@ jobs:
           TF_VAR_stage: dev
           TF_VAR_bucket_name_suffix: ${{ env.PR_NAME }}
       - name: Deploy website
+        if: github.actor != 'dependabot[bot]'
         run: aws s3 sync ./build/client s3://pencilcase-web-dev-${{ env.PR_NAME }} --endpoint-url https://s3.fr-par.scw.cloud --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.SCW_ACCESS_KEY }}
