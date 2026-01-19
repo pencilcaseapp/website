@@ -3,5 +3,4 @@ import type { Config } from '@react-router/dev/config';
 export default {
   ssr: false,
   prerender: true,
-  basename: process.env.REACT_ROUTER_BASE_PATH || '/',
 } satisfies Config;

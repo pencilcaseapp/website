@@ -50,18 +50,20 @@ jobs:
       - name: Transpile TypeScript
         run: npm run typecheck
 
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    permissions:
-      pull-requests: write
-      contents: write
     concurrency:
-      group: gh-pages-${{ github.ref }}
-      cancel-in-progress: true
+      group: build-and-deploy-${{ github.event.pull_request.number }}
+    environment:
+      name: dev
+      url: https://pencilcase-web-dev-${{ env.PR_NAME }}.s3-website.fr-par.scw.cloud
+    env:
+      PR_NAME: pr-${{ github.event.pull_request.number }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - uses: opentofu/setup-opentofu@v1
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -70,16 +72,21 @@ jobs:
         uses: bahmutov/npm-install@v1
       - name: Build
         run: npm run build
+      - name: Deploy infra
+        run: cd infra && tofu init -backend-config=backends/dev.tfbackend -backend-config="key=website-${{ env.PR_NAME }}.tfstate" && tofu apply -auto-approve
         env:
-          REACT_ROUTER_BASE_PATH: /website/pr-${{ github.event.pull_request.number }}/
-      - name: Clean up build
-        run: mv build/client/website/pr-${{ github.event.pull_request.number }}/* build/client/ && rm -rf build/client/website/
-      - name: Upload PR preview
-        uses: rajyan/preview-pages@v1
-        with:
-          source-dir: build/client
-          pr-per-commit: false
-          pr-comment: sticky
+          SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
+          SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.SCW_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SCW_SECRET_KEY }}
+          TF_VAR_organization_id: ${{ secrets.SCW_ORGANIZATION_ID }}
+          TF_VAR_project_id: ${{ secrets.SCW_PROJECT_ID }}
+          TF_VAR_stage: dev
+      - name: Deploy website
+        run: aws s3 sync ./build/client s3://pencilcase-web-dev-${{ env.PR_NAME }} --endpoint-url https://s3.fr-par.scw.cloud --delete
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.SCW_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SCW_SECRET_KEY }}
 
   build-storybook:
     runs-on: ubuntu-latest
