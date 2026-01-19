@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
       - uses: opentofu/setup-opentofu@v1
       - name: Destroy PR preview
-        run: cd infra && tofu init -backend-config=backends/dev.tfbackend -backend-config="key=website-${{ env.PR_NAME }}.tfstate" && tofu apply -auto-approve
+        run: cd infra && tofu init -backend-config=backends/dev.tfbackend -backend-config="key=website-${{ env.PR_NAME }}.tfstate" && tofu destroy -auto-approve
         env:
           SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
           SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
