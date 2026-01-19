@@ -82,6 +82,7 @@ jobs:
           TF_VAR_organization_id: ${{ secrets.SCW_ORGANIZATION_ID }}
           TF_VAR_project_id: ${{ secrets.SCW_PROJECT_ID }}
           TF_VAR_stage: dev
+          TF_VAR_bucket_name_suffix: ${{ env.PR_NAME }}
       - name: Deploy website
         run: aws s3 sync ./build/client s3://pencilcase-web-dev-${{ env.PR_NAME }} --endpoint-url https://s3.fr-par.scw.cloud --delete
         env:
