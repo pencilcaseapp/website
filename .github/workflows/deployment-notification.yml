@@ -6,32 +6,32 @@ on:
       - completed
 
 jobs:
-  notifiy-success:
+  notify-success:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Send notification to Zoom channel
+      - name: Send notification to Zoom
         uses: fjogeleit/http-request-action@v1
         with:
           url: '${{ secrets.ZOOM_DEPLOYMENT_ENDPOINT }}?format=full'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json", "Authorization": "${{ secrets.ZOOM_DEPLOYMENT_API_KEY }}" }'
-          data: '{ "head": { "text": "✅ Deployment succesful website" }, "body": [ {"type": "message", "text": ${{ toJSON( github.event.workflow_run.head_commit.message ) }} }, { "type": "message", "text": "See workflow run", "link": "${{ github.event.workflow_run.html_url }}" } ] }'
+          data: '{ "head": { "text": "✅ Website" }, "body": [ {"type": "message", "text": ${{ toJSON( github.event.workflow_run.head_commit.message ) }} }, { "type": "message", "text": "See workflow run", "link": "${{ github.event.workflow_run.html_url }}" } ] }'
 
-  notifiy-failure:
+  notify-failure:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Send notification to Zoom channel
+      - name: Send notification to Zoom
         uses: fjogeleit/http-request-action@v1
         with:
           url: '${{ secrets.ZOOM_DEPLOYMENT_ENDPOINT }}?format=full'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json", "Authorization": "${{ secrets.ZOOM_DEPLOYMENT_API_KEY }}" }'
-          data: '{ "head": { "text": "🚨 Deployment failed website" }, "body": [ {"type": "message", "text": ${{ toJSON( github.event.workflow_run.head_commit.message ) }} }, { "type": "message", "text": "See workflow run", "link": "${{ github.event.workflow_run.html_url }}" } ] }'
+          data: '{ "head": { "text": "🚨 Website" }, "body": [ {"type": "message", "text": ${{ toJSON( github.event.workflow_run.head_commit.message ) }} }, { "type": "message", "text": "See workflow run", "link": "${{ github.event.workflow_run.html_url }}" } ] }'
