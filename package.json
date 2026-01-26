@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "prestart": "npm run build",
-    "start": "react-router-serve ./build/server/index.js",
+    "start": "PORT=8080 HOST=0.0.0.0 react-router-serve ./build/server/index.js",
     "dev": "react-router dev",
     "build": "react-router build",
     "test": "vitest",
