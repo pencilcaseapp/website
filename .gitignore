@@ -7,9 +7,6 @@
 /.react-router/
 /build/
 
-# Infra
-.clever.json
-
 # Storybook
 *storybook.log
 storybook-static
