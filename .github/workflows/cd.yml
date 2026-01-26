@@ -113,7 +113,7 @@ jobs:
       - name: Install deps
         uses: bahmutov/npm-install@v1
       - name: Deploy app
-        run: npx clever deploy -a pencil-case-website-prod -f
+        run: npx clever deploy -a pencil-case-website-prod -f -p rebuild
         env:
           CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
           CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
