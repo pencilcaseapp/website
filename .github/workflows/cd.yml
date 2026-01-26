@@ -119,8 +119,12 @@ jobs:
           CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
       - name: Purge CDN cache
         run: |
-          curl -X POST "https://api.bunny.net/pullzone/${BUNNY_PULL_ZONE_ID}/purgeCache" \
+          curl -X POST "https://api.bunny.net/pullzone/${BUNNY_PULL_ZONE_ID_PROD}/purgeCache" \
+            -H "AccessKey: ${BUNNY_API_KEY}"
+
+          curl -X POST "https://api.bunny.net/pullzone/${BUNNY_PULL_ZONE_ID_STAGING}/purgeCache" \
             -H "AccessKey: ${BUNNY_API_KEY}"
         env:
           BUNNY_API_KEY: ${{ secrets.BUNNY_API_KEY }}
-          BUNNY_PULL_ZONE_ID: ${{ secrets.BUNNY_PULL_ZONE_ID }}
+          BUNNY_PULL_ZONE_ID_PROD: ${{ secrets.BUNNY_PULL_ZONE_ID_PROD }}
+          BUNNY_PULL_ZONE_ID_STAGING: ${{ secrets.BUNNY_PULL_ZONE_ID_STAGING }}
