@@ -10,7 +10,7 @@ exports[`matches snapshot 1`] = `
     </h1>
     <a
       data-discover="true"
-      href="/legal-notice/"
+      href="/legal-notice"
     >
       Go to legal notice
     </a>
