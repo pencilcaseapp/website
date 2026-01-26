@@ -8,8 +8,7 @@
 /build/
 
 # Infra
-.terraform
-*.tfvars
+.clever.json
 
 # Storybook
 *storybook.log
