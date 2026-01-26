@@ -7,4 +7,7 @@ const isStorybook = process.argv[1]?.includes('storybook');
 
 export default defineConfig({
   plugins: [tailwindcss(), !isStorybook && reactRouter(), tsconfigPaths()],
+  build: {
+    assetsDir: 'website-assets',
+  },
 });
