@@ -15,7 +15,7 @@ exports[`matches snapshot 1`] = `
       Go to legal notice
     </a>
     <a
-      href="/home"
+      href="https://docs.pencilcase.app"
     >
       Go to app
     </a>
