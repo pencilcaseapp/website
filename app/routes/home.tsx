@@ -12,7 +12,7 @@ export default function Home() {
       <Link to={href('/site/legal-notice')}>
         Go to legal notice
       </Link>
-      <a href="/home">Go to app</a>
+      <a href="https://docs.pencilcase.app">Go to app</a>
       <Button>Button</Button>
     </div>
   );
