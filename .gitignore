@@ -10,3 +10,6 @@
 # Storybook
 *storybook.log
 storybook-static
+
+# Licensed fonts, never committed
+/public/fonts/

@@ -3,3 +3,30 @@
 @import "@fontsource-variable/archivo/wdth.css";
 @import "@fontsource/hanken-grotesk/700.css";
 @import "@fontsource/covered-by-your-grace/400.css";
+
+/* PP Agrandir is licensed per use and not part of the repository. It is
+   picked up from an installed copy, or from /fonts once the licensed web
+   files are added there (gitignored); everybody else sees Archivo. */
+@font-face {
+  font-family: 'PP Agrandir Grand';
+  font-weight: 800;
+  font-display: swap;
+  src: local('PP Agrandir Grand Heavy'), local('PPAgrandir-GrandHeavy'),
+    url('/fonts/PPAgrandir-GrandHeavy.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'PP Agrandir';
+  font-weight: 400;
+  font-display: swap;
+  src: local('PP Agrandir Regular'), local('PPAgrandir-Regular'),
+    url('/fonts/PPAgrandir-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'PP Agrandir';
+  font-weight: 700;
+  font-display: swap;
+  src: local('PP Agrandir Text Bold'), local('PPAgrandirText-Bold'),
+    url('/fonts/PPAgrandirText-Bold.woff2') format('woff2');
+}

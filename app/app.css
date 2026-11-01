@@ -28,8 +28,8 @@
   --font-inter: Inter, ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-  /* PP Agrandir is licensed and not in the repository yet; Archivo stands
-     in for it (stretched to 125% for the Grand cut) until it is. */
+  /* PP Agrandir comes from `fonts.css`; where it is missing Archivo
+     stands in for it (stretched to 125% for the Grand cut). */
   --font-display: 'PP Agrandir Grand', 'Archivo Variable', Inter,
     ui-sans-serif, system-ui, sans-serif;
   --font-text: 'PP Agrandir', 'Archivo Variable', Inter, ui-sans-serif,
