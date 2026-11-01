@@ -12,7 +12,7 @@ export const Hero: React.FC = () => {
   return (
     <section className="rounded-b-[2.5rem] bg-pca-yellow-500 sm:rounded-b-[3.5rem]">
       <Container className="pt-12 text-center sm:pt-20">
-        <div ref={driftRef} className="will-change-[translate]">
+        <div ref={driftRef} className="scroll-drift will-change-[translate]">
           <h1 className="type-hero">
             Docs,
             <br />
