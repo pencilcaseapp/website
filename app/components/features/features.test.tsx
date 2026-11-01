@@ -49,6 +49,11 @@ describe('Features', () => {
     );
 
     expect(back).not.toHaveAttribute('inert');
+    // Safari draws the turned away face's button through the card.
+    expect(card.querySelector('[aria-label="Turn the card over"]'))
+      .toHaveClass('opacity-0');
+    expect(within(card).getByRole('button', { name: 'Turn the card back' }))
+      .not.toHaveClass('opacity-0');
     expect(open.closest('.fan-face')).toHaveAttribute('inert');
     expect(within(card).getByRole('link', { name: 'Get started' }))
       .toHaveAttribute('href', 'https://docs.pencilcase.app');

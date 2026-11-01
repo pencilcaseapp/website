@@ -89,7 +89,11 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
               FOCUS_RING,
             )}
           />
-          <FlipButton label="Turn the card over" shown={open} onClick={onFlip} />
+          <FlipButton
+            label="Turn the card over"
+            shown={open && !flipped}
+            onClick={onFlip}
+          />
           <p className="type-hand-lg text-center">{label}</p>
           <div
             aria-hidden="true"
@@ -117,7 +121,11 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
               FOCUS_RING,
             )}
           />
-          <FlipButton label="Turn the card back" shown onClick={onFlip} />
+          <FlipButton
+            label="Turn the card back"
+            shown={showsBack}
+            onClick={onFlip}
+          />
           <p className="type-hand-lg text-center">{label}</p>
           <h3 className="type-title mt-8">{feature.title}</h3>
           <ul className="mt-6 flex flex-col gap-2.5">
