@@ -4,13 +4,19 @@ import { Container } from '~/ui/container/container';
 import { Button } from '~/ui/button/button';
 import { HandArrow } from '~/ui/hand-note/hand-note';
 import { useScrollDrift } from '~/hooks/use-scroll-drift';
+import { useScrolledOut } from '~/hooks/use-scrolled-out';
 import { ProductDemo } from '../product-demo/product-demo';
 
 export const Hero: React.FC = () => {
   const driftRef = useScrollDrift<HTMLDivElement>();
+  const [sectionRef, isScrolledOut] = useScrolledOut<HTMLElement>();
 
   return (
-    <section className="rounded-b-[2.5rem] bg-pca-yellow-500 sm:rounded-b-[3.5rem]">
+    <section
+      ref={sectionRef}
+      data-tints-top-bar={isScrolledOut ? undefined : ''}
+      className="rounded-b-[2.5rem] bg-pca-yellow-500 sm:rounded-b-[3.5rem]"
+    >
       <Container className="pt-12 text-center sm:pt-20">
         <div ref={driftRef} className="scroll-drift will-change-[translate]">
           <h1 className="type-hero">
