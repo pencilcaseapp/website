@@ -4,10 +4,24 @@ import stylistic from '@stylistic/eslint-plugin';
 import reactHooks from 'eslint-plugin-react-hooks';
 
 export default defineConfig([
-  globalIgnores(['**/.react-router/']),
+  globalIgnores(['**/.react-router/', 'build/', 'storybook-static/']),
   stylistic.configs.customize({
     semi: true,
   }),
   tseslint.configs.recommended,
   reactHooks.configs.flat.recommended,
+  {
+    plugins: {
+      '@stylistic': stylistic,
+    },
+    rules: {
+      '@stylistic/max-len': ['error', {
+        code: 80,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+        ignoreUrls: true,
+        ignoreRegExpLiterals: true,
+      }],
+    },
+  },
 ]);

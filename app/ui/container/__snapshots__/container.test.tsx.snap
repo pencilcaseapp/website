@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Container > matches snapshot 1`] = `
+<div>
+  <div
+    class="mx-auto w-full max-w-[1200px] px-4 sm:px-8 pt-12"
+  >
+    Hi
+  </div>
+</div>
+`;

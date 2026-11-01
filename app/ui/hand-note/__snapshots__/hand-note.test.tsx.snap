@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HandNote > matches snapshot 1`] = `
+<div>
+  <div
+    aria-hidden="true"
+    class="pointer-events-none flex items-center gap-2 select-none text-pca-grey-900 flex-row-reverse"
+  >
+    <svg
+      aria-hidden="true"
+      class="shrink-0 overflow-visible h-8 w-16"
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2.5"
+      viewBox="0 0 72 36"
+    >
+      <path
+        d="M3 12 C 22 3, 47 6, 66 24"
+      />
+      <path
+        d="M66 24 L 53 22 M66 24 L 63 11"
+      />
+    </svg>
+    <p
+      class="type-hand whitespace-nowrap"
+    >
+      drag me
+    </p>
+  </div>
+</div>
+`;
