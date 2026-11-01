@@ -15,7 +15,9 @@ export type IconName
     | 'link'
     | 'check'
     | 'arrowRight'
-    | 'turnOver';
+    | 'turnOver'
+    | 'plus'
+    | 'minus';
 
 export const icons: {
   [index in IconName]: React.ReactElement<SVGPathElement>;
@@ -172,6 +174,22 @@ export const icons: {
       strokeWidth="2.4"
       strokeLinecap="round"
       strokeLinejoin="round"
+    />
+  ),
+  plus: (
+    <path
+      d="M12 4v16M4 12h16"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    />
+  ),
+  minus: (
+    <path
+      d="M6 12h12"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
     />
   ),
 };

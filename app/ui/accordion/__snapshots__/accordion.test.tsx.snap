@@ -1,0 +1,145 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Accordion > matches snapshot 1`] = `
+<div>
+  <div
+    class="flex flex-col gap-3"
+    data-orientation="vertical"
+  >
+    <div
+      class="group rounded-[1.75rem] bg-pca-grey-100 transition-colors duration-150 ease-out data-open:bg-pca-pop-yellow motion-reduce:transition-none"
+      data-closed=""
+      data-hidden=""
+      data-index="0"
+      data-orientation="vertical"
+    >
+      <h3
+        data-closed=""
+        data-hidden=""
+        data-index="0"
+        data-orientation="vertical"
+      >
+        <button
+          aria-expanded="false"
+          class="type-question flex min-h-11 w-full cursor-pointer items-center justify-between gap-6 rounded-[1.75rem] px-6 py-5 text-left select-none sm:px-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pca-grey-900"
+          data-hidden=""
+          data-index="0"
+          data-orientation="vertical"
+          id="base-ui-_r_q_"
+          tabindex="0"
+          type="button"
+        >
+          First question
+          <span
+            class="grid size-9 shrink-0 place-items-center rounded-full bg-pca-white"
+          >
+            <svg
+              aria-hidden="true"
+              class="size-5 transition-transform duration-200 ease-out group-data-open:rotate-45 motion-reduce:transition-none"
+              fill="transparent"
+              focusable="false"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 4v16M4 12h16"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="2.5"
+              />
+            </svg>
+          </span>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="base-ui-_r_q_"
+        class="h-(--accordion-panel-height) overflow-hidden transition-[height] duration-200 ease-out data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none"
+        data-closed=""
+        data-hidden=""
+        data-index="0"
+        data-orientation="vertical"
+        data-starting-style=""
+        hidden="until-found"
+        id="base-ui-_r_p_"
+        role="region"
+        style="--accordion-panel-height: auto; --accordion-panel-width: auto;"
+      >
+        <div
+          class="type-body-lg max-w-[56ch] px-6 pb-6 sm:px-7"
+        >
+          First answer
+        </div>
+      </div>
+    </div>
+    <div
+      class="group rounded-[1.75rem] bg-pca-grey-100 transition-colors duration-150 ease-out data-open:bg-pca-pop-yellow motion-reduce:transition-none"
+      data-closed=""
+      data-hidden=""
+      data-index="1"
+      data-orientation="vertical"
+    >
+      <h3
+        data-closed=""
+        data-hidden=""
+        data-index="1"
+        data-orientation="vertical"
+      >
+        <button
+          aria-expanded="false"
+          class="type-question flex min-h-11 w-full cursor-pointer items-center justify-between gap-6 rounded-[1.75rem] px-6 py-5 text-left select-none sm:px-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pca-grey-900"
+          data-hidden=""
+          data-index="1"
+          data-orientation="vertical"
+          id="base-ui-_r_u_"
+          tabindex="0"
+          type="button"
+        >
+          Second question
+          <span
+            class="grid size-9 shrink-0 place-items-center rounded-full bg-pca-white"
+          >
+            <svg
+              aria-hidden="true"
+              class="size-5 transition-transform duration-200 ease-out group-data-open:rotate-45 motion-reduce:transition-none"
+              fill="transparent"
+              focusable="false"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 4v16M4 12h16"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="2.5"
+              />
+            </svg>
+          </span>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="base-ui-_r_u_"
+        class="h-(--accordion-panel-height) overflow-hidden transition-[height] duration-200 ease-out data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none"
+        data-closed=""
+        data-hidden=""
+        data-index="1"
+        data-orientation="vertical"
+        data-starting-style=""
+        hidden="until-found"
+        id="base-ui-_r_t_"
+        role="region"
+        style="--accordion-panel-height: auto; --accordion-panel-width: auto;"
+      >
+        <div
+          class="type-body-lg max-w-[56ch] px-6 pb-6 sm:px-7"
+        >
+          Second answer
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
