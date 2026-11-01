@@ -26,8 +26,8 @@ describe('Pricing', () => {
   it('tells screen readers what the free plan leaves out', () => {
     render(<Pricing />);
 
-    expect(within(getPlan('Free')).getAllByText('(not included)'))
-      .toHaveLength(2);
+    expect(within(getPlan('Free')).getByText('(not included)'))
+      .toBeInTheDocument();
     expect(within(getPlan('Pro')).queryByText('(not included)'))
       .not.toBeInTheDocument();
   });
