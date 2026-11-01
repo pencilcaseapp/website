@@ -20,7 +20,6 @@ export interface Plan {
 const SHARED_POINTS: PlanPoint[] = [
   { label: 'Hosted in the EU', included: true },
   { label: 'No tracking', included: true },
-  { label: 'Support small tech', included: true },
 ];
 
 export const PLANS: Plan[] = [
@@ -34,6 +33,7 @@ export const PLANS: Plan[] = [
       { highlight: String(FREE_DOCUMENT_LIMIT), label: 'docs', included: true },
       { label: 'Access control for collaboration', included: false },
       ...SHARED_POINTS,
+      { label: 'Support small tech', included: false },
     ],
     cta: 'Don’t buy',
   },
@@ -47,6 +47,7 @@ export const PLANS: Plan[] = [
       { highlight: 'Unlimited', label: 'docs', included: true },
       { label: 'Access control for collaboration', included: true },
       ...SHARED_POINTS,
+      { label: 'Support small tech', included: true },
     ],
     cta: 'Buy',
   },
