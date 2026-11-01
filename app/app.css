@@ -240,6 +240,22 @@ body:has([role='dialog']) .top-bar-tint {
   display: none;
 }
 
+/* Menu links glide to their section, which stops clear of the floating
+   navigation. */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+[id] {
+  scroll-margin-top: 88px;
+}
+
 ::selection {
   @apply bg-pca-grey-900 text-pca-white;
 }
