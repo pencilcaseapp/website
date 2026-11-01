@@ -20,6 +20,15 @@ describe('Button', () => {
       .toHaveAttribute('href', 'https://example.com');
   });
 
+  it('points the arrow out of the site for an external link', () => {
+    const { container } = render(
+      <Button as="a" href="https://example.com" isExternal>GitHub</Button>,
+    );
+
+    expect(container.querySelector('path'))
+      .toHaveAttribute('d', 'M3 13 13 3M5 3h8v8');
+  });
+
   it('matches snapshot', () => {
     const { container } = render(
       <Button as="a" href="/" colorLight="red-600" size="small">
