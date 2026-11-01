@@ -203,6 +203,13 @@ body {
   overflow-x: clip;
 }
 
+/* Safari 26 tints its top bar with the page background, so the page turns
+   yellow behind the content while the hero is at the top. */
+html:has([data-tints-top-bar]),
+html:has([data-tints-top-bar]) body {
+  @apply bg-pca-yellow-500;
+}
+
 ::selection {
   @apply bg-pca-grey-900 text-pca-white;
 }
