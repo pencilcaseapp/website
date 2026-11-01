@@ -21,7 +21,7 @@ export default function Home() {
       <SiteHeader />
       <FloatingNav />
       <MobileMenu />
-      <main id="main" className="relative z-10 bg-pca-white pb-28">
+      <main id="main" className="relative z-10 pb-28">
         <Hero />
         <Features />
         <Pricing />

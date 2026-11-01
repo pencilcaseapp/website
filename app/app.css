@@ -203,11 +203,21 @@ body {
   overflow-x: clip;
 }
 
-/* Safari 26 tints its top bar with the page background, so the page turns
-   yellow behind the content while the hero is at the top. */
-html:has([data-tints-top-bar]),
-html:has([data-tints-top-bar]) body {
+/* Safari 26 ignores theme-color and tints its top bar with the colour of an
+   element it finds along the top edge. This strip is that element: masked
+   out, so nobody sees it, but still picked up by Safari. */
+.top-bar-tint {
   @apply bg-pca-yellow-500;
+
+  position: fixed;
+  top: 4px;
+  left: 50%;
+  z-index: 999;
+  width: 89%;
+  height: 11px;
+  translate: -50% 0;
+  pointer-events: none;
+  mask-image: linear-gradient(transparent, transparent);
 }
 
 ::selection {

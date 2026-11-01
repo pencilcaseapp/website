@@ -14,9 +14,9 @@ export const Hero: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      data-tints-top-bar={isScrolledOut ? undefined : ''}
       className="rounded-b-[2.5rem] bg-pca-yellow-500 sm:rounded-b-[3.5rem]"
     >
+      {!isScrolledOut && <div aria-hidden="true" className="top-bar-tint" />}
       <Container className="pt-12 text-center sm:pt-20">
         <div ref={driftRef} className="scroll-drift will-change-[translate]">
           <h1 className="type-hero">
