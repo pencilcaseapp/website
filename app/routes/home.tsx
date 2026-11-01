@@ -1,3 +1,4 @@
+import { Features } from '~/components/features/features';
 import { FloatingNav } from '~/components/floating-nav/floating-nav';
 import { Hero } from '~/components/hero/hero';
 import { MobileMenu } from '~/components/mobile-menu/mobile-menu';
@@ -21,6 +22,7 @@ export default function Home() {
       <MobileMenu />
       <main id="main" className="relative z-10 pb-28">
         <Hero />
+        <Features />
       </main>
     </>
   );
