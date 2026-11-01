@@ -1,10 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import { createRoutesStub } from 'react-router';
 import { describe, expect, it } from 'vitest';
-import { SiteHeader } from './site-header';
+import { SiteHeader, type SiteHeaderProps } from './site-header';
 
-function renderHeader() {
-  const Stub = createRoutesStub([{ path: '/', Component: SiteHeader }]);
+function renderHeader(props: SiteHeaderProps = {}) {
+  const Stub = createRoutesStub([
+    { path: '/', Component: () => <SiteHeader {...props} /> },
+  ]);
 
   return render(<Stub />);
 }
@@ -37,5 +39,19 @@ describe('SiteHeader', () => {
 
     expect(screen.getByRole('link', { name: 'Skip to content' }))
       .toHaveAttribute('href', '#main');
+  });
+
+  it('is yellow on the start page', () => {
+    renderHeader();
+
+    expect(screen.getByRole('banner')).toHaveClass('bg-pca-yellow-500');
+  });
+
+  it('turns white on the pages behind it', () => {
+    renderHeader({ tone: 'white' });
+
+    expect(screen.getByRole('banner')).toHaveClass('bg-pca-white');
+    expect(screen.getByRole('link', { name: 'Pricing' }))
+      .toHaveClass('bg-pca-yellow-500');
   });
 });

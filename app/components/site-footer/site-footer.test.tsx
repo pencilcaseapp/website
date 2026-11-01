@@ -50,6 +50,17 @@ describe('SiteFooter', () => {
       ]);
   });
 
+  it('leads to the legal texts', () => {
+    render(<SiteFooter />);
+
+    expect(screen.getByRole('link', { name: 'Legal Notice' }))
+      .toHaveAttribute('href', '/imprint');
+    expect(screen.getByRole('link', { name: 'Privacy Policy' }))
+      .toHaveAttribute('href', '/privacy');
+    expect(screen.getByRole('link', { name: 'Terms of Use' }))
+      .toHaveAttribute('href', '/terms');
+  });
+
   it('shows the e-mail address', () => {
     render(<SiteFooter />);
 

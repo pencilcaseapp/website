@@ -40,4 +40,13 @@ describe('useActiveSection', () => {
 
     expect(result.current).toBe('#pricing');
   });
+
+  it('finds the section of a link from another page', () => {
+    addSection('pricing', -400);
+
+    const { result } = renderHook(() =>
+      useActiveSection(['/#pricing', '/blog']));
+
+    expect(result.current).toBe('/#pricing');
+  });
 });

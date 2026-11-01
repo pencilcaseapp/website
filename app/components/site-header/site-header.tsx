@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { href, Link } from 'react-router';
 import { APP_URL, NAV_ITEMS } from '~/constants/links';
 import { useActiveSection } from '~/hooks/use-active-section';
@@ -6,15 +7,25 @@ import { Button } from '~/ui/button/button';
 import { Logo } from '~/ui/logo/logo';
 import { NavLink } from '~/ui/nav-link/nav-link';
 
+export interface SiteHeaderProps {
+  /** Yellow on the start page, white on the pages behind it. */
+  tone?: 'yellow' | 'white';
+}
+
 /**
  * The logo, the section links and Sign in. Below `lg` the section links
  * and below `md` Sign in move into the `MobileMenu`.
  */
-export const SiteHeader: React.FC = () => {
+export const SiteHeader: React.FC<SiteHeaderProps> = ({ tone = 'yellow' }) => {
   const activeSection = useActiveSection(NAV_ITEMS.map(item => item.href));
 
   return (
-    <header className="relative z-20 bg-pca-yellow-500">
+    <header
+      className={classNames(
+        'relative z-20',
+        tone === 'yellow' ? 'bg-pca-yellow-500' : 'bg-pca-white',
+      )}
+    >
       <a
         href="#main"
         className="sr-only rounded-lg bg-pca-white px-4 py-3 font-semibold focus-visible:not-sr-only focus-visible:fixed focus-visible:top-4 focus-visible:left-4 focus-visible:z-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pca-grey-900"
@@ -34,6 +45,9 @@ export const SiteHeader: React.FC = () => {
               <li key={item.href}>
                 <NavLink
                   href={item.href}
+                  className={classNames(
+                    tone === 'white' && 'bg-pca-yellow-500',
+                  )}
                   aria-current={activeSection === item.href ? 'true' : undefined}
                 >
                   {item.label}

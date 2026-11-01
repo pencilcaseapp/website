@@ -1,9 +1,9 @@
 export const APP_URL = 'https://docs.pencilcase.app';
 
 export const NAV_ITEMS = [
-  { href: '#features', label: 'Features' },
-  { href: '#small-tech', label: 'Small tech' },
-  { href: '#pricing', label: 'Pricing' },
+  { href: '/#features', label: 'Features' },
+  { href: '/#small-tech', label: 'Small tech' },
+  { href: '/#pricing', label: 'Pricing' },
   { href: '/blog', label: 'Blog' },
 ] as const;
 
@@ -28,13 +28,16 @@ export const FOOTER_LINKS = [
   },
 ] as const;
 
-/** The legal texts are not written yet, so none of them leads anywhere. */
+/** Cancelling and withdrawing have no page yet. */
 export const LEGAL_LINKS = [
-  { href: '#', label: 'Legal Notice' },
-  { href: '#', label: 'Privacy Policy' },
-  { href: '#', label: 'Terms of Use' },
+  { href: '/imprint', label: 'Legal Notice' },
+  { href: '/privacy', label: 'Privacy Policy' },
+  { href: '/terms', label: 'Terms of Use' },
   { href: '#', label: 'Cancel contract' },
   { href: '#', label: 'Withdraw contract' },
 ] as const;
 
 export const CONTACT_EMAIL = 'inbox@pencilcase.app';
+
+/** The contact form the legal texts point to. It has no page yet. */
+export const CONTACT_FORM_HREF = '/contact';
