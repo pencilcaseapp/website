@@ -446,6 +446,25 @@ body {
   transform: rotateY(180deg);
 }
 
+/* The hero's headline trails behind the page, 4rem over the first 600px.
+   Driven by the scroll timeline, so it moves with the page on the compositor;
+   `useScrollDrift` stands in where there is none. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-drift {
+      animation: scroll-drift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 600px;
+    }
+  }
+}
+
+@keyframes scroll-drift {
+  to {
+    translate: 0 4rem;
+  }
+}
+
 /* The cards settle into place as the section scrolls in. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
