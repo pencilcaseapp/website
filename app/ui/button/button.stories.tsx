@@ -24,6 +24,11 @@ export const ExtraSmall: Story = {
   args: { size: 'extraSmall', colorLight: 'red-600', children: 'Sign in' },
 };
 
+export const White: Story = {
+  args: { size: 'medium', colorLight: 'white', children: 'Don’t buy' },
+  decorators: [Story => <div className="bg-pca-grey-100 p-8"><Story /></div>],
+};
+
 export const AsLink: Story = {
   render: () => <Button as="a" href="#">Get started</Button>,
 };

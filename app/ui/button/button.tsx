@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import type { PolymorphicComponentPropWithRef } from '../polymorphic-types/polymorphic-types';
 
-export type ButtonColor = 'grey-900' | 'red-600';
+export type ButtonColor = 'grey-900' | 'red-600' | 'white';
 export type ButtonSize = 'extraSmall' | 'small' | 'medium' | 'large';
 
 export type ButtonProps<C extends React.ElementType>
@@ -17,6 +17,7 @@ export type ButtonProps<C extends React.ElementType>
 const COLORS: Record<ButtonColor, string> = {
   'grey-900': 'bg-pca-grey-900 text-pca-white hover:bg-pca-grey-800',
   'red-600': 'bg-pca-red-600 text-pca-white hover:bg-pca-red-700',
+  'white': 'bg-pca-white text-pca-grey-900 hover:bg-pca-grey-200',
 };
 
 const SIZES: Record<ButtonSize, string> = {

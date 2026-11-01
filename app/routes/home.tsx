@@ -2,6 +2,7 @@ import { Features } from '~/components/features/features';
 import { FloatingNav } from '~/components/floating-nav/floating-nav';
 import { Hero } from '~/components/hero/hero';
 import { MobileMenu } from '~/components/mobile-menu/mobile-menu';
+import { Pricing } from '~/components/pricing/pricing';
 import { SiteHeader } from '~/components/site-header/site-header';
 
 export function meta() {
@@ -23,6 +24,7 @@ export default function Home() {
       <main id="main" className="relative z-10 pb-28">
         <Hero />
         <Features />
+        <Pricing />
       </main>
     </>
   );
