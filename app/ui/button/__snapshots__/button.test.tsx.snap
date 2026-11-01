@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CtaLink > matches snapshot 1`] = `
+exports[`Button > matches snapshot 1`] = `
 <div>
   <a
     class="group type-button inline-flex items-center justify-center overflow-hidden rounded-full transition-[background-color,scale] duration-200 ease-out active:scale-[0.96] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pca-grey-900 bg-pca-red-600 text-pca-white hover:bg-pca-red-700 h-11 px-6 text-base"

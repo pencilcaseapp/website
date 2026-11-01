@@ -1,7 +1,7 @@
 import { APP_URL } from '~/constants/links';
 import { FREE_DOCUMENT_LIMIT } from '~/constants/plans';
 import { Container } from '~/ui/container/container';
-import { CtaLink } from '~/ui/cta-link/cta-link';
+import { Button } from '~/ui/button/button';
 import { HandArrow } from '~/ui/hand-note/hand-note';
 import { useScrollDrift } from '~/hooks/use-scroll-drift';
 import { ProductDemo } from '../product-demo/product-demo';
@@ -24,7 +24,7 @@ export const Hero: React.FC = () => {
           </p>
           <div className="mt-10 flex flex-col items-center gap-5">
             <div className="relative">
-              <CtaLink href={APP_URL}>Get started</CtaLink>
+              <Button as="a" href={APP_URL}>Get started</Button>
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute top-1/2 right-full mr-3 hidden -translate-y-1/2 items-center gap-2 select-none lg:flex"

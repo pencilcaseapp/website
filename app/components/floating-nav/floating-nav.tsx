@@ -1,7 +1,7 @@
 import { APP_URL, NAV_ITEMS } from '~/constants/links';
 import { useActiveSection } from '~/hooks/use-active-section';
 import { useScrolledPast } from '~/hooks/use-scrolled-past';
-import { CtaLink } from '~/ui/cta-link/cta-link';
+import { Button } from '~/ui/button/button';
 import { NavLink } from '~/ui/nav-link/nav-link';
 
 const SHOW_AFTER = 140;
@@ -48,7 +48,8 @@ export const FloatingNav: React.FC = () => {
             ))}
           </ul>
         </nav>
-        <CtaLink
+        <Button
+          as="a"
           href={APP_URL}
           colorLight="red-600"
           size="extraSmall"
@@ -56,7 +57,7 @@ export const FloatingNav: React.FC = () => {
           style={stagger(NAV_ITEMS.length)}
         >
           Sign in
-        </CtaLink>
+        </Button>
       </div>
     </div>
   );

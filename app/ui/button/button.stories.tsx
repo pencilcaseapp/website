@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CtaLink } from './cta-link';
+import { Button } from './button';
 
 const meta = {
-  title: 'Navigation/CtaLink',
-  component: CtaLink,
-  args: { href: '#', children: 'Get started' },
-} satisfies Meta<typeof CtaLink>;
+  title: 'Forms/Button',
+  component: Button,
+  args: { children: 'Get started' },
+} satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -18,4 +18,12 @@ export const Medium: Story = {
 
 export const Small: Story = {
   args: { size: 'small', colorLight: 'red-600', children: 'Sign in' },
+};
+
+export const ExtraSmall: Story = {
+  args: { size: 'extraSmall', colorLight: 'red-600', children: 'Sign in' },
+};
+
+export const AsLink: Story = {
+  render: () => <Button as="a" href="#">Get started</Button>,
 };

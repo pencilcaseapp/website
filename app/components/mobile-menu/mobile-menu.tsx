@@ -2,7 +2,7 @@ import { Dialog } from '@base-ui/react/dialog';
 import classNames from 'classnames';
 import { useState } from 'react';
 import { APP_URL, NAV_ITEMS } from '~/constants/links';
-import { CtaLink } from '~/ui/cta-link/cta-link';
+import { Button } from '~/ui/button/button';
 import { Logo } from '~/ui/logo/logo';
 
 const BAR = 'fixed bottom-6 left-1/2 grid w-max max-w-[calc(100vw-2rem)] -translate-x-1/2 auto-cols-fr grid-flow-col items-center gap-2';
@@ -105,14 +105,15 @@ export const MobileMenu: React.FC = () => {
 };
 
 const SignInLink: React.FC = () => (
-  <CtaLink
+  <Button
+    as="a"
     href={APP_URL}
     colorLight="red-600"
     size="medium"
     className="w-full shadow-floating"
   >
     Sign in
-  </CtaLink>
+  </Button>
 );
 
 const MenuIcon: React.FC<{ isOpen?: boolean }> = ({ isOpen }) => (

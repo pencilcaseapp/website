@@ -2,7 +2,7 @@ import { href, Link } from 'react-router';
 import { APP_URL, NAV_ITEMS } from '~/constants/links';
 import { useActiveSection } from '~/hooks/use-active-section';
 import { Container } from '~/ui/container/container';
-import { CtaLink } from '~/ui/cta-link/cta-link';
+import { Button } from '~/ui/button/button';
 import { Logo } from '~/ui/logo/logo';
 import { NavLink } from '~/ui/nav-link/nav-link';
 
@@ -43,9 +43,9 @@ export const SiteHeader: React.FC = () => {
           </ul>
         </nav>
         <div className="hidden md:block">
-          <CtaLink href={APP_URL} colorLight="red-600" size="small">
+          <Button as="a" href={APP_URL} colorLight="red-600" size="small">
             Sign in
-          </CtaLink>
+          </Button>
         </div>
       </Container>
     </header>
