@@ -6,7 +6,7 @@ describe('Logo', () => {
   it('names the product', () => {
     render(<Logo />);
 
-    expect(screen.getByText('pencil case')).toBeInTheDocument();
+    expect(screen.getByText('pencil case', { selector: '.sr-only' })).toBeInTheDocument();
   });
 
   it('matches snapshot', () => {
