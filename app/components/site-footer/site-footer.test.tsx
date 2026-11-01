@@ -42,9 +42,9 @@ describe('SiteFooter', () => {
       .getAllByRole('link')
       .map(link => link.textContent))
       .toEqual([
-        'Legal notice',
-        'Privacy policy',
-        'Terms of use',
+        'Legal Notice',
+        'Privacy Policy',
+        'Terms of Use',
         'Cancel contract',
         'Withdraw contract',
       ]);

@@ -30,9 +30,9 @@ export const FOOTER_LINKS = [
 
 /** The legal texts are not written yet, so none of them leads anywhere. */
 export const LEGAL_LINKS = [
-  { href: '#', label: 'Legal notice' },
-  { href: '#', label: 'Privacy policy' },
-  { href: '#', label: 'Terms of use' },
+  { href: '#', label: 'Legal Notice' },
+  { href: '#', label: 'Privacy Policy' },
+  { href: '#', label: 'Terms of Use' },
   { href: '#', label: 'Cancel contract' },
   { href: '#', label: 'Withdraw contract' },
 ] as const;
