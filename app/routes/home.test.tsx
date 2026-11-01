@@ -25,6 +25,12 @@ describe('Home', () => {
       .toHaveTextContent('Docs,dead simple.');
   });
 
+  it('ends with the footer', async () => {
+    renderHome();
+
+    expect(await screen.findByRole('contentinfo')).toBeInTheDocument();
+  });
+
   it('lets the skip link land on the content', async () => {
     renderHome();
 

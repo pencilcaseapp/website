@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import type { PolymorphicComponentPropWithRef } from '../polymorphic-types/polymorphic-types';
 
-export type ButtonColor = 'grey-900' | 'red-600' | 'white';
+export type ButtonColor = 'grey-900' | 'red-600' | 'white' | 'pop-yellow';
 export type ButtonSize = 'extraSmall' | 'small' | 'medium' | 'large';
 
 export type ButtonProps<C extends React.ElementType>
@@ -10,6 +10,8 @@ export type ButtonProps<C extends React.ElementType>
     {
       colorLight?: ButtonColor;
       size?: ButtonSize;
+      outlineColor?: 'grey-900' | 'white';
+      isExternal?: boolean;
       className?: string;
     }
   >;
@@ -18,6 +20,12 @@ const COLORS: Record<ButtonColor, string> = {
   'grey-900': 'bg-pca-grey-900 text-pca-white hover:bg-pca-grey-800',
   'red-600': 'bg-pca-red-600 text-pca-white hover:bg-pca-red-700',
   'white': 'bg-pca-white text-pca-grey-900 hover:bg-pca-grey-200',
+  'pop-yellow': 'bg-pca-pop-yellow text-pca-grey-900 hover:bg-pca-yellow-500',
+};
+
+const OUTLINES = {
+  'grey-900': 'focus-visible:outline-pca-grey-900',
+  'white': 'focus-visible:outline-pca-white',
 };
 
 const SIZES: Record<ButtonSize, string> = {
@@ -29,13 +37,16 @@ const SIZES: Record<ButtonSize, string> = {
 
 /**
  * The pill shaped call to action. On hover the label makes room for an
- * arrow sliding in from the left. Renders a `<button>` unless `as` says
+ * arrow sliding in from the left, pointing up and out for a link that
+ * leaves the site (`isExternal`). Renders a `<button>` unless `as` says
  * otherwise, e.g. `as="a"` for a link.
  */
 export function Button<C extends React.ElementType = 'button'>({
   as,
   colorLight = 'grey-900',
   size = 'large',
+  outlineColor = 'grey-900',
+  isExternal = false,
   className,
   children,
   ...props
@@ -47,11 +58,12 @@ export function Button<C extends React.ElementType = 'button'>({
       className={classNames(
         'group type-button inline-flex items-center justify-center',
         'overflow-hidden rounded-full',
-        'transition-[background-color,scale] duration-200 ease-out',
+        'transition-[background-color,rotate,translate,scale] duration-200',
+        'ease-out',
         'active:scale-[0.96] motion-reduce:transition-none',
         'motion-reduce:active:scale-100',
         'focus-visible:outline-2 focus-visible:outline-offset-2',
-        'focus-visible:outline-pca-grey-900',
+        OUTLINES[outlineColor],
         COLORS[colorLight],
         SIZES[size],
         className,
@@ -78,7 +90,7 @@ export function Button<C extends React.ElementType = 'button'>({
         )}
       >
         <svg
-          viewBox="0 0 20 16"
+          viewBox={isExternal ? '0 0 16 16' : '0 0 20 16'}
           className={classNames(
             'h-auto w-full -translate-x-[110%] transition-[translate]',
             'duration-250 ease-[cubic-bezier(.645,.045,.355,1)]',
@@ -91,7 +103,7 @@ export function Button<C extends React.ElementType = 'button'>({
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <path d="M2 8h15M11 2l6 6-6 6" />
+          <path d={isExternal ? 'M3 13 13 3M5 3h8v8' : 'M2 8h15M11 2l6 6-6 6'} />
         </svg>
       </span>
     </Component>

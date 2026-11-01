@@ -32,3 +32,21 @@ export const White: Story = {
 export const AsLink: Story = {
   render: () => <Button as="a" href="#">Get started</Button>,
 };
+
+export const External: Story = {
+  args: {
+    as: 'a',
+    href: 'https://github.com/pencilcaseapp/',
+    size: 'medium',
+    colorLight: 'white',
+    outlineColor: 'white',
+    isExternal: true,
+    children: 'GitHub',
+  },
+  decorators: [Story => <div className="bg-pca-grey-900 p-8"><Story /></div>],
+};
+
+export const PopYellow: Story = {
+  args: { size: 'medium', colorLight: 'pop-yellow' },
+  decorators: [Story => <div className="bg-pca-grey-900 p-8"><Story /></div>],
+};
