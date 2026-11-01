@@ -78,7 +78,7 @@ exports[`EditorMock > matches snapshot 1`] = `
         <span
           class="truncate"
         >
-          pencilcase.app
+          docs.pencilcase.app
         </span>
       </div>
     </div>

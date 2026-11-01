@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 export type CtaLinkColor = 'grey-900' | 'red-600';
-export type CtaLinkSize = 'small' | 'medium' | 'large';
+export type CtaLinkSize = 'extraSmall' | 'small' | 'medium' | 'large';
 
 export type CtaLinkProps = React.ComponentPropsWithRef<'a'> & {
   colorLight?: CtaLinkColor;
@@ -14,6 +14,7 @@ const COLORS: Record<CtaLinkColor, string> = {
 };
 
 const SIZES: Record<CtaLinkSize, string> = {
+  extraSmall: 'h-10 px-6 text-base',
   small: 'h-11 px-6 text-base',
   medium: 'h-13 px-5 text-lg',
   large: 'h-15 px-9 text-[1.375rem]',

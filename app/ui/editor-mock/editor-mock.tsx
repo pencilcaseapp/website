@@ -9,11 +9,44 @@ const TOOLBAR_GROUPS: IconName[][] = [
   ['listUl', 'listOl', 'listCheck'],
 ];
 
+export type WindowAction = 'close' | 'minimise' | 'zoom';
+
+const WINDOW_BUTTONS: {
+  action: WindowAction;
+  label: string;
+  color: string;
+  glyph: string;
+}[] = [
+  {
+    action: 'close',
+    label: 'Close window',
+    color: 'bg-pca-pop-pink',
+    glyph: 'M3.5 3.5l5 5M8.5 3.5l-5 5',
+  },
+  {
+    action: 'minimise',
+    label: 'Minimise window',
+    color: 'bg-pca-pop-yellow',
+    glyph: 'M3 6h6',
+  },
+  {
+    action: 'zoom',
+    label: 'Zoom window',
+    color: 'bg-pca-pop-blue',
+    glyph: 'M6 3v6M3 6h6',
+  },
+];
+
 const CHECKLIST = [
   { label: 'Flights', checked: true },
   { label: 'Apartment in Alfama', checked: true },
   { label: 'Dinner on Friday', checked: false },
 ];
+
+export interface EditorMockProps {
+  /** Turns the window buttons of the browser bar into buttons. */
+  onWindowAction?: (action: WindowAction, event: React.MouseEvent) => void;
+}
 
 /**
  * A simplified pencil case document, drawn to fill whatever box it is
@@ -21,9 +54,9 @@ const CHECKLIST = [
  * bar makes way for a phone's status bar below 32rem, and the toolbar
  * fades out below 48rem.
  */
-export const EditorMock: React.FC = () => (
+export const EditorMock: React.FC<EditorMockProps> = ({ onWindowAction }) => (
   <div className="@container pointer-events-none flex size-full flex-col bg-pca-white text-left text-pca-grey-900 select-none">
-    <BrowserBar />
+    <BrowserBar onWindowAction={onWindowAction} />
     <div
       role="img"
       aria-label="A pencil case document, Lisbon in May, with a check list and the cursors of two friends writing along"
@@ -112,20 +145,58 @@ export const EditorMock: React.FC = () => (
   </div>
 );
 
-const BrowserBar: React.FC = () => (
+const BrowserBar: React.FC<EditorMockProps> = ({ onWindowAction }) => (
   <div className="flex h-10 shrink-0 items-center gap-3 bg-pca-grey-100 pr-3 pl-4 @max-[32rem]:hidden">
-    <div className="flex gap-1.5">
-      <span className="size-3 rounded-full bg-pca-pop-pink" />
-      <span className="size-3 rounded-full bg-pca-pop-yellow" />
-      <span className="size-3 rounded-full bg-pca-pop-blue" />
-    </div>
+    {onWindowAction
+      ? (
+          <div className="group/lights pointer-events-auto flex gap-1.5">
+            {WINDOW_BUTTONS.map(button => (
+              <button
+                key={button.action}
+                type="button"
+                aria-label={button.label}
+                onClick={event => onWindowAction(button.action, event)}
+                className={classNames(
+                  'relative grid size-3 place-items-center rounded-full',
+                  'before:absolute before:-inset-x-[3px] before:-inset-y-3.5',
+                  'active:brightness-90 focus-visible:outline-2',
+                  'focus-visible:outline-offset-2',
+                  'focus-visible:outline-pca-grey-900',
+                  button.color,
+                )}
+              >
+                <svg
+                  viewBox="0 0 12 12"
+                  aria-hidden="true"
+                  className="size-3 opacity-0 transition-opacity duration-100 ease-out group-hover/lights:opacity-70 motion-reduce:transition-none"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                >
+                  <path d={button.glyph} />
+                </svg>
+              </button>
+            ))}
+          </div>
+        )
+      : (
+          <div className="flex gap-1.5">
+            {WINDOW_BUTTONS.map(button => (
+              <span
+                key={button.action}
+                className={classNames('size-3 rounded-full', button.color)}
+              />
+            ))}
+          </div>
+        )}
     <div className="flex h-8 shrink-0 items-center gap-2 self-end rounded-t-xl bg-pca-white px-3">
       <LogoMark className="h-4 w-auto" />
       <span className="block h-2 w-14 rounded-full bg-pca-grey-300" />
     </div>
     <div className="flex h-6 min-w-0 flex-1 items-center gap-1.5 rounded-full bg-pca-white px-3 text-xs text-pca-grey-700">
       <Icon icon="link" className="size-3.5 shrink-0" />
-      <span className="truncate">pencilcase.app</span>
+      <span className="truncate">docs.pencilcase.app</span>
     </div>
   </div>
 );

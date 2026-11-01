@@ -1,3 +1,4 @@
+import { FloatingNav } from '~/components/floating-nav/floating-nav';
 import { Hero } from '~/components/hero/hero';
 import { MobileMenu } from '~/components/mobile-menu/mobile-menu';
 import { SiteHeader } from '~/components/site-header/site-header';
@@ -16,6 +17,7 @@ export default function Home() {
   return (
     <>
       <SiteHeader />
+      <FloatingNav />
       <MobileMenu />
       <main id="main" className="relative z-10 pb-28">
         <Hero />
