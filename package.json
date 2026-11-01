@@ -18,17 +18,17 @@
     "@fontsource/covered-by-your-grace": "^5.3.0",
     "@fontsource/hanken-grotesk": "^5.3.0",
     "@fontsource/inter": "^5.3.0",
-    "@react-router/node": "8.4.0",
-    "@react-router/serve": "8.4.0",
+    "@react-router/node": "8.5.1",
+    "@react-router/serve": "8.5.1",
     "classnames": "^2.5.1",
     "isbot": "^5.2.2",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "react-router": "8.4.0"
+    "react-router": "8.5.1"
   },
   "devDependencies": {
-    "@react-router/dev": "8.4.0",
-    "@storybook/react-vite": "^10.6.2",
+    "@react-router/dev": "8.5.1",
+    "@storybook/react-vite": "^10.6.5",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@tailwindcss/vite": "^4.3.3",
     "@testing-library/dom": "^10.4.2",
@@ -39,15 +39,15 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
-    "clever-tools": "^5.2.0",
+    "clever-tools": "^5.3.0",
     "eslint": "^10.13.0",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "happy-dom": "^21.0.3",
+    "happy-dom": "^21.0.4",
     "storybook": "^10.1.11",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.71.2",
-    "vite": "^8.3.4",
+    "typescript-eslint": "^8.72.1",
+    "vite": "^8.3.5",
     "vitest": "^5.0.5"
   }
 }
