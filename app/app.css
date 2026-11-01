@@ -1,15 +1,324 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-pca-white: oklch(1 0 0);
+
+  --color-pca-grey-100: oklch(0.975 0 0);
+  --color-pca-grey-200: oklch(0.94 0 0);
+  --color-pca-grey-300: oklch(0.84 0 0);
+  --color-pca-grey-400: oklch(0.719 0 0);
+  --color-pca-grey-500: oklch(0.6 0 0);
+  --color-pca-grey-600: oklch(0.48 0 0);
+  --color-pca-grey-700: oklch(0.37 0 0);
+  --color-pca-grey-800: oklch(0.26 0 0);
+  --color-pca-grey-900: oklch(0.173 0 0);
+
+  --color-pca-yellow-500: oklch(0.916 0.147 96.825);
+  --color-pca-yellow-700: oklch(0.792 0.144 94.379);
+
+  --color-pca-red-600: oklch(0.58 0.208 25.331);
+  --color-pca-red-700: oklch(0.454 0.165 26.924);
+
+  /* The brighter colours of the illustrations: the remote cursors and
+     avatars of the product demo, and its window buttons. */
+  --color-pca-pop-yellow: oklch(0.9 0.167 98);
+  --color-pca-pop-blue: oklch(0.78 0.118 235);
+  --color-pca-pop-pink: oklch(0.74 0.171 350);
+
+  --font-inter: Inter, ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  /* PP Agrandir comes from `fonts.css`; Archivo stands in until it has
+     loaded (stretched to 125% for the Grand cut). */
+  --font-display: 'PP Agrandir Grand', 'Archivo Variable', Inter,
+    ui-sans-serif, system-ui, sans-serif;
+  --font-text: 'PP Agrandir', 'Archivo Variable', Inter, ui-sans-serif,
+    system-ui, sans-serif;
+  --font-hand: 'Covered By Your Grace', 'Bradley Hand', cursive;
+  --font-logo: 'Hanken Grotesk', Inter, sans-serif;
+
+  --background-image-checkmark-white: url("data:image/svg+xml,%3Csvg width='13' height='13' viewBox='0 0 13 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 7L5 11.5L12 1.5' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+  --shadow-window: 0 0 0 1px rgb(0 0 0 / 0.08), 0 1px 2px rgb(0 0 0 / 0.08),
+    0 10px 24px -6px rgb(0 0 0 / 0.16), 0 36px 64px -28px rgb(0 0 0 / 0.28);
+  --shadow-floating: 0 8px 24px -8px rgb(0 0 0 / 0.35);
+}
+
+@utility type-hero {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 125%;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.02em;
+  font-size: clamp(2rem, 9vw, 7rem);
+  line-height: 0.98;
+}
+
+@utility type-menu {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 125%;
+  font-kerning: normal;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.25rem, 11.5vw, 3.25rem);
+  line-height: 1;
+}
+
+@utility type-lead {
+  font-family: var(--font-text);
+  font-weight: 400;
+  text-wrap: pretty;
+  font-size: clamp(1.0625rem, 0.9rem + 0.75vw, 1.5rem);
+  line-height: 1.35;
+}
+
+@utility type-nav {
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1;
+  text-transform: lowercase;
+  text-box: trim-both ex alphabetic;
+  -webkit-text-stroke: 0.45px currentColor;
+}
+
+@utility type-button {
+  font-family: var(--font-text);
+  font-weight: 700;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  white-space: nowrap;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-box: trim-both cap alphabetic;
+}
+
+@utility type-caption {
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+@utility type-hand {
+  font-family: var(--font-hand);
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 0.92;
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-pca-white font-inter text-pca-grey-900 antialiased;
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+  color-scheme: light;
+  font-synthesis: none;
+}
+
+body {
+  overflow-x: clip;
+}
+
+::selection {
+  @apply bg-pca-grey-900 text-pca-white;
+}
+
+/* The floating navigation: its items drop in one after the other, each
+   swinging from its own tilt, and the white bar pops in behind them. */
+.float-nav {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.12s ease-in, visibility 0s linear 0.12s;
+
+  &[data-shown] {
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+  }
+
+  &[data-cut] {
+    transition: none;
+  }
+
+  li:nth-child(2n) .float-item {
+    --tilt: 9deg;
+  }
+
+  a.float-item:not(li *) {
+    --tilt: 12deg;
+  }
+
+  &[data-shown] .float-item {
+    animation: float-item-in 0.56s linear backwards;
+    animation-delay: calc(var(--i, 0) * 60ms);
+  }
+
+  &[data-shown] .float-bar {
+    animation: float-bar-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) 0.86s
+      backwards;
+  }
+
+  .type-nav::after {
+    top: calc(100% + 0.125rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &[data-shown] .float-item,
+    &[data-shown] .float-bar {
+      animation: none;
+    }
+  }
+}
+
+@keyframes float-item-in {
+  0% {
+    opacity: 0;
+    translate: 0 -5rem;
+    rotate: var(--tilt, -10deg);
+    animation-timing-function: cubic-bezier(0.55, 0, 0.9, 0.55);
+  }
+  12% {
+    opacity: 1;
+  }
+  52% {
+    translate: 0 6px;
+    rotate: calc(var(--tilt, -10deg) * -0.3);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.4, 1);
+  }
+  76% {
+    translate: 0 -2px;
+    rotate: calc(var(--tilt, -10deg) * 0.08);
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    opacity: 1;
+    translate: 0;
+    rotate: 0deg;
+  }
+}
+
+@keyframes float-bar-in {
+  0% {
+    opacity: 0;
+    scale: 0.9 0.7;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+/* The product demo's window and dock. `--window-speed` is 5 while shift
+   was held, slowing everything down like macOS does. */
+.mac-window {
+  --t: var(--window-speed, 1);
+
+  transform-origin: 50% 100%;
+  transition:
+    scale calc(0.38s * var(--t)) cubic-bezier(0.2, 0.8, 0.2, 1),
+    translate calc(0.38s * var(--t)) cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity calc(0.16s * var(--t)) ease-out,
+    visibility 0s;
+
+  &[data-zooming] {
+    transition:
+      width 0.3s cubic-bezier(0.45, 0, 0.55, 1),
+      scale calc(0.38s * var(--t)) cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity calc(0.16s * var(--t)) ease-out;
+  }
+
+  &[data-window='closed'] {
+    opacity: 0;
+    visibility: hidden;
+    scale: 0.97;
+    transition:
+      scale calc(0.14s * var(--t)) ease-in,
+      opacity calc(0.14s * var(--t)) ease-in,
+      visibility 0s linear calc(0.14s * var(--t));
+  }
+
+  &[data-window='minimised'] {
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 -6.5rem;
+    scale: 0.06;
+    transition:
+      scale calc(0.45s * var(--t)) cubic-bezier(0.5, 0, 0.75, 0.2),
+      translate calc(0.45s * var(--t)) cubic-bezier(0.5, 0, 0.75, 0.2),
+      opacity calc(0.11s * var(--t)) linear calc(0.34s * var(--t)),
+      visibility 0s linear calc(0.45s * var(--t));
+  }
+
+  &[data-genie] {
+    opacity: 0;
+    visibility: hidden;
+    transition: none;
+  }
+}
+
+.mac-dock {
+  opacity: 0;
+  visibility: hidden;
+  translate: -50% 1rem;
+  transition:
+    opacity 0.16s ease-in,
+    translate 0.16s ease-in,
+    visibility 0s linear 0.16s;
+
+  &[data-shown] {
+    opacity: 1;
+    visibility: visible;
+    translate: -50%;
+    transition:
+      opacity 0.24s cubic-bezier(0.32, 0.72, 0, 1),
+      translate 0.24s cubic-bezier(0.32, 0.72, 0, 1),
+      visibility;
+  }
+}
+
+.mac-dock-icon {
+  transition: translate 0.15s ease-out;
+
+  &[data-bounce] {
+    animation: mac-dock-bounce 0.62s ease-out;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mac-dock button:hover .mac-dock-icon {
+    translate: 0 -0.25rem;
+  }
+}
+
+@keyframes mac-dock-bounce {
+  0%,
+  100% {
+    translate: 0;
+  }
+  35% {
+    translate: 0 -1.1rem;
+  }
+  62% {
+    translate: 0;
+  }
+  80% {
+    translate: 0 -0.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mac-window,
+  .mac-window[data-window],
+  .mac-window[data-zooming],
+  .mac-dock,
+  .mac-dock[data-shown],
+  .mac-dock-icon {
+    transition: none;
+  }
+
+  .mac-dock-icon[data-bounce] {
+    animation: none;
   }
 }

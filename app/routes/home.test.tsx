@@ -1,17 +1,33 @@
-import { expect, test } from 'vitest';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { createRoutesStub } from 'react-router';
-import Home from './home';
+import { describe, expect, it } from 'vitest';
+import Home, { meta } from './home';
 
-test('matches snapshot', async () => {
-  const Stub = createRoutesStub([
-    {
-      path: '/',
-      Component: Home,
-    },
-  ]);
+function renderHome() {
+  const Stub = createRoutesStub([{ path: '/', Component: Home }]);
 
-  const { container } = render(<Stub />);
+  return render(<Stub />);
+}
 
-  expect(container).toMatchSnapshot();
+describe('Home', () => {
+  it('titles the page', () => {
+    expect(meta()).toContainEqual({
+      title: 'pencil case – Docs, dead simple.',
+    });
+  });
+
+  it('shows the header, the menu and the hero', async () => {
+    renderHome();
+
+    expect(await screen.findByRole('banner')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Menu' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 }))
+      .toHaveTextContent('Docs,dead simple.');
+  });
+
+  it('lets the skip link land on the content', async () => {
+    renderHome();
+
+    expect(await screen.findByRole('main')).toHaveAttribute('id', 'main');
+  });
 });

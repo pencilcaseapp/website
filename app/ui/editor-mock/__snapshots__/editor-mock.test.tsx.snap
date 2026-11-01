@@ -1,0 +1,454 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EditorMock > matches snapshot 1`] = `
+<div>
+  <div
+    class="@container pointer-events-none flex size-full flex-col bg-pca-white text-left text-pca-grey-900 select-none"
+  >
+    <div
+      class="flex h-10 shrink-0 items-center gap-3 bg-pca-grey-100 pr-3 pl-4 @max-[32rem]:hidden"
+    >
+      <div
+        class="flex gap-1.5"
+      >
+        <span
+          class="size-3 rounded-full bg-pca-pop-pink"
+        />
+        <span
+          class="size-3 rounded-full bg-pca-pop-yellow"
+        />
+        <span
+          class="size-3 rounded-full bg-pca-pop-blue"
+        />
+      </div>
+      <div
+        class="flex h-8 shrink-0 items-center gap-2 self-end rounded-t-xl bg-pca-white px-3"
+      >
+        <svg
+          aria-hidden="true"
+          class="h-4 w-auto"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          viewBox="0 0 36 46"
+        >
+          <path
+            d="M16.39 4.50 Q18 3 19.61 4.50 L29.93 14.13 Q33 17 33.00 21.20 L33.00 34.40 Q33 38 29.95 39.91 L28.05 41.09 Q25 43 21.40 43.00 L14.60 43.00 Q11 43 7.95 41.09 L6.05 39.91 Q3 38 3.00 34.40 L3.00 21.20 Q3 17 6.07 14.13 Z"
+            stroke-width="3.6"
+          />
+          <path
+            d="M3 21 Q7.9 16 12.8 21 Q18 16 23.2 21 Q28.1 16 33 21"
+            stroke-width="3.2"
+          />
+          <path
+            d="M12.8 21.5 V43 M23.2 21.5 V43"
+            stroke-width="3.2"
+          />
+          <path
+            d="M10 11.2 Q18 14.6 26 11.2"
+            stroke-width="3"
+          />
+        </svg>
+        <span
+          class="block h-2 w-14 rounded-full bg-pca-grey-300"
+        />
+      </div>
+      <div
+        class="flex h-6 min-w-0 flex-1 items-center gap-1.5 rounded-full bg-pca-white px-3 text-xs text-pca-grey-700"
+      >
+        <svg
+          aria-hidden="true"
+          class="size-3.5 shrink-0"
+          fill="transparent"
+          focusable="false"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9 17H7C4.23858 17 2 14.7614 2 12C2 9.23858 4.23858 7 7 7H9M15 17H17C19.7614 17 22 14.7614 22 12C22 9.23858 19.7614 7 17 7H15M7 12H17"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          />
+        </svg>
+        <span
+          class="truncate"
+        >
+          docs.pencilcase.app
+        </span>
+      </div>
+    </div>
+    <div
+      aria-label="A pencil case document, Lisbon in May, with a check list and the cursors of two friends writing along"
+      class="flex min-h-0 grow flex-col"
+      role="img"
+    >
+      <div
+        class="hidden h-11 shrink-0 items-end justify-between px-7 pb-1.5 text-[13px] font-semibold @max-[32rem]:flex"
+      >
+        <span>
+          19:02
+        </span>
+        <span
+          class="mb-0.5 h-2.5 w-6 rounded-[3px] bg-pca-grey-900"
+        />
+      </div>
+      <div
+        class="grid h-12 shrink-0 grid-cols-[1fr_auto_1fr] items-center px-3"
+      >
+        <svg
+          aria-hidden="true"
+          class="size-5"
+          fill="transparent"
+          focusable="false"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9 3V21M7.8 3H16.2C17.8802 3 18.7202 3 19.362 3.32698C19.9265 3.6146 20.3854 4.07354 20.673 4.63803C21 5.27976 21 6.11984 21 7.8V16.2C21 17.8802 21 18.7202 20.673 19.362C20.3854 19.9265 19.9265 20.3854 19.362 20.673C18.7202 21 17.8802 21 16.2 21H7.8C6.11984 21 5.27976 21 4.63803 20.673C4.07354 20.3854 3.6146 19.9265 3.32698 19.362C3 18.7202 3 17.8802 3 16.2V7.8C3 6.11984 3 5.27976 3.32698 4.63803C3.6146 4.07354 4.07354 3.6146 4.63803 3.32698C5.27976 3 6.11984 3 7.8 3Z"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          />
+        </svg>
+        <div
+          class="flex items-center transition-opacity duration-150 ease-out motion-reduce:transition-none @max-[48rem]:opacity-0 @max-[32rem]:hidden"
+        >
+          <div
+            class="flex items-center gap-0.5"
+          >
+            <span
+              class="grid size-7 place-items-center rounded-lg bg-pca-grey-900 text-pca-white"
+            >
+              <svg
+                aria-hidden="true"
+                class="size-[18px]"
+                fill="transparent"
+                focusable="false"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.0399 7.92603L20.0399 6.92603V17M4 6.5V12.0001M4 12.0001V17.0001M4 12.0001H12M12 6.5V12.0001M12 12.0001V17.0001"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+            <span
+              class="grid size-7 place-items-center rounded-lg"
+            >
+              <svg
+                aria-hidden="true"
+                class="size-[18px]"
+                fill="transparent"
+                focusable="false"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15 10.4998V9.99976C15 8.3429 16.3431 6.99976 18 6.99976H18.1716C19.7337 6.99976 20.9996 8.26627 20.9996 9.82837C20.9996 10.5785 20.702 11.2979 20.1716 11.8284L15 16.9999L21.5 17M3 6.99988V11.9999M3 11.9999V16.9999M3 11.9999H11M11 6.99988V11.9999M11 11.9999V16.9999"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+            <span
+              class="grid size-7 place-items-center rounded-lg"
+            >
+              <svg
+                aria-hidden="true"
+                class="size-[18px]"
+                fill="transparent"
+                focusable="false"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15 7H21L17 11H18C19.6569 11 21 12.3431 21 14C21 15.6569 19.6569 17 18 17C17.3793 17 16.7738 16.8077 16.2671 16.4492C15.7604 16.0907 15.3775 15.5838 15.1709 14.9985M3 7V12M3 12V17M3 12H11M11 7V12M11 12V17"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+          </div>
+          <div
+            class="flex items-center gap-0.5 ml-2 border-l border-black/10 pl-2"
+          >
+            <span
+              class="grid size-7 place-items-center rounded-lg"
+            >
+              <svg
+                aria-hidden="true"
+                class="size-[18px]"
+                fill="transparent"
+                focusable="false"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 11.5H12.5M8 11.5V6H12.5C14.433 6 16 7.23122 16 8.75C16 10.2688 14.433 11.5 12.5 11.5M8 11.5V17H13.5C15.433 17 17 15.7688 17 14.25C17 12.7312 15.433 11.5 13.5 11.5H12.5"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+            <span
+              class="grid size-7 place-items-center rounded-lg"
+            >
+              <svg
+                aria-hidden="true"
+                class="size-[18px]"
+                fill="transparent"
+                focusable="false"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 17H10M10 17H12M10 17L14 6M12 6H14M14 6H16"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+            <span
+              class="grid size-7 place-items-center rounded-lg"
+            >
+              <svg
+                aria-hidden="true"
+                class="size-[18px]"
+                fill="transparent"
+                focusable="false"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 18H18M8 6V11C8 13.2091 9.79086 15 12 15C14.2091 15 16 13.2091 16 11V6"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+          </div>
+          <div
+            class="flex items-center gap-0.5 ml-2 border-l border-black/10 pl-2"
+          >
+            <span
+              class="grid size-7 place-items-center rounded-lg"
+            >
+              <svg
+                aria-hidden="true"
+                class="size-[18px]"
+                fill="transparent"
+                focusable="false"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 17C6 17.5523 5.55228 18 5 18C4.44772 18 4 17.5523 4 17C4 16.4477 4.44772 16 5 16C5.55228 16 6 16.4477 6 17Z M6 7C6 7.55228 5.55228 8 5 8C4.44772 8 4 7.55228 4 7C4 6.44772 4.44772 6 5 6C5.55228 6 6 6.44772 6 7Z M11 17H19M11 7H19M6 17C6 17.5523 5.55228 18 5 18C4.44772 18 4 17.5523 4 17C4 16.4477 4.44772 16 5 16C5.55228 16 6 16.4477 6 17ZM6 7C6 7.55228 5.55228 8 5 8C4.44772 8 4 7.55228 4 7C4 6.44772 4.44772 6 5 6C5.55228 6 6 6.44772 6 7Z"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+            <span
+              class="grid size-7 place-items-center rounded-lg"
+            >
+              <svg
+                aria-hidden="true"
+                class="size-[18px]"
+                fill="transparent"
+                focusable="false"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 17H19M4 15.6853V15.5C4 14.6716 4.67157 14 5.5 14H5.54054C6.34658 14 7.00021 14.6534 7.00021 15.4595C7.00021 15.8103 6.8862 16.1519 6.67568 16.4326L4 20.0002L7 20M11 7H19M4 5L6 4V10"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+            <span
+              class="grid size-7 place-items-center rounded-lg"
+            >
+              <svg
+                aria-hidden="true"
+                class="size-[18px]"
+                fill="transparent"
+                focusable="false"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 17H20M8 15L5.5 18L4 17M12 7H20M8 5L5.5 8L4 7"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div
+          class="col-start-3 flex items-center justify-end gap-2.5"
+        >
+          <div
+            class="flex -space-x-1.5"
+          >
+            <span
+              class="size-5 rounded-full bg-pca-pop-blue ring-2 ring-pca-white"
+            />
+            <span
+              class="size-5 rounded-full bg-pca-pop-pink ring-2 ring-pca-white"
+            />
+          </div>
+          <span
+            class="block h-2.5 w-9 rounded-full bg-pca-grey-900"
+          />
+          <svg
+            aria-hidden="true"
+            class="size-[18px]"
+            fill="transparent"
+            focusable="false"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 12V16.2C21 17.8802 21 18.7202 20.673 19.362C20.3854 19.9265 19.9265 20.3854 19.362 20.673C18.7202 21 17.8802 21 16.2 21H7.8C6.11984 21 5.27976 21 4.63803 20.673C4.07354 20.3854 3.6146 19.9265 3.32698 19.362C3 18.7202 3 17.8802 3 16.2V12M16 7L12 3M12 3L8 7M12 3V15"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="mx-auto w-full max-w-[28rem] grow overflow-hidden px-6 pt-5 @min-[32rem]:pt-9"
+      >
+        <p
+          class="text-[1.75rem] leading-[1.22] font-bold tracking-[-0.021em]"
+        >
+          Lisbon in May
+          <span
+            class="relative inline-block w-0.5 shrink-0 align-[-0.2em] bg-pca-pop-blue ml-0.5 h-7"
+          >
+            <span
+              class="absolute bottom-full left-0 rounded-sm rounded-bl-none px-1.5 py-0.5 text-[11px] leading-none font-semibold tracking-normal whitespace-nowrap text-pca-grey-900 bg-pca-pop-blue"
+            >
+              Capybara
+            </span>
+          </span>
+        </p>
+        <p
+          class="mt-4 text-base leading-relaxed"
+        >
+          Four days, five friends, one list. Add what you want to see and tick off what is booked.
+        </p>
+        <ul
+          class="mt-5 flex list-disc flex-col gap-1 pl-6 text-base leading-relaxed"
+        >
+          <li>
+            Time Out Market on the first night
+          </li>
+          <li>
+            Tram 28, before the queues
+          </li>
+          <li>
+            A day in Sintra
+            <span
+              class="relative inline-block w-0.5 shrink-0 align-[-0.2em] bg-pca-pop-pink ml-0.5 h-5"
+            >
+              <span
+                class="absolute bottom-full left-0 rounded-sm rounded-bl-none px-1.5 py-0.5 text-[11px] leading-none font-semibold tracking-normal whitespace-nowrap text-pca-grey-900 bg-pca-pop-pink"
+              >
+                Axolotl
+              </span>
+            </span>
+          </li>
+        </ul>
+        <ul
+          class="mt-5 flex flex-col gap-2 text-base leading-6"
+        >
+          <li
+            class="flex items-start gap-2"
+          >
+            <span
+              class="size-6 shrink-0 rounded-lg bg-pca-grey-900 bg-checkmark-white bg-[length:13px] bg-center bg-no-repeat"
+            />
+            <span>
+              Flights
+            </span>
+          </li>
+          <li
+            class="flex items-start gap-2"
+          >
+            <span
+              class="size-6 shrink-0 rounded-lg bg-pca-grey-900 bg-checkmark-white bg-[length:13px] bg-center bg-no-repeat"
+            />
+            <span>
+              Apartment in Alfama
+            </span>
+          </li>
+          <li
+            class="flex items-start gap-2"
+          >
+            <span
+              class="size-6 shrink-0 rounded-lg border border-pca-grey-900 bg-pca-white"
+            />
+            <span>
+              Dinner on Friday
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;
