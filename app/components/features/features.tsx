@@ -23,7 +23,7 @@ export const Features: React.FC = () => {
 
   return (
     <section id="features" className="overflow-x-clip pt-36 sm:pt-48">
-      <div className="fan-panel relative isolate mx-auto max-w-[1680px]">
+      <div className="fan-panel relative isolate">
         <Container>
           <div className="mx-auto flex max-w-[56ch] flex-col items-center text-center">
             <h2 className="type-section">Features</h2>
