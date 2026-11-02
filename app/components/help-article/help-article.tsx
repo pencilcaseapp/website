@@ -7,6 +7,7 @@ import type {
 } from '~/constants/help';
 import { HELP_HREF } from '~/constants/links';
 import { Container } from '~/ui/container/container';
+import { TextLink } from '~/ui/text-link/text-link';
 import {
   helpArticleMarkdownHref,
   relatedHelpArticles,
@@ -18,9 +19,22 @@ import {
   RowArrow,
 } from '../help/help-article-list';
 
-/** Sets the `**bold**` and `` `code` `` of an article's text. */
+const MARKS = /(`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/;
+const LINK = /^\[([^\]]+)\]\(([^)]+)\)$/;
+
+/** Sets the `**bold**`, `` `code` `` and links of an article's text. */
 const HelpText: React.FC<{ text: string }> = ({ text }) =>
-  text.split(/(`[^`]+`|\*\*[^*]+\*\*)/).map((part, index) => {
+  text.split(MARKS).map((part, index) => {
+    const link = LINK.exec(part);
+
+    if (link) {
+      const [, label, href] = link;
+
+      return href.startsWith('/')
+        ? <TextLink key={index} as={Link} to={href}>{label}</TextLink>
+        : <TextLink key={index} href={href}>{label}</TextLink>;
+    }
+
     if (part.startsWith('`')) {
       return (
         <code

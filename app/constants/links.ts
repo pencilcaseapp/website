@@ -1,5 +1,7 @@
 export const APP_URL = 'https://docs.pencilcase.app';
 
+export const GITHUB_HREF = 'https://github.com/pencilcaseapp/';
+
 export const NAV_ITEMS = [
   { href: '/#features', label: 'Features' },
   { href: '/#small-tech', label: 'Small tech' },
@@ -12,7 +14,7 @@ export const FOOTER_LINKS = [
   { href: '/blog', label: 'Blog', isExternal: false },
   { href: '/help', label: 'Help', isExternal: false },
   {
-    href: 'https://github.com/pencilcaseapp/',
+    href: GITHUB_HREF,
     label: 'GitHub',
     isExternal: true,
   },

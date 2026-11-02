@@ -70,6 +70,9 @@ export function helpArticleToMarkdown(article: HelpArticle): string {
   ].join('\n\n') + '\n';
 }
 
-/** The text without its `**bold**` and `` `code` `` marks. */
+/** The text without its `**bold**`, `` `code` `` and link marks. */
 export const stripHelpMarks = (text: string) =>
-  text.replace(/\*\*([^*]+)\*\*|`([^`]+)`/g, '$1$2');
+  text.replace(
+    /`([^`]+)`|\*\*([^*]+)\*\*|\[([^\]]+)\]\([^)]+\)/g,
+    '$1$2$3',
+  );

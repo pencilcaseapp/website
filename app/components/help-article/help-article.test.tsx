@@ -54,4 +54,22 @@ describe('HelpArticle', () => {
     expect(screen.getByText(/^Draft: the app does not do this yet/))
       .toBeInTheDocument();
   });
+
+  it('links to the pages the text names', () => {
+    renderArticle('create-an-account');
+
+    expect(screen.getByRole('link', { name: 'sign in page' }))
+      .toHaveAttribute('href', 'https://docs.pencilcase.app/signin');
+
+    renderArticle('deleted-data');
+
+    expect(screen.getByRole('link', { name: 'privacy policy' }))
+      .toHaveAttribute('href', '/privacy');
+  });
+
+  it('keeps a link written as code as code', () => {
+    renderArticle('markdown-shortcuts');
+
+    expect(screen.getByText('[text](address)').tagName).toBe('CODE');
+  });
 });

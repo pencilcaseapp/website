@@ -28,6 +28,18 @@ describe('help', () => {
     expect(new Set(slugs).size).toBe(slugs.length);
   });
 
+  it('only links to articles that exist', () => {
+    for (const article of ARTICLES) {
+      const text = [article.summary, ...(article.body ?? []).flatMap(block =>
+        block.type === 'paragraph' ? [block.text] : block.items)].join(' ');
+
+      for (const [, slug] of text.matchAll(/\]\(\/help\/([^)]+)\)/g)) {
+        expect(findHelpArticle(slug), `${article.slug} → ${slug}`)
+          .toBeDefined();
+      }
+    }
+  });
+
   it('only names related articles that exist', () => {
     for (const article of ARTICLES) {
       for (const slug of article.related ?? []) {
@@ -82,9 +94,9 @@ describe('help', () => {
     expect(helpArticleToMarkdown(article)).toBe([
       '# How do I create an account?',
       '',
-      'Enter your e-mail address on the sign in page and type the code we send you. There is no password and no separate sign-up.',
+      'Enter your e-mail address on the [sign in page](https://docs.pencilcase.app/signin) and type the code we send you. There is no password and no separate sign-up.',
       '',
-      '1. Go to **Sign in** and enter your e-mail address.',
+      '1. Go to [Sign in](https://docs.pencilcase.app/signin) and enter your e-mail address.',
       '2. Type the code from the e-mail we send you.',
       '3. Add your name if you like. It is what other people see in a shared document.',
       '',
@@ -96,5 +108,7 @@ describe('help', () => {
   it('strips the marks for plain text', () => {
     expect(stripHelpMarks('Select **Share** and type `#`.'))
       .toBe('Select Share and type #.');
+    expect(stripHelpMarks('Read the [privacy policy](/privacy).'))
+      .toBe('Read the privacy policy.');
   });
 });
