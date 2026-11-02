@@ -30,6 +30,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         />
         <Meta />
         <Links />
+        {import.meta.env.PROD && <Analytics />}
       </head>
       <body>
         {children}
@@ -37,6 +38,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
+  );
+}
+
+const plausibleInit = `
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+`;
+
+function Analytics() {
+  return (
+    <>
+      <script
+        async
+        src="https://plausible.io/js/pa-POGXETO_1FgJMezhrCH8J.js"
+      />
+      <script dangerouslySetInnerHTML={{ __html: plausibleInit }} />
+    </>
   );
 }
 
