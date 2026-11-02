@@ -4,14 +4,14 @@ import { LegalPage, LegalSection } from './legal-page';
 
 describe('LegalPage', () => {
   it('titles the page', () => {
-    render(<LegalPage title="Terms of use" />);
+    render(<LegalPage title="Terms of Use" />);
 
     expect(screen.getByRole('heading', { level: 1 }))
-      .toHaveTextContent('Terms of use.');
+      .toHaveTextContent('Terms of Use.');
   });
 
   it('shows the date of the current version', () => {
-    render(<LegalPage title="Privacy policy" updatedAt="2026-10-27" />);
+    render(<LegalPage title="Privacy Policy" updatedAt="2026-10-27" />);
 
     expect(screen.getByText('27 October 2026'))
       .toHaveAttribute('datetime', '2026-10-27');

@@ -12,7 +12,7 @@ import { TextLink } from '~/ui/text-link/text-link';
 
 /** The terms of use of the web app and the native apps. */
 export const TermsOfUse: React.FC = () => (
-  <LegalPage title="Terms of use">
+  <LegalPage title="Terms of Use">
     <LegalSection id="terms-1" number={1} title="Scope">
       <LegalParagraph>
         These terms apply to your use of pencil case, a collaborative writing
@@ -23,7 +23,7 @@ export const TermsOfUse: React.FC = () => (
         {' '}
         (see the
         {' '}
-        <TextLink href={href('/imprint')}>legal notice</TextLink>
+        <TextLink href={href('/legal-notice')}>legal notice</TextLink>
         ).
       </LegalParagraph>
       <LegalParagraph>

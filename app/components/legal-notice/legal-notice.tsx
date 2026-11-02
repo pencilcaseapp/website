@@ -10,7 +10,7 @@ import { TextLink } from '~/ui/text-link/text-link';
 
 /** The legal notice (Impressum) under § 5 DDG. */
 export const LegalNotice: React.FC = () => (
-  <LegalPage title="Legal notice">
+  <LegalPage title="Legal Notice">
     <LegalSection id="legal-provider" title="Provider">
       <LegalParagraph>
         Information under § 5 DDG (Digitale-Dienste-Gesetz)

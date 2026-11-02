@@ -13,7 +13,7 @@ describe('TermsOfUse', () => {
     render(<TermsOfUse />);
 
     expect(screen.getByRole('link', { name: 'legal notice' }))
-      .toHaveAttribute('href', '/imprint');
+      .toHaveAttribute('href', '/legal-notice');
     expect(screen.getByRole('link', { name: 'pricing page' }))
       .toHaveAttribute('href', '/#pricing');
   });

@@ -9,7 +9,7 @@ const meta = {
   title: 'Sections/LegalPage',
   component: LegalPage,
   parameters: { layout: 'fullscreen' },
-  args: { title: 'Legal notice' },
+  args: { title: 'Legal Notice' },
 } satisfies Meta<typeof LegalPage>;
 
 export default meta;

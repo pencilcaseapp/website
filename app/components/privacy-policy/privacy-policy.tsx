@@ -30,7 +30,7 @@ const ProviderName: React.FC<{ name: string; address: string }> = ({
 
 /** The privacy policy of the website, the web app and the native apps. */
 export const PrivacyPolicy: React.FC = () => (
-  <LegalPage title="Privacy policy" updatedAt={PRIVACY_POLICY_UPDATED_AT}>
+  <LegalPage title="Privacy Policy" updatedAt={PRIVACY_POLICY_UPDATED_AT}>
     <LegalSection id="privacy-1" number={1} title="Who is responsible">
       <LegalParagraph>
         The controller for the processing described here is

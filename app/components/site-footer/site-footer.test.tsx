@@ -54,7 +54,7 @@ describe('SiteFooter', () => {
     render(<SiteFooter />);
 
     expect(screen.getByRole('link', { name: 'Legal Notice' }))
-      .toHaveAttribute('href', '/imprint');
+      .toHaveAttribute('href', '/legal-notice');
     expect(screen.getByRole('link', { name: 'Privacy Policy' }))
       .toHaveAttribute('href', '/privacy');
     expect(screen.getByRole('link', { name: 'Terms of Use' }))

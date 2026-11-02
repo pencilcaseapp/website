@@ -1,24 +1,24 @@
 import { render, screen } from '@testing-library/react';
 import { createRoutesStub } from 'react-router';
 import { describe, expect, it } from 'vitest';
-import Imprint, { meta as imprintMeta } from './imprint';
+import LegalNotice, { meta as legalNoticeMeta } from './legal-notice';
 import Privacy, { meta as privacyMeta } from './privacy';
 import Terms, { meta as termsMeta } from './terms';
 
 const PAGES = [
   {
-    path: '/imprint',
-    Component: Imprint,
-    meta: imprintMeta,
-    title: 'Legal notice',
+    path: '/legal-notice',
+    Component: LegalNotice,
+    meta: legalNoticeMeta,
+    title: 'Legal Notice',
   },
   {
     path: '/privacy',
     Component: Privacy,
     meta: privacyMeta,
-    title: 'Privacy policy',
+    title: 'Privacy Policy',
   },
-  { path: '/terms', Component: Terms, meta: termsMeta, title: 'Terms of use' },
+  { path: '/terms', Component: Terms, meta: termsMeta, title: 'Terms of Use' },
 ];
 
 describe.each(PAGES)('$path', ({ path, Component, meta, title }) => {
