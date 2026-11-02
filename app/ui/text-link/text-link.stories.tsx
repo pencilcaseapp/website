@@ -4,7 +4,7 @@ import { TextLink } from './text-link';
 const meta = {
   title: 'Navigation/TextLink',
   component: TextLink,
-  args: { href: '#', children: 'privacy policy' },
+  args: { to: '#', children: 'privacy policy' },
   decorators: [
     Story => (
       <p className="type-body-lg max-w-md p-4">

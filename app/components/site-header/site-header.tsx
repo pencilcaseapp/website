@@ -44,7 +44,7 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ tone = 'yellow' }) => {
             {NAV_ITEMS.map(item => (
               <li key={item.href}>
                 <NavLink
-                  href={item.href}
+                  to={item.href}
                   className={classNames(
                     tone === 'white' && 'bg-pca-yellow-500',
                   )}

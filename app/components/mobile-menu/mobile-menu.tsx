@@ -1,6 +1,7 @@
 import { Dialog } from '@base-ui/react/dialog';
 import classNames from 'classnames';
 import { useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router';
 import { APP_URL, NAV_ITEMS } from '~/constants/links';
 import { Button } from '~/ui/button/button';
 import { Logo } from '~/ui/logo/logo';
@@ -33,6 +34,7 @@ const stagger = (index: number) => ({ '--i': index }) as React.CSSProperties;
 export const MobileMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pendingHash = useRef<string>(null);
+  const navigate = useNavigate();
 
   // The open sheet locks the page's scroll, so a link scrolls to its section
   // only once the sheet has closed.
@@ -52,8 +54,7 @@ export const MobileMenu: React.FC = () => {
     pendingHash.current = null;
 
     if (!open && hash) {
-      window.history.pushState(null, '', hash);
-      document.querySelector(hash)?.scrollIntoView();
+      navigate({ hash });
     }
   };
 
@@ -106,13 +107,13 @@ export const MobileMenu: React.FC = () => {
                   className={STAGGERED}
                   style={stagger(index)}
                 >
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.href}
                     onClick={event => goTo(event, item.href)}
                     className="type-menu inline-flex items-center rounded-md py-1.5 lowercase focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pca-white"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

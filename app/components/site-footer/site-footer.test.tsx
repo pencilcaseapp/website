@@ -1,10 +1,11 @@
 import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+import { MemoryRouter } from 'react-router';
 import { SiteFooter } from './site-footer';
 
 describe('SiteFooter', () => {
   it('links to the blog, the code and the social accounts', () => {
-    render(<SiteFooter />);
+    render(<SiteFooter />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('link', { name: 'Blog' }))
       .toHaveAttribute('href', '/blog');
@@ -20,7 +21,7 @@ describe('SiteFooter', () => {
   });
 
   it('opens the other sites in a new tab', () => {
-    render(<SiteFooter />);
+    render(<SiteFooter />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('link', { name: 'GitHub' }))
       .toHaveAttribute('target', '_blank');
@@ -29,14 +30,14 @@ describe('SiteFooter', () => {
   });
 
   it('leads to the app', () => {
-    render(<SiteFooter />);
+    render(<SiteFooter />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('link', { name: 'Get started' }))
       .toHaveAttribute('href', 'https://docs.pencilcase.app');
   });
 
   it('lists the legal texts', () => {
-    render(<SiteFooter />);
+    render(<SiteFooter />, { wrapper: MemoryRouter });
 
     expect(within(screen.getByRole('navigation', { name: 'Legal' }))
       .getAllByRole('link')
@@ -51,7 +52,7 @@ describe('SiteFooter', () => {
   });
 
   it('leads to the legal texts', () => {
-    render(<SiteFooter />);
+    render(<SiteFooter />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('link', { name: 'legal notice' }))
       .toHaveAttribute('href', '/legal-notice');
@@ -62,7 +63,7 @@ describe('SiteFooter', () => {
   });
 
   it('shows the e-mail address', () => {
-    render(<SiteFooter />);
+    render(<SiteFooter />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('link', { name: 'inbox@pencilcase.app' }))
       .toHaveAttribute('href', 'mailto:inbox@pencilcase.app');

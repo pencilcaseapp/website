@@ -4,7 +4,7 @@ import { NavLink } from './nav-link';
 const meta = {
   title: 'Navigation/NavLink',
   component: NavLink,
-  args: { href: '#', children: 'Features' },
+  args: { to: '#', children: 'Features' },
   decorators: [Story => <div className="bg-pca-yellow-500 p-4"><Story /></div>],
 } satisfies Meta<typeof NavLink>;
 

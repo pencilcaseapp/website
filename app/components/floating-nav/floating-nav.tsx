@@ -36,7 +36,7 @@ export const FloatingNav: React.FC = () => {
             {NAV_ITEMS.map((item, index) => (
               <li key={item.href}>
                 <NavLink
-                  href={item.href}
+                  to={item.href}
                   isCompact
                   aria-current={activeSection === item.href ? 'true' : undefined}
                   className="float-item bg-pca-yellow-500"

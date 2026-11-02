@@ -25,11 +25,11 @@ export const LegalNotice: React.FC = () => (
       <dl className="type-body-lg grid grid-cols-[auto_1fr] gap-x-4 gap-y-1">
         <dt>Email:</dt>
         <dd>
-          <TextLink href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</TextLink>
+          <TextLink to={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</TextLink>
         </dd>
         <dt>Contact form:</dt>
         <dd>
-          <TextLink href={CONTACT_FORM_HREF}>pencilcase.app/contact</TextLink>
+          <TextLink to={CONTACT_FORM_HREF}>pencilcase.app/contact</TextLink>
         </dd>
       </dl>
     </LegalSection>
@@ -56,7 +56,7 @@ export const LegalNotice: React.FC = () => (
       <LegalParagraph>
         How we handle personal data is described in our
         {' '}
-        <TextLink href={href('/privacy')}>privacy policy</TextLink>
+        <TextLink to={href('/privacy')}>privacy policy</TextLink>
         .
       </LegalParagraph>
     </LegalSection>

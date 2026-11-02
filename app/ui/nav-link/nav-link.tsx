@@ -1,6 +1,7 @@
 import classNames from 'classnames';
+import { Link, type LinkProps } from 'react-router';
 
-export type NavLinkProps = React.ComponentPropsWithRef<'a'> & {
+export type NavLinkProps = LinkProps & {
   /** The shorter link of the floating navigation. */
   isCompact?: boolean;
 };
@@ -14,7 +15,7 @@ export const NavLink: React.FC<NavLinkProps> = ({
   className,
   ...props
 }) => (
-  <a
+  <Link
     className={classNames(
       'type-nav relative flex items-center rounded-full px-4',
       isCompact ? 'h-10' : 'h-11',

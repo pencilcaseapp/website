@@ -9,6 +9,7 @@ import {
 
 import type { Route } from './+types/root';
 import './app.css';
+import { useInstantPageChange } from './hooks/use-instant-page-change';
 import fontsHref from './fonts.css?url';
 
 export const links: Route.LinksFunction = () => [
@@ -41,6 +42,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  useInstantPageChange();
+
   return <Outlet />;
 }
 

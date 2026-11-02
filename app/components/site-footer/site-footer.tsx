@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { Link } from 'react-router';
 import {
   APP_URL,
   CONTACT_EMAIL,
@@ -46,8 +47,8 @@ export const SiteFooter: React.FC = () => (
         {FOOTER_LINKS.map((link, index) => (
           <li key={link.label}>
             <Button
-              as="a"
-              href={link.href}
+              as={Link}
+              to={link.href}
               {...link.isExternal && { target: '_blank', rel: 'noreferrer' }}
               colorLight="white"
               size="compact"
@@ -105,15 +106,15 @@ export const SiteFooter: React.FC = () => (
         <ul className="flex flex-wrap justify-center gap-x-6">
           {LEGAL_LINKS.map(link => (
             <li key={link.label}>
-              <a
-                href={link.href}
+              <Link
+                to={link.href}
                 className={classNames(
                   'type-caption text-pca-grey-500',
                   CAPTION_LINK,
                 )}
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
