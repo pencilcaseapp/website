@@ -568,17 +568,20 @@ html {
 @media (height > 600px) and ((orientation: portrait) or (height > 700px)) {
   .stack-panel[data-leave-fallback] {
     transform-origin: bottom;
-    transform: perspective(1400px) rotateX(calc(var(--leave, 0) * 32deg));
+    scale: calc(1 - var(--leave, 0) * 0.15);
     opacity: calc(1 - max(0, (var(--leave, 0) - 0.8) * 5));
-    will-change: transform, opacity;
+    will-change: scale, opacity;
   }
 
   /* Safari 26 turns its bars solid over any sticky element along an edge,
      so where it can, a panel holds still by moving down with the scroll
-     instead of sticking: from its bottom edge reaching the bottom of the
-     large viewport until it has scrolled out, which is also when the next
-     panel covers it. The range follows the panel and the large viewport,
-     neither of which changes as the browser's bar shrinks or grows. */
+     instead of sticking: from its top edge reaching the top of the screen
+     until it has scrolled out, which is also when the next panel covers
+     it. The range and the distance are the panel's own height, which does
+     not change as the browser's bar shrinks or grows. The panel shrinks
+     back rather than tipping back in 3D: Safari does not draw a perspective
+     transform where the hold puts the panel, and loses it behind the next
+     one. */
   @supports (animation-timeline: view()) {
     .stack-panel {
       position: relative;
@@ -588,7 +591,7 @@ html {
     .stack-panel:not(:last-of-type) {
       animation: stack-hold linear both;
       animation-timeline: view();
-      animation-range: exit-crossing calc(100% - 100lvh) exit-crossing 100%;
+      animation-range: exit-crossing;
     }
 
     @media (prefers-reduced-motion: no-preference) {
@@ -596,7 +599,7 @@ html {
         transform-origin: bottom;
         animation: stack-hold linear both, stack-leave linear both;
         animation-timeline: view();
-        animation-range: exit-crossing calc(100% - 100lvh) exit-crossing 100%;
+        animation-range: exit-crossing;
       }
     }
   }
@@ -604,14 +607,14 @@ html {
 
 @keyframes stack-hold {
   to {
-    translate: 0 100lvh;
+    translate: 0 100%;
   }
 }
 
 @keyframes stack-leave {
   0% {
     opacity: 1;
-    transform: perspective(1400px) rotateX(0);
+    scale: 1;
   }
 
   80% {
@@ -620,7 +623,7 @@ html {
 
   100% {
     opacity: 0;
-    transform: perspective(1400px) rotateX(32deg);
+    scale: 0.85;
   }
 }
 

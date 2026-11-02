@@ -2,7 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SmallTech } from './small-tech';
 
 /**
- * Scroll down: each panel sticks, and tips back as the next one covers it.
+ * Scroll down: each panel holds still, and shrinks back as the next one
+ * covers it.
  */
 const meta = {
   title: 'Sections/Small Tech',

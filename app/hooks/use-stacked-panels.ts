@@ -10,8 +10,8 @@ function hasViewTimeline() {
 /**
  * Drives the sticky panels of a `.stack`. Every panel learns its own height
  * (`--panel-height`), so one taller than the screen sticks by its bottom
- * edge instead of hiding it. Browsers with scroll-driven animations tip each
- * panel back in CSS as the next one covers it; elsewhere this hands the
+ * edge instead of hiding it. Browsers with scroll-driven animations shrink
+ * each panel back in CSS as the next one covers it; elsewhere this hands the
  * panel how far it is covered (`--leave`, 0 to 1) and marks it
  * `data-leave-fallback`.
  */
