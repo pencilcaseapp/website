@@ -1,4 +1,4 @@
-import { href } from 'react-router';
+import { href, Link } from 'react-router';
 import {
   LegalPage,
   LegalParagraph,
@@ -29,7 +29,9 @@ export const LegalNotice: React.FC = () => (
         </dd>
         <dt>Contact form:</dt>
         <dd>
-          <TextLink href={CONTACT_FORM_HREF}>pencilcase.app/contact</TextLink>
+          <TextLink as={Link} to={CONTACT_FORM_HREF}>
+            pencilcase.app/contact
+          </TextLink>
         </dd>
       </dl>
     </LegalSection>
@@ -56,7 +58,7 @@ export const LegalNotice: React.FC = () => (
       <LegalParagraph>
         How we handle personal data is described in our
         {' '}
-        <TextLink href={href('/privacy')}>privacy policy</TextLink>
+        <TextLink as={Link} to={href('/privacy')}>privacy policy</TextLink>
         .
       </LegalParagraph>
     </LegalSection>

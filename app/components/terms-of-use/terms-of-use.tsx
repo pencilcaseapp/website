@@ -1,4 +1,4 @@
-import { href } from 'react-router';
+import { href, Link } from 'react-router';
 import {
   LegalLead,
   LegalList,
@@ -26,7 +26,7 @@ export const TermsOfUse: React.FC = () => (
         {' '}
         (see the
         {' '}
-        <TextLink href={href('/legal-notice')}>legal notice</TextLink>
+        <TextLink as={Link} to={href('/legal-notice')}>legal notice</TextLink>
         ).
       </LegalParagraph>
       <LegalParagraph>
@@ -69,7 +69,7 @@ export const TermsOfUse: React.FC = () => (
         working with others. The current features, limits and price of each
         plan are on our
         {' '}
-        <TextLink href="/#pricing">pricing page</TextLink>
+        <TextLink as={Link} to="/#pricing">pricing page</TextLink>
         , which you see before you upgrade. What it showed when you bought Pro
         is what your Pro year includes; section 7 says how features change.
       </LegalParagraph>
@@ -161,7 +161,7 @@ export const TermsOfUse: React.FC = () => (
         {' '}
         or use our
         {' '}
-        <TextLink href={CONTACT_FORM_HREF}>contact form</TextLink>
+        <TextLink as={Link} to={CONTACT_FORM_HREF}>contact form</TextLink>
         . In our apps you can also use Report in a shared document’s menu.
         Please include the link to the document, what you consider illegal and
         why, your name and email address, and a statement that your report is

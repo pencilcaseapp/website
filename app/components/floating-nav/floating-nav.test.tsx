@@ -1,5 +1,6 @@
 import { act, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
+import { MemoryRouter } from 'react-router';
 import { FloatingNav } from './floating-nav';
 
 function scrollTo(y: number) {
@@ -11,7 +12,7 @@ afterEach(() => scrollTo(0));
 
 describe('FloatingNav', () => {
   it('stays hidden at the top of the page', () => {
-    const { container } = render(<FloatingNav />);
+    const { container } = render(<FloatingNav />, { wrapper: MemoryRouter });
 
     const bar = container.firstElementChild;
     expect(bar).not.toHaveAttribute('data-shown');
@@ -19,7 +20,7 @@ describe('FloatingNav', () => {
   });
 
   it('drops in once the header has scrolled away', () => {
-    const { container } = render(<FloatingNav />);
+    const { container } = render(<FloatingNav />, { wrapper: MemoryRouter });
 
     act(() => scrollTo(200));
 
@@ -36,7 +37,7 @@ describe('FloatingNav', () => {
     section.getBoundingClientRect = () => ({ top: 0 }) as DOMRect;
     document.body.append(section);
 
-    render(<FloatingNav />);
+    render(<FloatingNav />, { wrapper: MemoryRouter });
     act(() => scrollTo(200));
 
     expect(screen.getByRole('link', { name: 'Pricing' }))

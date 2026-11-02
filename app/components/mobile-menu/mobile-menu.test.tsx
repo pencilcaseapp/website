@@ -1,13 +1,17 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+import {
+  createRoutesStub,
+  MemoryRouter,
+  ScrollRestoration,
+  useLocation,
+} from 'react-router';
 import { MobileMenu } from './mobile-menu';
-
-afterEach(() => window.history.replaceState(null, '', '/'));
 
 describe('MobileMenu', () => {
   it('keeps the navigation closed at first', () => {
-    render(<MobileMenu />);
+    render(<MobileMenu />, { wrapper: MemoryRouter });
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Sign in' }))
@@ -15,7 +19,7 @@ describe('MobileMenu', () => {
   });
 
   it('opens the navigation', async () => {
-    render(<MobileMenu />);
+    render(<MobileMenu />, { wrapper: MemoryRouter });
 
     await userEvent.click(screen.getByRole('button', { name: 'Menu' }));
 
@@ -24,7 +28,7 @@ describe('MobileMenu', () => {
   });
 
   it('closes the navigation', async () => {
-    render(<MobileMenu />);
+    render(<MobileMenu />, { wrapper: MemoryRouter });
 
     await userEvent.click(screen.getByRole('button', { name: 'Menu' }));
     await userEvent.click(
@@ -37,7 +41,7 @@ describe('MobileMenu', () => {
   });
 
   it('closes once a section is picked', async () => {
-    render(<MobileMenu />);
+    render(<MobileMenu />, { wrapper: MemoryRouter });
 
     await userEvent.click(screen.getByRole('button', { name: 'Menu' }));
     await userEvent.click(
@@ -54,7 +58,17 @@ describe('MobileMenu', () => {
     section.id = 'pricing';
     section.scrollIntoView = vi.fn();
     document.body.append(section);
-    render(<MobileMenu />);
+    const Stub = createRoutesStub([{
+      path: '/',
+      Component: () => (
+        <>
+          <MobileMenu />
+          <ScrollRestoration />
+          <output>{useLocation().hash}</output>
+        </>
+      ),
+    }]);
+    render(<Stub />);
 
     await userEvent.click(screen.getByRole('button', { name: 'Menu' }));
     await userEvent.click(
@@ -62,7 +76,7 @@ describe('MobileMenu', () => {
     );
 
     await waitFor(() => expect(section.scrollIntoView).toHaveBeenCalled());
-    expect(window.location.hash).toBe('#pricing');
+    expect(screen.getByRole('status')).toHaveTextContent('#pricing');
     section.remove();
   });
 });
