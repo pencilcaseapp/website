@@ -1,0 +1,80 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Table > matches snapshot 1`] = `
+<div>
+  <div
+    aria-label="Cookies we use"
+    class="my-10 rounded-[1.5rem] bg-pca-grey-100 pt-5 pb-1 lg:-mr-30 lg:-ml-6 lg:px-6 max-lg:overflow-x-auto max-lg:[scrollbar-width:thin] max-sm:-mx-4 max-sm:rounded-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pca-grey-900"
+    role="region"
+    tabindex="0"
+  >
+    <table
+      class="type-body w-full border-collapse text-left max-lg:min-w-[34rem] lg:table-fixed"
+    >
+      <caption
+        class="sr-only"
+      >
+        Cookies we use
+      </caption>
+      <colgroup>
+        <col
+          style="width: 40%;"
+        />
+        <col
+          style="width: 60%;"
+        />
+      </colgroup>
+      <thead>
+        <tr
+          class="border-b-2 border-pca-grey-900"
+        >
+          <th
+            class="type-label pb-3 align-bottom pr-6 last:pr-0 max-lg:pr-4 max-lg:last:pr-4 sm:max-lg:last:pr-6 max-lg:pl-4 sm:max-lg:pl-6"
+            scope="col"
+          >
+            Name
+          </th>
+          <th
+            class="type-label pb-3 align-bottom pr-6 last:pr-0 max-lg:pr-4 max-lg:last:pr-4 sm:max-lg:last:pr-6"
+            scope="col"
+          >
+            Lifetime
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="border-b border-pca-grey-300 last:border-b-0"
+        >
+          <th
+            class="py-4 align-top [overflow-wrap:anywhere] pr-6 last:pr-0 max-lg:pr-4 max-lg:last:pr-4 sm:max-lg:last:pr-6 font-semibold max-lg:pl-4 sm:max-lg:pl-6"
+            scope="row"
+          >
+            session
+          </th>
+          <td
+            class="py-4 align-top [overflow-wrap:anywhere] pr-6 last:pr-0 max-lg:pr-4 max-lg:last:pr-4 sm:max-lg:last:pr-6 font-normal"
+          >
+            90 days
+          </td>
+        </tr>
+        <tr
+          class="border-b border-pca-grey-300 last:border-b-0"
+        >
+          <th
+            class="py-4 align-top [overflow-wrap:anywhere] pr-6 last:pr-0 max-lg:pr-4 max-lg:last:pr-4 sm:max-lg:last:pr-6 font-semibold max-lg:pl-4 sm:max-lg:pl-6"
+            scope="row"
+          >
+            csrf
+          </th>
+          <td
+            class="py-4 align-top [overflow-wrap:anywhere] pr-6 last:pr-0 max-lg:pr-4 max-lg:last:pr-4 sm:max-lg:last:pr-6 font-normal"
+          >
+            Browser session
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

@@ -177,6 +177,20 @@
   text-wrap: balance;
 }
 
+@utility type-label {
+  font-family: var(--font-text);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+@utility type-link {
+  text-decoration-line: underline;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.25em;
+  text-decoration-skip-ink: auto;
+}
+
 @utility type-hand {
   font-family: var(--font-hand);
   font-weight: 400;

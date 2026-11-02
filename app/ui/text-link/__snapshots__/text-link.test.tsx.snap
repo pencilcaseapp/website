@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TextLink > matches snapshot 1`] = `
+<div>
+  <a
+    class="type-link rounded-sm font-medium [overflow-wrap:anywhere] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pca-grey-900"
+    href="/privacy"
+  >
+    privacy policy
+  </a>
+</div>
+`;
