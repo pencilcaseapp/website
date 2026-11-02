@@ -1,14 +1,20 @@
 import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it } from 'vitest';
-import { findHelpArticle } from '~/utils/help';
+import {
+  findHelpArticle,
+  relatedHelpArticles,
+} from '~/utils/help.server';
 import { HelpArticle } from './help-article';
 
 function renderArticle(slug: string) {
   const found = findHelpArticle(slug)!;
 
   return render(
-    <HelpArticle article={found.article} section={found.section} />,
+    <HelpArticle
+      {...found}
+      related={relatedHelpArticles(found.article)}
+    />,
     { wrapper: MemoryRouter },
   );
 }

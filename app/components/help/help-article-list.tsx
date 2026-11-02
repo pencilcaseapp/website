@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { Link } from 'react-router';
-import type { HelpArticle } from '~/constants/help';
+import type { HelpArticleLink } from '~/constants/help';
 import { helpArticleHref } from '~/utils/help';
 
 export const FOCUS_RING = classNames(
@@ -37,7 +37,7 @@ export const DraftBadge: React.FC = () => (
 );
 
 export interface HelpArticleListProps {
-  articles: HelpArticle[];
+  articles: HelpArticleLink[];
 }
 
 /** The questions of a few help articles, each a link to its answer. */

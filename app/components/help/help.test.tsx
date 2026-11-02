@@ -1,17 +1,17 @@
 import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it } from 'vitest';
-import { HELP_SECTIONS } from '~/constants/help';
+import { getHelpSections } from '~/utils/help.server';
 import { Help } from './help';
 
 describe('Help', () => {
   it('lists every section with its questions', () => {
-    render(<Help />, { wrapper: MemoryRouter });
+    render(<Help sections={getHelpSections()} />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('heading', { level: 1 }))
       .toHaveTextContent('Help.');
 
-    for (const section of HELP_SECTIONS) {
+    for (const section of getHelpSections()) {
       const region = screen.getByRole('region', { name: section.title });
 
       expect(within(region).getAllByRole('link'))
@@ -23,7 +23,7 @@ describe('Help', () => {
   });
 
   it('jumps to a section from the pills', () => {
-    render(<Help />, { wrapper: MemoryRouter });
+    render(<Help sections={getHelpSections()} />, { wrapper: MemoryRouter });
 
     const nav = screen.getByRole('navigation', { name: 'Help sections' });
 
@@ -34,14 +34,14 @@ describe('Help', () => {
   });
 
   it('marks the drafts', () => {
-    render(<Help />, { wrapper: MemoryRouter });
+    render(<Help sections={getHelpSections()} />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('link', { name: 'What are spaces? Draft' }))
       .toBeInTheDocument();
   });
 
   it('ends with the contact form', () => {
-    render(<Help />, { wrapper: MemoryRouter });
+    render(<Help sections={getHelpSections()} />, { wrapper: MemoryRouter });
 
     const form = screen.getByRole('region', {
       name: 'Didn’t find your answer?',
