@@ -1,3 +1,5 @@
+import type { Nodes, Root } from 'mdast';
+import { fromMarkdown } from 'mdast-util-from-markdown';
 import { parse } from 'yaml';
 import {
   HELP_SECTIONS,
@@ -98,6 +100,46 @@ export const getHelpArticleMarkdown = (article: HelpArticle) =>
   [`# ${article.question}`, article.summary, article.body]
     .filter(Boolean)
     .join('\n\n') + '\n';
+
+function withoutPositions<T extends Nodes>(node: T): T {
+  delete node.position;
+
+  if ('children' in node) {
+    node.children.forEach(withoutPositions);
+  }
+
+  return node;
+}
+
+/**
+ * Markdown as the tree the page draws, parsed here so the parser stays
+ * on the server.
+ */
+export const parseHelpMarkdown = (text: string): Root =>
+  withoutPositions(fromMarkdown(text));
+
+/** What the article page draws, or nothing for an unknown slug. */
+export function getHelpArticlePage(slug: string) {
+  const found = findHelpArticle(slug);
+
+  if (!found) {
+    return undefined;
+  }
+
+  const { article, section } = found;
+
+  return {
+    article: {
+      slug: article.slug,
+      question: article.question,
+      ...article.draft && { draft: true },
+    },
+    summary: parseHelpMarkdown(article.summary),
+    body: parseHelpMarkdown(article.body),
+    section,
+    related: relatedHelpArticles(article),
+  };
+}
 
 /** The text of some Markdown without its marks, for a description. */
 export const stripMarkdown = (text: string) =>
