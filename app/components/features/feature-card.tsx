@@ -104,7 +104,6 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
               alt=""
               width={640}
               height={640}
-              loading="lazy"
               className="pointer-events-none h-full w-auto select-none"
             />
           </div>
