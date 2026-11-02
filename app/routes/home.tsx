@@ -9,7 +9,7 @@ export function meta() {
     { title: 'pencil case – A European docs alternative' },
     {
       name: 'description',
-      content: 'The European alternative for writing docs and sharing them with your friends.',
+      content: 'A European alternative for writing docs and sharing them with your friends.',
     },
   ];
 }
