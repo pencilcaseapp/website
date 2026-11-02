@@ -42,7 +42,7 @@ export const SiteFooter: React.FC = () => (
   >
     <Eyes />
     <Container className="mt-16 flex flex-col items-center text-center">
-      <ul className="flex max-w-[42rem] flex-wrap justify-center gap-3">
+      <ul className="flex max-w-[44rem] flex-wrap justify-center gap-3">
         {FOOTER_LINKS.map((link, index) => (
           <li key={link.label}>
             <Button
@@ -50,7 +50,7 @@ export const SiteFooter: React.FC = () => (
               href={link.href}
               {...link.isExternal && { target: '_blank', rel: 'noreferrer' }}
               colorLight="white"
-              size="medium"
+              size="compact"
               outlineColor="white"
               isExternal={link.isExternal}
               className={classNames(PILL, TILTS[index % TILTS.length])}
@@ -64,7 +64,7 @@ export const SiteFooter: React.FC = () => (
             as="a"
             href={APP_URL}
             colorLight="pop-yellow"
-            size="medium"
+            size="compact"
             outlineColor="white"
             className={classNames(PILL, 'rotate-2')}
           >
