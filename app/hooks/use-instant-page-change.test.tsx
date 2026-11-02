@@ -35,6 +35,25 @@ describe('useInstantPageChange', () => {
     expect(scrollBehavior()).toBe('');
   });
 
+  it('jumps to a section of another page', async () => {
+    const router = renderRouter();
+
+    await act(() => router.navigate('/terms'));
+    await act(() => router.navigate('/#pricing'));
+
+    expect(scrollBehavior()).toBe('auto');
+  });
+
+  it('glides to a section after arriving from another page', async () => {
+    const router = renderRouter();
+
+    await act(() => router.navigate('/terms'));
+    await act(() => router.navigate('/#pricing'));
+    await act(() => router.navigate('/#features'));
+
+    expect(scrollBehavior()).toBe('');
+  });
+
   it('jumps to a new page', async () => {
     const router = renderRouter();
 
