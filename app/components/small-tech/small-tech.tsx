@@ -8,9 +8,9 @@ import { Container } from '~/ui/container/container';
 const TITLE = 'Small Tech';
 
 /**
- * What we stand for, one principle per screen. The panels hold still and
- * pile up on each other as the page scrolls, each tipping back as the next
- * one covers it.
+ * What we stand for, one principle per screen. The panels stick and pile
+ * up on each other as the page scrolls, each tipping back as the next one
+ * covers it.
  */
 export const SmallTech: React.FC = () => {
   const ref = useStackedPanels<HTMLElement>();
