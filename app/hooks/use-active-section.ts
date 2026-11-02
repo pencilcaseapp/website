@@ -27,10 +27,21 @@ export function useActiveSection(hrefs: readonly string[]) {
       setActive(current);
     };
 
-    update();
-    window.addEventListener('scroll', update, { passive: true });
+    let frame = 0;
+    const onScroll = () => {
+      frame ||= requestAnimationFrame(() => {
+        frame = 0;
+        update();
+      });
+    };
 
-    return () => window.removeEventListener('scroll', update);
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(frame);
+    };
   }, [key]);
 
   return active;

@@ -541,6 +541,15 @@ html {
    tips back and fades as the next covers it. A panel taller than the screen
    sticks by its bottom edge (`useStackedPanels` measures it), and on a short
    screen the panels just scroll. */
+/* `useStackedPanels` writes `--leave` on every frame where there is no view
+   timeline. Not inherited, so it restyles the panel rather than everything
+   in it. */
+@property --leave {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
 .stack {
   timeline-scope: --stack-1, --stack-2, --stack-3, --stack-4;
 }
