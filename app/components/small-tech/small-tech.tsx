@@ -42,7 +42,7 @@ interface PanelProps {
 
 const Panel: React.FC<PanelProps> = ({ principle, index }) => (
   <article
-    className="stack-panel sticky min-h-dvh overflow-hidden"
+    className="stack-panel sticky min-h-lvh overflow-hidden"
     style={{ zIndex: index + 1 }}
   >
     <div
@@ -55,7 +55,7 @@ const Panel: React.FC<PanelProps> = ({ principle, index }) => (
     />
     <Container
       className={classNames(
-        'flex min-h-dvh flex-col pt-8 pb-32 sm:pt-14 sm:pb-22 lg:py-16',
+        'flex min-h-lvh flex-col pt-8 pb-32 sm:pt-14 sm:pb-22 lg:py-16',
         principle.dark ? 'text-pca-grey-900' : 'text-pca-white',
       )}
     >
