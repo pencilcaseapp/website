@@ -1,19 +1,11 @@
 import classNames from 'classnames';
 import { APP_URL } from '~/constants/links';
 import { PRINCIPLES, type Principle } from '~/constants/small-tech';
-import { useEdgePanels } from '~/hooks/use-edge-panels';
 import { useStackedPanels } from '~/hooks/use-stacked-panels';
 import { Button } from '~/ui/button/button';
 import { Container } from '~/ui/container/container';
 
 const TITLE = 'Small Tech';
-
-// Safari 26 tints its top and bottom bars with a fixed element it finds
-// along each edge, not with the panels. Masked out, so nobody sees them.
-const BAR_TINT = classNames(
-  'pointer-events-none fixed inset-x-0 z-40 h-3',
-  '[mask-image:linear-gradient(transparent,transparent)]',
-);
 
 /**
  * What we stand for, one principle per screen. The panels stick and pile
@@ -22,7 +14,6 @@ const BAR_TINT = classNames(
  */
 export const SmallTech: React.FC = () => {
   const ref = useStackedPanels<HTMLElement>();
-  const edges = useEdgePanels(ref);
 
   return (
     <section id="small-tech" ref={ref} className="stack relative">
@@ -37,26 +28,6 @@ export const SmallTech: React.FC = () => {
           </Button>
         </div>
       </Container>
-      {edges.top !== null && (
-        <div
-          aria-hidden="true"
-          className={classNames(
-            BAR_TINT,
-            'top-0',
-            PRINCIPLES[edges.top].background,
-          )}
-        />
-      )}
-      {edges.bottom !== null && (
-        <div
-          aria-hidden="true"
-          className={classNames(
-            BAR_TINT,
-            'bottom-0',
-            PRINCIPLES[edges.bottom].background,
-          )}
-        />
-      )}
       {PRINCIPLES.map((principle, index) => (
         <Panel key={principle.id} principle={principle} index={index} />
       ))}
