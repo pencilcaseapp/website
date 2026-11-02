@@ -1,14 +1,9 @@
 import classNames from 'classnames';
 import { Link } from 'react-router';
-import Markdown, { type Components } from 'react-markdown';
-import type {
-  HelpArticle as HelpArticleData,
-  HelpArticleLink,
-  HelpSectionInfo,
-} from '~/constants/help';
+import type { Root } from 'mdast';
+import type { HelpArticleLink, HelpSectionInfo } from '~/constants/help';
 import { HELP_HREF } from '~/constants/links';
 import { Container } from '~/ui/container/container';
-import { TextLink } from '~/ui/text-link/text-link';
 import { helpArticleMarkdownHref } from '~/utils/help';
 import { WRITE_TO_US_ID } from '../help/help';
 import {
@@ -16,38 +11,7 @@ import {
   HelpArticleList,
   RowArrow,
 } from '../help/help-article-list';
-
-const COMPONENTS: Components = {
-  p: ({ children }) => <p className="mt-6">{children}</p>,
-  ul: ({ children }) => (
-    <ul className="mt-6 flex list-disc flex-col gap-3 pl-6 marker:text-pca-grey-500">
-      {children}
-    </ul>
-  ),
-  ol: ({ children }) => (
-    <ol className="mt-6 flex list-decimal flex-col gap-3 pl-6 marker:font-semibold">
-      {children}
-    </ol>
-  ),
-  strong: ({ children }) => (
-    <strong className="font-semibold">{children}</strong>
-  ),
-  code: ({ children }) => (
-    <code className="rounded-md bg-pca-grey-100 px-1.5 py-0.5 font-mono text-[0.9em]">
-      {children}
-    </code>
-  ),
-  a: ({ href = '', children }) => href.startsWith('/')
-    ? <TextLink as={Link} to={href}>{children}</TextLink>
-    : <TextLink href={href}>{children}</TextLink>,
-};
-
-const SUMMARY_COMPONENTS: Components = {
-  ...COMPONENTS,
-  p: ({ children }) => (
-    <p className="type-lead mt-6 text-pca-grey-800">{children}</p>
-  ),
-};
+import { HelpMarkdown } from './help-markdown';
 
 const Breadcrumb: React.FC<{ section: HelpSectionInfo }> = ({ section }) => {
   const link = classNames(
@@ -70,7 +34,11 @@ const Breadcrumb: React.FC<{ section: HelpSectionInfo }> = ({ section }) => {
 };
 
 export interface HelpArticleProps {
-  article: HelpArticleData;
+  article: HelpArticleLink;
+  /** The first paragraph of the answer. */
+  summary: Root;
+  /** The rest of the answer. */
+  body: Root;
   section: HelpSectionInfo;
   /** The articles to suggest under it. */
   related: HelpArticleLink[];
@@ -79,6 +47,8 @@ export interface HelpArticleProps {
 /** One help article: the question, its answer and where to go next. */
 export const HelpArticle: React.FC<HelpArticleProps> = ({
   article,
+  summary,
+  body,
   section,
   related,
 }) => (
@@ -94,10 +64,13 @@ export const HelpArticle: React.FC<HelpArticleProps> = ({
       <h1 className="type-subtitle mt-6 text-balance sm:mt-8 sm:text-[2.75rem]">
         {article.question}
       </h1>
-      <Markdown components={SUMMARY_COMPONENTS}>{article.summary}</Markdown>
-      {article.body && (
+      <HelpMarkdown
+        tree={summary}
+        paragraphClassName="type-lead mt-6 text-pca-grey-800"
+      />
+      {body.children.length > 0 && (
         <div className="type-body-lg mt-4">
-          <Markdown components={COMPONENTS}>{article.body}</Markdown>
+          <HelpMarkdown tree={body} />
         </div>
       )}
     </article>
@@ -122,15 +95,16 @@ export const HelpArticle: React.FC<HelpArticleProps> = ({
       <RowArrow />
     </Link>
     <p className="type-caption mt-6 text-center text-pca-grey-700">
-      <a
-        href={helpArticleMarkdownHref(article)}
+      <Link
+        to={helpArticleMarkdownHref(article)}
+        reloadDocument
         className={classNames(
           'inline-flex h-11 items-center rounded-sm hover:text-pca-grey-900',
           FOCUS_RING,
         )}
       >
         This page as Markdown
-      </a>
+      </Link>
     </p>
   </Container>
 );

@@ -3,23 +3,20 @@ import { HelpArticle } from '~/components/help-article/help-article';
 import { PageLayout } from '~/components/page-layout/page-layout';
 import {
   findHelpArticle,
-  relatedHelpArticles,
+  getHelpArticlePage,
   stripMarkdown,
 } from '~/utils/help.server';
 import type { Route } from './+types/help-article';
 
 export function loader({ params }: Route.LoaderArgs) {
-  const found = findHelpArticle(params.slug);
+  const page = getHelpArticlePage(params.slug);
+  const article = findHelpArticle(params.slug)?.article;
 
-  if (!found) {
+  if (!page || !article) {
     throw data(null, { status: 404 });
   }
 
-  return {
-    ...found,
-    related: relatedHelpArticles(found.article),
-    description: stripMarkdown(found.article.summary),
-  };
+  return { ...page, description: stripMarkdown(article.summary) };
 }
 
 export function meta({ loaderData }: Route.MetaArgs) {
@@ -37,11 +34,17 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 export default function HelpArticlePage({ loaderData }: Route.ComponentProps) {
-  const { article, section, related } = loaderData;
+  const { article, summary, body, section, related } = loaderData;
 
   return (
     <PageLayout header="white">
-      <HelpArticle article={article} section={section} related={related} />
+      <HelpArticle
+        article={article}
+        summary={summary}
+        body={body}
+        section={section}
+        related={related}
+      />
     </PageLayout>
   );
 }
