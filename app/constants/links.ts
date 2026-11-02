@@ -7,7 +7,7 @@ export const NAV_ITEMS = [
   { href: '/blog', label: 'Blog' },
 ] as const;
 
-/** The pills of the footer. Contact has no page yet. */
+/** The pills of the footer. */
 export const FOOTER_LINKS = [
   { href: '/blog', label: 'Blog', isExternal: false },
   {
@@ -15,7 +15,7 @@ export const FOOTER_LINKS = [
     label: 'GitHub',
     isExternal: true,
   },
-  { href: '#', label: 'Contact', isExternal: false },
+  { href: '/contact', label: 'Contact', isExternal: false },
   {
     href: 'https://mastodon.social/@pencilcaseapp',
     label: 'Mastodon',
@@ -39,5 +39,5 @@ export const LEGAL_LINKS = [
 
 export const CONTACT_EMAIL = 'inbox@pencilcase.app';
 
-/** The contact form the legal texts point to. It has no page yet. */
+/** The contact form the legal texts point to. */
 export const CONTACT_FORM_HREF = '/contact';
