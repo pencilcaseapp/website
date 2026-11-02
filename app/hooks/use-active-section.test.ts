@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { useActiveSection } from './use-active-section';
 
 function addSection(id: string, top: number) {
@@ -12,6 +12,7 @@ function addSection(id: string, top: number) {
 
 afterEach(() => {
   document.body.innerHTML = '';
+  vi.unstubAllGlobals();
 });
 
 describe('useActiveSection', () => {
@@ -25,6 +26,9 @@ describe('useActiveSection', () => {
   });
 
   it('picks the last section that reached the top third', () => {
+    const frames: FrameRequestCallback[] = [];
+    vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) =>
+      frames.push(callback));
     addSection('features', -400);
     const pricing = addSection('pricing', 2000);
 
@@ -36,7 +40,13 @@ describe('useActiveSection', () => {
     pricing.getBoundingClientRect = () => ({ top: 100 }) as DOMRect;
     act(() => {
       window.dispatchEvent(new Event('scroll'));
+      window.dispatchEvent(new Event('scroll'));
     });
+
+    expect(result.current).toBe('#features');
+    expect(frames).toHaveLength(1);
+
+    act(() => frames[0](0));
 
     expect(result.current).toBe('#pricing');
   });
