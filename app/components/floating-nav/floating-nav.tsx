@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { APP_URL, NAV_ITEMS } from '~/constants/links';
 import { useActiveSection } from '~/hooks/use-active-section';
 import { useScrolledPast } from '~/hooks/use-scrolled-past';
@@ -36,6 +37,7 @@ export const FloatingNav: React.FC = () => {
             {NAV_ITEMS.map((item, index) => (
               <li key={item.href}>
                 <NavLink
+                  as={Link}
                   to={item.href}
                   isCompact
                   aria-current={activeSection === item.href ? 'true' : undefined}

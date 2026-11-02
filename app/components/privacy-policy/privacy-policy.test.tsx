@@ -1,18 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { MemoryRouter } from 'react-router';
 import { PrivacyPolicy } from './privacy-policy';
 
 describe('PrivacyPolicy', () => {
   it('shows the version', () => {
-    render(<PrivacyPolicy />, { wrapper: MemoryRouter });
+    render(<PrivacyPolicy />);
 
     expect(screen.getByText('2 November 2026'))
       .toHaveAttribute('datetime', '2026-11-02');
   });
 
   it('numbers the sections', () => {
-    render(<PrivacyPolicy />, { wrapper: MemoryRouter });
+    render(<PrivacyPolicy />);
 
     expect(screen.getAllByRole('heading', { level: 2 })
       .map(heading => heading.textContent))
@@ -28,7 +27,7 @@ describe('PrivacyPolicy', () => {
   });
 
   it('lays out the details in tables', () => {
-    render(<PrivacyPolicy />, { wrapper: MemoryRouter });
+    render(<PrivacyPolicy />);
 
     for (const name of [
       'What we process, why, and on what legal basis',
@@ -41,7 +40,7 @@ describe('PrivacyPolicy', () => {
   });
 
   it('opens the providers’ policies in a new tab', () => {
-    render(<PrivacyPolicy />, { wrapper: MemoryRouter });
+    render(<PrivacyPolicy />);
 
     expect(screen.getByRole('link', { name: 'Bunny’s privacy policy' }))
       .toHaveAttribute('target', '_blank');

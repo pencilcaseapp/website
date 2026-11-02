@@ -7,14 +7,14 @@ import {
 import { PRIVACY_POLICY_UPDATED_AT, PROVIDER_ADDRESS } from '~/constants/legal';
 import { CONTACT_EMAIL } from '~/constants/links';
 import { Table } from '~/ui/table/table';
-import { TextLink, type TextLinkProps } from '~/ui/text-link/text-link';
+import { TextLink } from '~/ui/text-link/text-link';
 
-const ExternalLink: React.FC<TextLinkProps> = props => (
+const ExternalLink: React.FC<React.ComponentProps<'a'>> = props => (
   <TextLink target="_blank" rel="noreferrer" {...props} />
 );
 
 const Inbox: React.FC = () => (
-  <TextLink to={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</TextLink>
+  <TextLink href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</TextLink>
 );
 
 /** A provider's name, bold, and its address after it in normal weight. */
@@ -216,7 +216,7 @@ export const PrivacyPolicy: React.FC = () => (
             <>
               EU (France); see
               {' '}
-              <ExternalLink to="https://www.clever.cloud/privacy-policy/">
+              <ExternalLink href="https://www.clever.cloud/privacy-policy/">
                 Clever Cloud’s privacy policy
               </ExternalLink>
             </>,
@@ -232,7 +232,7 @@ export const PrivacyPolicy: React.FC = () => (
               Storage in Frankfurt, Germany, with a replica in Stockholm,
               Sweden; delivered only from Bunny’s locations in Europe; see
               {' '}
-              <ExternalLink to="https://bunny.net/privacy/">
+              <ExternalLink href="https://bunny.net/privacy/">
                 Bunny’s privacy policy
               </ExternalLink>
             </>,
@@ -247,7 +247,7 @@ export const PrivacyPolicy: React.FC = () => (
             <>
               EU; see
               {' '}
-              <ExternalLink to="https://lettermint.co/privacy-policy">
+              <ExternalLink href="https://lettermint.co/privacy-policy">
                 Lettermint’s privacy policy
               </ExternalLink>
             </>,
@@ -262,7 +262,7 @@ export const PrivacyPolicy: React.FC = () => (
             <>
               Germany; see
               {' '}
-              <ExternalLink to="https://www.united-domains.de/unternehmen/datenschutz/">
+              <ExternalLink href="https://www.united-domains.de/unternehmen/datenschutz/">
                 united-domains’ privacy policy
               </ExternalLink>
             </>,
@@ -278,7 +278,7 @@ export const PrivacyPolicy: React.FC = () => (
               EU; providers outside the EU under standard contractual clauses,
               see
               {' '}
-              <ExternalLink to="https://www.creem.io/privacy">
+              <ExternalLink href="https://www.creem.io/privacy">
                 Creem’s privacy policy
               </ExternalLink>
             </>,
@@ -293,12 +293,12 @@ export const PrivacyPolicy: React.FC = () => (
         You download our apps from Apple’s App Store or Google Play. Apple and
         Google process the data needed for that as their own controllers,
         under their own privacy policies (
-        <ExternalLink to="https://www.apple.com/legal/privacy/">
+        <ExternalLink href="https://www.apple.com/legal/privacy/">
           Apple
         </ExternalLink>
         ,
         {' '}
-        <ExternalLink to="https://policies.google.com/privacy">
+        <ExternalLink href="https://policies.google.com/privacy">
           Google
         </ExternalLink>
         ). We do not receive personal data from them, only anonymous

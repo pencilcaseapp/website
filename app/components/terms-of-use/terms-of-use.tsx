@@ -1,4 +1,4 @@
-import { href } from 'react-router';
+import { href, Link } from 'react-router';
 import {
   LegalLead,
   LegalList,
@@ -26,7 +26,7 @@ export const TermsOfUse: React.FC = () => (
         {' '}
         (see the
         {' '}
-        <TextLink to={href('/legal-notice')}>legal notice</TextLink>
+        <TextLink as={Link} to={href('/legal-notice')}>legal notice</TextLink>
         ).
       </LegalParagraph>
       <LegalParagraph>
@@ -69,7 +69,7 @@ export const TermsOfUse: React.FC = () => (
         working with others. The current features, limits and price of each
         plan are on our
         {' '}
-        <TextLink to="/#pricing">pricing page</TextLink>
+        <TextLink as={Link} to="/#pricing">pricing page</TextLink>
         , which you see before you upgrade. What it showed when you bought Pro
         is what your Pro year includes; section 7 says how features change.
       </LegalParagraph>
@@ -88,7 +88,7 @@ export const TermsOfUse: React.FC = () => (
         taxes, refunds and your right of withdrawal are governed by
         {' '}
         <TextLink
-          to="https://www.creem.io/terms"
+          href="https://www.creem.io/terms"
           target="_blank"
           rel="noreferrer"
         >
@@ -157,11 +157,11 @@ export const TermsOfUse: React.FC = () => (
       <LegalParagraph>
         To report content you believe is illegal, write to
         {' '}
-        <TextLink to={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</TextLink>
+        <TextLink href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</TextLink>
         {' '}
         or use our
         {' '}
-        <TextLink to={CONTACT_FORM_HREF}>contact form</TextLink>
+        <TextLink as={Link} to={CONTACT_FORM_HREF}>contact form</TextLink>
         . In our apps you can also use Report in a shared document’s menu.
         Please include the link to the document, what you consider illegal and
         why, your name and email address, and a statement that your report is
