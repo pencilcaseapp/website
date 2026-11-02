@@ -16,6 +16,8 @@
   --color-pca-yellow-500: oklch(0.916 0.147 96.825);
   --color-pca-yellow-700: oklch(0.792 0.144 94.379);
 
+  --color-pca-blue-700: oklch(0.414 0.203 264);
+
   --color-pca-red-600: oklch(0.58 0.208 25.331);
   --color-pca-red-700: oklch(0.454 0.165 26.924);
 
@@ -532,6 +534,92 @@ html {
 @keyframes fan-panel-settle {
   0% {
     scale: 0.94;
+  }
+}
+
+/* The small tech panels pile up as the page scrolls: each one sticks, and
+   tips back and fades as the next covers it. A panel taller than the screen
+   sticks by its bottom edge (`useStackedPanels` measures it), and on a short
+   screen the panels just scroll. */
+.stack {
+  timeline-scope: --stack-1, --stack-2, --stack-3, --stack-4;
+}
+
+.stack-panel {
+  top: min(0px, calc(100dvh - var(--panel-height, 100dvh)));
+
+  &:nth-of-type(1) {
+    view-timeline-name: --stack-1;
+  }
+
+  &:nth-of-type(2) {
+    view-timeline-name: --stack-2;
+  }
+
+  &:nth-of-type(3) {
+    view-timeline-name: --stack-3;
+  }
+
+  &:nth-of-type(4) {
+    view-timeline-name: --stack-4;
+  }
+}
+
+.stack-drawing {
+  mask: var(--art) center / contain no-repeat;
+}
+
+@media (height <= 700px) and (orientation: landscape), (height <= 600px) {
+  .stack-panel {
+    position: relative;
+    top: auto;
+  }
+}
+
+@media (height > 600px) and ((orientation: portrait) or (height > 700px)) {
+  .stack-panel[data-leave-fallback] {
+    transform-origin: bottom;
+    transform: perspective(1400px) rotateX(calc(var(--leave, 0) * 32deg));
+    opacity: calc(1 - max(0, (var(--leave, 0) - 0.8) * 5));
+    will-change: transform, opacity;
+  }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .stack-panel:not(:last-of-type) {
+        transform-origin: bottom;
+        animation: stack-leave linear both;
+        animation-range: entry;
+      }
+
+      .stack-panel:nth-of-type(1) {
+        animation-timeline: --stack-2;
+      }
+
+      .stack-panel:nth-of-type(2) {
+        animation-timeline: --stack-3;
+      }
+
+      .stack-panel:nth-of-type(3) {
+        animation-timeline: --stack-4;
+      }
+    }
+  }
+}
+
+@keyframes stack-leave {
+  0% {
+    opacity: 1;
+    transform: perspective(1400px) rotateX(0);
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: perspective(1400px) rotateX(32deg);
   }
 }
 
