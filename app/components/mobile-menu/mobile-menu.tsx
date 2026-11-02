@@ -85,8 +85,6 @@ export const MobileMenu: React.FC = () => {
           className={classNames(
             'group fixed inset-0 z-50 flex flex-col overflow-y-auto',
             'overscroll-contain bg-pca-grey-900 text-pca-white md:hidden',
-            'data-ending-style:opacity-0 data-ending-style:transition-opacity',
-            'data-ending-style:duration-200',
           )}
         >
           <Dialog.Title className="sr-only">Menu</Dialog.Title>
