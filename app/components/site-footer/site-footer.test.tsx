@@ -42,22 +42,22 @@ describe('SiteFooter', () => {
       .getAllByRole('link')
       .map(link => link.textContent))
       .toEqual([
-        'Legal Notice',
-        'Privacy Policy',
-        'Terms of Use',
-        'Cancel contract',
-        'Withdraw contract',
+        'legal notice',
+        'privacy policy',
+        'terms of use',
+        'cancel contract',
+        'withdraw contract',
       ]);
   });
 
   it('leads to the legal texts', () => {
     render(<SiteFooter />);
 
-    expect(screen.getByRole('link', { name: 'Legal Notice' }))
+    expect(screen.getByRole('link', { name: 'legal notice' }))
       .toHaveAttribute('href', '/legal-notice');
-    expect(screen.getByRole('link', { name: 'Privacy Policy' }))
+    expect(screen.getByRole('link', { name: 'privacy policy' }))
       .toHaveAttribute('href', '/privacy');
-    expect(screen.getByRole('link', { name: 'Terms of Use' }))
+    expect(screen.getByRole('link', { name: 'terms of use' }))
       .toHaveAttribute('href', '/terms');
   });
 

@@ -30,11 +30,11 @@ export const FOOTER_LINKS = [
 
 /** Cancelling and withdrawing have no page yet. */
 export const LEGAL_LINKS = [
-  { href: '/legal-notice', label: 'Legal Notice' },
-  { href: '/privacy', label: 'Privacy Policy' },
-  { href: '/terms', label: 'Terms of Use' },
-  { href: '#', label: 'Cancel contract' },
-  { href: '#', label: 'Withdraw contract' },
+  { href: '/legal-notice', label: 'legal notice' },
+  { href: '/privacy', label: 'privacy policy' },
+  { href: '/terms', label: 'terms of use' },
+  { href: '#', label: 'cancel contract' },
+  { href: '#', label: 'withdraw contract' },
 ] as const;
 
 export const CONTACT_EMAIL = 'inbox@pencilcase.app';

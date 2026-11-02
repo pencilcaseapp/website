@@ -108,7 +108,7 @@ export const SiteFooter: React.FC = () => (
               <a
                 href={link.href}
                 className={classNames(
-                  'type-caption text-pca-grey-500 small-caps',
+                  'type-caption text-pca-grey-500',
                   CAPTION_LINK,
                 )}
               >

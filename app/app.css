@@ -191,12 +191,6 @@
   text-decoration-skip-ink: auto;
 }
 
-/* Inter has no small caps of its own, so the browser draws them. */
-@utility small-caps {
-  font-variant-caps: small-caps;
-  font-synthesis-small-caps: auto;
-}
-
 @utility type-hand {
   font-family: var(--font-hand);
   font-weight: 400;
