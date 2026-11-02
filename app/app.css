@@ -234,6 +234,12 @@ body {
   mask-image: linear-gradient(transparent, transparent);
 }
 
+/* Safari finds the strip even under the open menu, which would turn its top
+   bar yellow above the dark sheet. */
+body:has([role='dialog']) .top-bar-tint {
+  display: none;
+}
+
 ::selection {
   @apply bg-pca-grey-900 text-pca-white;
 }
