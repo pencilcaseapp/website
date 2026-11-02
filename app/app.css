@@ -594,8 +594,10 @@ html {
     will-change: transform, opacity;
   }
 
+  /* Each panel tips back as the next one covers it, or shrinks back on a
+     touch screen, like the held panels on iOS below. */
   @supports (animation-timeline: view()) {
-    @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    @media (prefers-reduced-motion: no-preference) {
       .stack-panel:not(:last-of-type) {
         transform-origin: bottom;
         animation: stack-leave linear both;
@@ -613,17 +615,25 @@ html {
       .stack-panel:nth-of-type(3) {
         animation-timeline: --stack-4;
       }
+
+      @media (pointer: coarse) {
+        .stack-panel:not(:last-of-type) {
+          animation-name: stack-shrink;
+        }
+      }
     }
   }
 
-  /* Safari 26 turns its bars solid over any sticky element along an edge,
-     so on touch screens a panel holds still by moving down with the scroll
+  /* Safari 26 on iOS turns its bars solid over any sticky element along an
+     edge, so there a panel holds still by moving down with the scroll
      instead of sticking. Like the sticky one, a panel taller than the
      screen holds by its bottom edge, so Get started stays in reach. Safari
      does not draw a held panel with a perspective transform, so it shrinks
      back instead of tipping back. Both are CSS only, which keeps them in
-     step with the scroll. */
-  @supports (animation-timeline: view()) {
+     step with the scroll. Chrome on Android draws a held panel a frame
+     behind the scroll every other frame, so it keeps sticky, and
+     `-webkit-touch-callout` is how CSS tells iOS apart. */
+  @supports (animation-timeline: view()) and (-webkit-touch-callout: none) {
     @media (pointer: coarse) {
       .stack-panel {
         --stack-hold-range: exit-crossing

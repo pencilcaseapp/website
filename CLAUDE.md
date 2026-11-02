@@ -85,11 +85,13 @@ hides the hero's strip while a dialog is open).
 
 Safari turns its bars solid over any sticky element along an edge, so don't
 place sticky elements at the top or bottom of the screen. The Small Tech
-panels therefore hold still without `position: sticky` where scroll-driven
-animations exist: each moves down with the scroll over its exit range
-(`stack-hold`). Their ranges and heights use `lvh`, which doesn't change as
-the browser bar shrinks or grows, so the cards stay steady. Other browsers
-keep sticky, with `useStackedPanels` as the scroll fallback.
+panels therefore hold still without `position: sticky` on iOS (told apart
+by `-webkit-touch-callout`) where scroll-driven animations exist: each
+moves down with the scroll over its exit range (`stack-hold`). Their ranges
+and heights use `lvh`, which doesn't change as the browser bar shrinks or
+grows, so the cards stay steady. Other browsers keep sticky, with
+`useStackedPanels` as the scroll fallback: Chrome on Android draws a held
+panel a frame behind the scroll every other frame, so it judders.
 
 There is no `theme-color` meta tag: on Android, Chrome would tint its bar
 with it, and the bar should stay the browser's own colour there.
