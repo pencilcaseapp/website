@@ -45,9 +45,10 @@ tokens from `app/app.css`, never raw Tailwind colours. `~/*` maps to
 **Links.** Every internal link is a React Router `Link`, so navigation
 stays client side: through the polymorphic `TextLink`, `NavLink` and
 `Button` with `as={Link}`, or a plain `Link`. A plain `<a>` (`href`) is for
-external links and the app (`APP_URL`). Links to a startpage section
-(`/#pricing`) glide there; `useInstantPageChange` makes every other
-navigation jump.
+external links and the app (`APP_URL`). A link to a section of the page
+you are on (`/#pricing` on the startpage) glides there;
+`useInstantPageChange` makes every other navigation jump, including to a
+section of another page.
 
 **Legal pages.** `/legal-notice`, `/privacy` and `/terms`, their texts in
 `app/components/{legal-notice,privacy-policy,terms-of-use}/` and the "Last
