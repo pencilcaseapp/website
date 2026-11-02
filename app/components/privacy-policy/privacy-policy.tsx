@@ -47,15 +47,17 @@ export const PrivacyPolicy: React.FC = () => (
         required to.
       </LegalParagraph>
       <LegalParagraph>
-        This policy covers the pencil case web app at pencilcase.app, our apps
-        for iOS and Android, and the emails we send.
+        This policy covers our website and the pencil case web app at
+        pencilcase.app, our apps for iOS and Android, and the emails we send.
       </LegalParagraph>
     </LegalSection>
 
     <LegalSection id="privacy-2" number={2} title="What we process and why">
       <LegalParagraph>
         We only process what we need to run pencil case. We do not sell data,
-        show ads or use analytics or tracking tools.
+        show ads or use tracking tools. Our website counts its visits with
+        Plausible Analytics, which sets no cookies and does not identify you.
+        The web app and our apps use no analytics at all.
       </LegalParagraph>
       <Table
         label="What we process, why, and on what legal basis"
@@ -111,6 +113,16 @@ export const PrivacyPolicy: React.FC = () => (
             'Art. 6(1)(b), contract; notifications Art. 6(1)(f), legitimate interest in reliable billing',
           ],
           [
+            <>
+              Visits to our website:
+              <span className="font-normal">
+                {' the page, the site you came from, your browser, operating system, device type and country. Your IP address and user agent only go into an identifier that changes every day and are not stored'}
+              </span>
+            </>,
+            'Counting visits to our website with Plausible Analytics, to see which pages people read and how they find us',
+            'Art. 6(1)(f), legitimate interest in improving our website',
+          ],
+          [
             'IP address, time and URL of a request (server logs)',
             'Delivering the site and keeping it secure',
             'Art. 6(1)(f), legitimate interest in a secure service',
@@ -147,7 +159,8 @@ export const PrivacyPolicy: React.FC = () => (
         asked for, so we do not ask for consent (Art. 5(3) ePrivacy Directive,
         § 25(2) TDDDG). There are no tracking, advertising or third-party
         cookies. The same applies inside our apps, which show pencil case in a
-        built-in browser view.
+        built-in browser view. Plausible Analytics on our website stores
+        nothing on your device.
       </LegalParagraph>
       <Table
         label="Cookies and local storage we use"
@@ -192,8 +205,8 @@ export const PrivacyPolicy: React.FC = () => (
 
     <LegalSection id="privacy-4" number={4} title="Who else receives data">
       <LegalParagraph>
-        We use these providers. Clever Cloud, Bunny, Lettermint and
-        united-domains process data only on our instructions under a data
+        We use these providers. Clever Cloud, Bunny, Lettermint, united-domains
+        and Plausible process data only on our instructions under a data
         processing agreement (Art. 28 GDPR). Creem acts as merchant of record
         and processes payment data as its own controller.
       </LegalParagraph>
@@ -264,6 +277,21 @@ export const PrivacyPolicy: React.FC = () => (
               {' '}
               <ExternalLink href="https://www.united-domains.de/unternehmen/datenschutz/">
                 united-domains’ privacy policy
+              </ExternalLink>
+            </>,
+          ],
+          [
+            <ProviderName
+              name="Plausible Insights OÜ"
+              address="Västriku tn 2, 50403 Tartu, Estonia"
+            />,
+            'Statistics about visits to our website',
+            'The visit data in section 2',
+            <>
+              EU (Germany), never leaves the EU; see
+              {' '}
+              <ExternalLink href="https://plausible.io/privacy">
+                Plausible’s privacy policy
               </ExternalLink>
             </>,
           ],
@@ -353,6 +381,10 @@ export const PrivacyPolicy: React.FC = () => (
             '30 days after we receive them',
           ],
           ['Server logs', 'After 7 days (deleted by Clever Cloud)'],
+          [
+            'Website visit statistics',
+            'The key behind the daily identifier is deleted after 24 hours, so a visit cannot be linked to you afterwards. The statistics are kept for as long as we use Plausible',
+          ],
           [
             'Emails and contact form messages you send us',
             'One year after the last message. Requests about your data protection rights and reports of content: one year after we handled them',
