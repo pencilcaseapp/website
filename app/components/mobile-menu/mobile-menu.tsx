@@ -17,10 +17,17 @@ const BAR_BUTTON = classNames(
   'focus-visible:outline-offset-2',
 );
 
+// Safari 26 tints its top and bottom bars with a fixed element it finds
+// along each edge, not with the sheet. Masked out, so nobody sees them.
+const BAR_TINT = classNames(
+  'pointer-events-none fixed inset-x-0 h-3 bg-pca-grey-900',
+  '[mask-image:linear-gradient(transparent,transparent)]',
+);
+
 // Each item rises into place a little after the one above it.
 const STAGGERED = classNames(
   'transition-[opacity,translate] duration-700',
-  'ease-[cubic-bezier(.22,1,.36,1)] delay-[calc(0.3s+var(--i)*65ms)]',
+  'ease-[cubic-bezier(.22,1,.36,1)] delay-[calc(0.1s+var(--i)*65ms)]',
   'group-data-starting-style:translate-y-7',
   'group-data-starting-style:opacity-0 motion-reduce:transition-none',
 );
@@ -78,15 +85,13 @@ export const MobileMenu: React.FC = () => {
           className={classNames(
             'group fixed inset-0 z-50 flex flex-col overflow-y-auto',
             'overscroll-contain bg-pca-grey-900 text-pca-white md:hidden',
-            '[clip-path:inset(0)] transition-[clip-path] duration-600',
-            'ease-[cubic-bezier(.22,1,.36,1)] motion-reduce:transition-none',
-            'data-starting-style:[clip-path:inset(0_0_100%)]',
-            'data-ending-style:[clip-path:inset(0_0_100%)]',
-            'data-ending-style:duration-400',
-            'data-ending-style:ease-[cubic-bezier(.25,.46,.45,.94)]',
+            'data-ending-style:opacity-0 data-ending-style:transition-opacity',
+            'data-ending-style:duration-200',
           )}
         >
           <Dialog.Title className="sr-only">Menu</Dialog.Title>
+          <div aria-hidden="true" className={classNames(BAR_TINT, 'top-0')} />
+          <div aria-hidden="true" className={classNames(BAR_TINT, 'bottom-0')} />
           <div
             className={classNames(
               'flex h-16 shrink-0 items-center justify-center px-4 sm:px-8',
