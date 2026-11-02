@@ -12,7 +12,7 @@ function renderHome() {
 describe('Home', () => {
   it('titles the page', () => {
     expect(meta()).toContainEqual({
-      title: 'pencil case – Docs, dead simple.',
+      title: 'pencil case – A European docs alternative',
     });
   });
 

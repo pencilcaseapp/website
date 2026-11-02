@@ -6,7 +6,7 @@ import { SmallTech } from '~/components/small-tech/small-tech';
 
 export function meta() {
   return [
-    { title: 'pencil case – Docs, dead simple.' },
+    { title: 'pencil case – A European docs alternative' },
     {
       name: 'description',
       content: 'The European alternative for writing docs and sharing them with your friends.',
