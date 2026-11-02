@@ -23,6 +23,18 @@ describe('MobileMenu', () => {
     expect(dialog).toHaveTextContent('FeaturesSmall techPricingBlog');
   });
 
+  it('tints Safari\'s bars dark while open', async () => {
+    render(<MobileMenu />);
+
+    expect(document.querySelector('.bar-tint')).not.toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole('button', { name: 'Menu' }));
+
+    await screen.findByRole('dialog', { name: 'Menu' });
+    expect(document.querySelectorAll('.bar-tint.bg-pca-grey-900'))
+      .toHaveLength(2);
+  });
+
   it('closes the navigation', async () => {
     render(<MobileMenu />);
 

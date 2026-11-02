@@ -217,27 +217,31 @@ body {
   overflow-x: clip;
 }
 
-/* Safari 26 ignores theme-color and tints its top bar with the colour of an
-   element it finds along the top edge. This strip is that element: masked
-   out, so nobody sees it, but still picked up by Safari. */
-.top-bar-tint {
-  @apply bg-pca-yellow-500;
-
+.bar-tint {
   position: fixed;
-  top: 4px;
-  left: 50%;
+  inset-inline: 0;
   z-index: 999;
-  width: 89%;
-  height: 11px;
-  translate: -50% 0;
+  height: 12px;
   pointer-events: none;
   mask-image: linear-gradient(transparent, transparent);
 }
 
-/* Safari finds the strip even under the open menu, which would turn its top
-   bar yellow above the dark sheet. */
-body:has([role='dialog']) .top-bar-tint {
-  display: none;
+/* Gone once the page scrolls. Safari only reads the colour again while it
+   scrolls, so the strips follow the scroll position in CSS, which keeps them
+   in the same frame, and stay a little past the top: shown only on arrival
+   at the very top, Safari would keep the bars white. */
+@supports (animation-timeline: scroll()) {
+  .bar-tint-at-top {
+    animation: bar-tint-out linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 48px;
+  }
+}
+
+@keyframes bar-tint-out {
+  to {
+    visibility: hidden;
+  }
 }
 
 /* Menu links glide to their section, which stops clear of the floating

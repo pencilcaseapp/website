@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { APP_URL, NAV_ITEMS } from '~/constants/links';
 import { Button } from '~/ui/button/button';
 import { Logo } from '~/ui/logo/logo';
+import { BarTint } from '../bar-tint/bar-tint';
 
 const BAR = 'fixed bottom-6 left-1/2 grid w-max max-w-[calc(100vw-2rem)] -translate-x-1/2 auto-cols-fr grid-flow-col items-center gap-2';
 
@@ -73,6 +74,7 @@ export const MobileMenu: React.FC = () => {
         <SignInLink />
       </div>
       <Dialog.Portal>
+        {isOpen && <BarTint className="bg-pca-grey-900 md:hidden" />}
         <Dialog.Popup
           className={classNames(
             'group fixed inset-0 z-50 flex flex-col overflow-y-auto',

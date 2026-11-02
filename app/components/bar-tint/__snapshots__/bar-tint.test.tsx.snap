@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BarTint > matches snapshot 1`] = `
+<div>
+  <div
+    aria-hidden="true"
+    class="bar-tint top-0 bg-pca-yellow-500"
+  />
+  <div
+    aria-hidden="true"
+    class="bar-tint bottom-0 bg-pca-yellow-500"
+  />
+</div>
+`;

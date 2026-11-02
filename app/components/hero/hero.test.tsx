@@ -17,10 +17,11 @@ describe('Hero', () => {
       .toHaveAttribute('href', 'https://docs.pencilcase.app');
   });
 
-  it('tints Safari\'s top bar while at the top', () => {
+  it('tints Safari\'s bars yellow while at the top', () => {
     const { container } = render(<Hero />);
 
-    expect(container.querySelector('.top-bar-tint')).toBeInTheDocument();
+    expect(container.querySelectorAll('.bar-tint-at-top.bg-pca-yellow-500'))
+      .toHaveLength(2);
   });
 
   it('tells how many docs are free', () => {
