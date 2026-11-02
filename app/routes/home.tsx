@@ -2,6 +2,7 @@ import { Features } from '~/components/features/features';
 import { Hero } from '~/components/hero/hero';
 import { PageLayout } from '~/components/page-layout/page-layout';
 import { Pricing } from '~/components/pricing/pricing';
+import { SmallTech } from '~/components/small-tech/small-tech';
 
 export function meta() {
   return [
@@ -18,6 +19,7 @@ export default function Home() {
     <PageLayout>
       <Hero />
       <Features />
+      <SmallTech />
       <Pricing />
     </PageLayout>
   );
