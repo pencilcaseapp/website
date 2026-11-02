@@ -1,7 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { findHelpArticle } from '~/utils/help';
+import { getHelpAnswer } from '~/utils/help-content.server';
 import { HelpArticle } from './help-article';
+
+function articleArgs(slug: string) {
+  const found = findHelpArticle(slug)!;
+
+  return { ...found, ...getHelpAnswer(found.article) };
+}
 
 /** One article of the help section. */
 const meta = {
@@ -9,7 +16,7 @@ const meta = {
   component: HelpArticle,
   parameters: { layout: 'fullscreen' },
   decorators: [Story => <MemoryRouter><Story /></MemoryRouter>],
-  args: findHelpArticle('share-with-a-link')!,
+  args: articleArgs('share-with-a-link'),
 } satisfies Meta<typeof HelpArticle>;
 
 export default meta;
@@ -19,5 +26,5 @@ export const Default: Story = {};
 
 /** About something the app does not do yet. */
 export const Draft: Story = {
-  args: findHelpArticle('what-are-spaces')!,
+  args: articleArgs('what-are-spaces'),
 };

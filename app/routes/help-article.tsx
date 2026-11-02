@@ -1,7 +1,8 @@
 import { data } from 'react-router';
 import { HelpArticle } from '~/components/help-article/help-article';
 import { PageLayout } from '~/components/page-layout/page-layout';
-import { findHelpArticle, stripHelpMarks } from '~/utils/help';
+import { findHelpArticle } from '~/utils/help';
+import { getHelpAnswer, stripMarkdown } from '~/utils/help-content.server';
 import type { Route } from './+types/help-article';
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -11,7 +12,13 @@ export function loader({ params }: Route.LoaderArgs) {
     throw data(null, { status: 404 });
   }
 
-  return found;
+  const answer = getHelpAnswer(found.article);
+
+  return {
+    ...found,
+    ...answer,
+    description: stripMarkdown(answer.summary),
+  };
 }
 
 export function meta({ loaderData }: Route.MetaArgs) {
@@ -19,11 +26,11 @@ export function meta({ loaderData }: Route.MetaArgs) {
     return [{ title: 'Help – pencil case' }];
   }
 
-  const { article } = loaderData;
+  const { article, description } = loaderData;
 
   return [
     { title: `${article.question} – pencil case` },
-    { name: 'description', content: stripHelpMarks(article.summary) },
+    { name: 'description', content: description },
     ...article.draft ? [{ name: 'robots', content: 'noindex' }] : [],
   ];
 }
@@ -31,7 +38,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
 export default function HelpArticlePage({ loaderData }: Route.ComponentProps) {
   return (
     <PageLayout header="white">
-      <HelpArticle article={loaderData.article} section={loaderData.section} />
+      <HelpArticle {...loaderData} />
     </PageLayout>
   );
 }

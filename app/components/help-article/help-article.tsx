@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { Link } from 'react-router';
+import Markdown, { type Components } from 'react-markdown';
 import type {
   HelpArticle as HelpArticleData,
-  HelpBlock,
   HelpSection,
 } from '~/constants/help';
 import { HELP_HREF } from '~/constants/links';
@@ -19,65 +19,36 @@ import {
   RowArrow,
 } from '../help/help-article-list';
 
-const MARKS = /(`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/;
-const LINK = /^\[([^\]]+)\]\(([^)]+)\)$/;
+const COMPONENTS: Components = {
+  p: ({ children }) => <p className="mt-6">{children}</p>,
+  ul: ({ children }) => (
+    <ul className="mt-6 flex list-disc flex-col gap-3 pl-6 marker:text-pca-grey-500">
+      {children}
+    </ul>
+  ),
+  ol: ({ children }) => (
+    <ol className="mt-6 flex list-decimal flex-col gap-3 pl-6 marker:font-semibold">
+      {children}
+    </ol>
+  ),
+  strong: ({ children }) => (
+    <strong className="font-semibold">{children}</strong>
+  ),
+  code: ({ children }) => (
+    <code className="rounded-md bg-pca-grey-100 px-1.5 py-0.5 font-mono text-[0.9em]">
+      {children}
+    </code>
+  ),
+  a: ({ href = '', children }) => href.startsWith('/')
+    ? <TextLink as={Link} to={href}>{children}</TextLink>
+    : <TextLink href={href}>{children}</TextLink>,
+};
 
-/** Sets the `**bold**`, `` `code` `` and links of an article's text. */
-const HelpText: React.FC<{ text: string }> = ({ text }) =>
-  text.split(MARKS).map((part, index) => {
-    const link = LINK.exec(part);
-
-    if (link) {
-      const [, label, href] = link;
-
-      return href.startsWith('/')
-        ? <TextLink key={index} as={Link} to={href}>{label}</TextLink>
-        : <TextLink key={index} href={href}>{label}</TextLink>;
-    }
-
-    if (part.startsWith('`')) {
-      return (
-        <code
-          key={index}
-          className="rounded-md bg-pca-grey-100 px-1.5 py-0.5 font-mono text-[0.9em]"
-        >
-          {part.slice(1, -1)}
-        </code>
-      );
-    }
-
-    if (part.startsWith('**')) {
-      return (
-        <strong key={index} className="font-semibold">
-          {part.slice(2, -2)}
-        </strong>
-      );
-    }
-
-    return part;
-  });
-
-const HelpBlockView: React.FC<{ block: HelpBlock }> = ({ block }) => {
-  switch (block.type) {
-    case 'list':
-      return (
-        <ul className="mt-6 flex list-disc flex-col gap-3 pl-6 marker:text-pca-grey-500">
-          {block.items.map(item => (
-            <li key={item}><HelpText text={item} /></li>
-          ))}
-        </ul>
-      );
-    case 'steps':
-      return (
-        <ol className="mt-6 flex list-decimal flex-col gap-3 pl-6 marker:font-semibold">
-          {block.items.map(item => (
-            <li key={item}><HelpText text={item} /></li>
-          ))}
-        </ol>
-      );
-    default:
-      return <p className="mt-6"><HelpText text={block.text} /></p>;
-  }
+const SUMMARY_COMPONENTS: Components = {
+  ...COMPONENTS,
+  p: ({ children }) => (
+    <p className="type-lead mt-6 text-pca-grey-800">{children}</p>
+  ),
 };
 
 const Breadcrumb: React.FC<{ section: HelpSection }> = ({ section }) => {
@@ -103,12 +74,18 @@ const Breadcrumb: React.FC<{ section: HelpSection }> = ({ section }) => {
 export interface HelpArticleProps {
   article: HelpArticleData;
   section: HelpSection;
+  /** The first paragraph of the answer, as Markdown. */
+  summary: string;
+  /** The rest of the answer, as Markdown. */
+  body: string;
 }
 
 /** One help article: the question, its answer and where to go next. */
 export const HelpArticle: React.FC<HelpArticleProps> = ({
   article,
   section,
+  summary,
+  body,
 }) => (
   <Container className="pt-10 sm:pt-14">
     <article className="mx-auto max-w-[680px]">
@@ -122,14 +99,10 @@ export const HelpArticle: React.FC<HelpArticleProps> = ({
       <h1 className="type-subtitle mt-6 text-balance sm:mt-8 sm:text-[2.75rem]">
         {article.question}
       </h1>
-      <p className="type-lead mt-6 text-pca-grey-800">
-        <HelpText text={article.summary} />
-      </p>
-      {article.body && (
+      <Markdown components={SUMMARY_COMPONENTS}>{summary}</Markdown>
+      {body && (
         <div className="type-body-lg mt-4">
-          {article.body.map((block, index) => (
-            <HelpBlockView key={index} block={block} />
-          ))}
+          <Markdown components={COMPONENTS}>{body}</Markdown>
         </div>
       )}
     </article>
