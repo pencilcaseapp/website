@@ -5,4 +5,5 @@ export default [
   route('legal-notice', 'routes/legal-notice.tsx'),
   route('privacy', 'routes/privacy.tsx'),
   route('terms', 'routes/terms.tsx'),
+  route('contact', 'routes/contact.tsx'),
 ] satisfies RouteConfig;
