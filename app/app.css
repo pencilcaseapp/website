@@ -550,28 +550,8 @@ html {
   initial-value: 0;
 }
 
-.stack {
-  timeline-scope: --stack-1, --stack-2, --stack-3, --stack-4;
-}
-
 .stack-panel {
-  top: min(0px, calc(100dvh - var(--panel-height, 100dvh)));
-
-  &:nth-of-type(1) {
-    view-timeline-name: --stack-1;
-  }
-
-  &:nth-of-type(2) {
-    view-timeline-name: --stack-2;
-  }
-
-  &:nth-of-type(3) {
-    view-timeline-name: --stack-3;
-  }
-
-  &:nth-of-type(4) {
-    view-timeline-name: --stack-4;
-  }
+  top: min(0px, calc(100lvh - var(--panel-height, 100lvh)));
 }
 
 .stack-drawing {
@@ -595,8 +575,10 @@ html {
 
   /* Safari 26 turns its bars solid over any sticky element along an edge,
      so where it can, a panel holds still by moving down with the scroll
-     instead of sticking. Its layout box keeps scrolling, which is what the
-     view timelines follow. */
+     instead of sticking: from its bottom edge reaching the bottom of the
+     large viewport until it has scrolled out, which is also when the next
+     panel covers it. The range follows the panel and the large viewport,
+     neither of which changes as the browser's bar shrinks or grows. */
   @supports (animation-timeline: view()) {
     .stack-panel {
       position: relative;
@@ -606,26 +588,15 @@ html {
     .stack-panel:not(:last-of-type) {
       animation: stack-hold linear both;
       animation-timeline: view();
-      animation-range: exit;
+      animation-range: exit-crossing calc(100% - 100lvh) exit-crossing 100%;
     }
 
     @media (prefers-reduced-motion: no-preference) {
       .stack-panel:not(:last-of-type) {
         transform-origin: bottom;
         animation: stack-hold linear both, stack-leave linear both;
-        animation-range: exit, entry;
-      }
-
-      .stack-panel:nth-of-type(1) {
-        animation-timeline: view(), --stack-2;
-      }
-
-      .stack-panel:nth-of-type(2) {
-        animation-timeline: view(), --stack-3;
-      }
-
-      .stack-panel:nth-of-type(3) {
-        animation-timeline: view(), --stack-4;
+        animation-timeline: view();
+        animation-range: exit-crossing calc(100% - 100lvh) exit-crossing 100%;
       }
     }
   }
