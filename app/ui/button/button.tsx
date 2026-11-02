@@ -2,7 +2,8 @@ import classNames from 'classnames';
 import type { PolymorphicComponentPropWithRef } from '../polymorphic-types/polymorphic-types';
 
 export type ButtonColor = 'grey-900' | 'red-600' | 'white' | 'pop-yellow';
-export type ButtonSize = 'extraSmall' | 'small' | 'medium' | 'large';
+export type ButtonSize = 'extraSmall' | 'small' | 'compact' | 'medium'
+  | 'large';
 
 export type ButtonProps<C extends React.ElementType>
   = PolymorphicComponentPropWithRef<
@@ -31,6 +32,7 @@ const OUTLINES = {
 const SIZES: Record<ButtonSize, string> = {
   extraSmall: 'h-10 px-6 text-base',
   small: 'h-11 px-6 text-base',
+  compact: 'h-12 px-6 text-lg',
   medium: 'h-13 px-5 text-lg',
   large: 'h-15 px-9 text-[1.375rem]',
 };
