@@ -540,7 +540,8 @@ html {
 /* The small tech panels pile up as the page scrolls: each one sticks, and
    tips back and fades as the next covers it. A panel taller than the screen
    sticks by its bottom edge (`useStackedPanels` measures it), and on a short
-   screen the panels just scroll. */
+   screen the panels just scroll. The panels are as tall as the large
+   viewport, which stays put while the browser's bar shrinks or grows. */
 /* `useStackedPanels` writes `--leave` on every frame where there is no view
    timeline. Not inherited, so it restyles the panel rather than everything
    in it. */
@@ -550,8 +551,28 @@ html {
   initial-value: 0;
 }
 
+.stack {
+  timeline-scope: --stack-1, --stack-2, --stack-3, --stack-4;
+}
+
 .stack-panel {
   top: min(0px, calc(100lvh - var(--panel-height, 100lvh)));
+
+  &:nth-of-type(1) {
+    view-timeline-name: --stack-1;
+  }
+
+  &:nth-of-type(2) {
+    view-timeline-name: --stack-2;
+  }
+
+  &:nth-of-type(3) {
+    view-timeline-name: --stack-3;
+  }
+
+  &:nth-of-type(4) {
+    view-timeline-name: --stack-4;
+  }
 }
 
 .stack-drawing {
@@ -573,30 +594,58 @@ html {
     will-change: transform, opacity;
   }
 
-  /* Safari 26 turns its bars solid over any sticky element along an edge,
-     so where it can, a panel holds still by moving down with the scroll
-     instead of sticking: from its bottom edge reaching the bottom of the
-     large viewport until it has scrolled out, which is also when the next
-     panel covers it. The range follows the panel and the large viewport,
-     neither of which changes as the browser's bar shrinks or grows. */
   @supports (animation-timeline: view()) {
-    .stack-panel {
-      position: relative;
-      top: auto;
-    }
-
-    .stack-panel:not(:last-of-type) {
-      animation: stack-hold linear both;
-      animation-timeline: view();
-      animation-range: exit-crossing calc(100% - 100lvh) exit-crossing 100%;
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
+    @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
       .stack-panel:not(:last-of-type) {
         transform-origin: bottom;
-        animation: stack-hold linear both, stack-leave linear both;
+        animation: stack-leave linear both;
+        animation-range: entry;
+      }
+
+      .stack-panel:nth-of-type(1) {
+        animation-timeline: --stack-2;
+      }
+
+      .stack-panel:nth-of-type(2) {
+        animation-timeline: --stack-3;
+      }
+
+      .stack-panel:nth-of-type(3) {
+        animation-timeline: --stack-4;
+      }
+    }
+  }
+
+  /* Safari 26 turns its bars solid over any sticky element along an edge,
+     so on touch screens a panel holds still by moving down with the scroll
+     instead of sticking. Like the sticky one, a panel taller than the
+     screen holds by its bottom edge, so Get started stays in reach. Safari
+     does not draw a held panel with a perspective transform, so it shrinks
+     back instead of tipping back. Both are CSS only, which keeps them in
+     step with the scroll. */
+  @supports (animation-timeline: view()) {
+    @media (pointer: coarse) {
+      .stack-panel {
+        --stack-hold-range: exit-crossing
+          max(0px, var(--panel-height, 0px) - 100lvh) exit-crossing 100%;
+
+        position: relative;
+        top: auto;
+      }
+
+      .stack-panel:not(:last-of-type) {
+        animation: stack-hold linear both;
         animation-timeline: view();
-        animation-range: exit-crossing calc(100% - 100lvh) exit-crossing 100%;
+        animation-range: var(--stack-hold-range);
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .stack-panel:not(:last-of-type) {
+          transform-origin: bottom;
+          animation: stack-hold linear both, stack-shrink linear both;
+          animation-timeline: view();
+          animation-range: var(--stack-hold-range);
+        }
       }
     }
   }
@@ -604,7 +653,23 @@ html {
 
 @keyframes stack-hold {
   to {
-    translate: 0 100lvh;
+    translate: 0 min(100%, 100lvh);
+  }
+}
+
+@keyframes stack-shrink {
+  0% {
+    opacity: 1;
+    scale: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    scale: 0.85;
   }
 }
 

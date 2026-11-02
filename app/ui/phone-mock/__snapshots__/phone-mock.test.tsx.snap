@@ -3,12 +3,12 @@
 exports[`PhoneMock > matches snapshot 1`] = `
 <div>
   <div
-    class="relative w-60"
+    class="@container relative w-60"
     style="aspect-ratio: 300 / 620;"
   >
     <div
       class="absolute top-0 left-0 origin-top-left overflow-hidden rounded-[44px] border-6 border-pca-grey-900 bg-pca-white shadow-window"
-      style="width: 300px; height: 620px; scale: 1;"
+      style="width: 300px; height: 620px; scale: calc(100cqw / 300px);"
     >
       <div
         class="@container pointer-events-none flex size-full flex-col bg-pca-white text-left text-pca-grey-900 select-none"
