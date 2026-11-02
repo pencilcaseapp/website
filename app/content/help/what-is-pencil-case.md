@@ -1,3 +1,13 @@
+---
+question: What is pencil case?
+section: getting-started
+order: 1
+related:
+  - formatting-options
+  - share-with-a-link
+  - hosted-in-the-eu
+---
+
 A simple editor for writing documents, alone or with other people at the same time.
 
 Open a document, write, send the link. Everyone in it sees the same text and each other’s cursors as they type. You get headings, lists, checklists, code blocks, images and Markdown shortcuts.

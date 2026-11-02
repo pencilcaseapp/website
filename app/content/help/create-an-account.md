@@ -1,3 +1,12 @@
+---
+question: How do I create an account?
+section: getting-started
+order: 2
+related:
+  - sign-in
+  - do-others-need-an-account
+---
+
 Enter your e-mail address on the [sign in page](https://docs.pencilcase.app/signin) and type the code we send you. There is no password and no separate sign-up.
 
 1. Go to [Sign in](https://docs.pencilcase.app/signin) and enter your e-mail address.

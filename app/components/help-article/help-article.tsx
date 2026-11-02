@@ -3,15 +3,13 @@ import { Link } from 'react-router';
 import Markdown, { type Components } from 'react-markdown';
 import type {
   HelpArticle as HelpArticleData,
-  HelpSection,
+  HelpArticleLink,
+  HelpSectionInfo,
 } from '~/constants/help';
 import { HELP_HREF } from '~/constants/links';
 import { Container } from '~/ui/container/container';
 import { TextLink } from '~/ui/text-link/text-link';
-import {
-  helpArticleMarkdownHref,
-  relatedHelpArticles,
-} from '~/utils/help';
+import { helpArticleMarkdownHref } from '~/utils/help';
 import { WRITE_TO_US_ID } from '../help/help';
 import {
   FOCUS_RING,
@@ -51,7 +49,7 @@ const SUMMARY_COMPONENTS: Components = {
   ),
 };
 
-const Breadcrumb: React.FC<{ section: HelpSection }> = ({ section }) => {
+const Breadcrumb: React.FC<{ section: HelpSectionInfo }> = ({ section }) => {
   const link = classNames(
     'inline-flex h-11 items-center rounded-full hover:text-pca-grey-900',
     FOCUS_RING,
@@ -73,19 +71,16 @@ const Breadcrumb: React.FC<{ section: HelpSection }> = ({ section }) => {
 
 export interface HelpArticleProps {
   article: HelpArticleData;
-  section: HelpSection;
-  /** The first paragraph of the answer, as Markdown. */
-  summary: string;
-  /** The rest of the answer, as Markdown. */
-  body: string;
+  section: HelpSectionInfo;
+  /** The articles to suggest under it. */
+  related: HelpArticleLink[];
 }
 
 /** One help article: the question, its answer and where to go next. */
 export const HelpArticle: React.FC<HelpArticleProps> = ({
   article,
   section,
-  summary,
-  body,
+  related,
 }) => (
   <Container className="pt-10 sm:pt-14">
     <article className="mx-auto max-w-[680px]">
@@ -99,17 +94,17 @@ export const HelpArticle: React.FC<HelpArticleProps> = ({
       <h1 className="type-subtitle mt-6 text-balance sm:mt-8 sm:text-[2.75rem]">
         {article.question}
       </h1>
-      <Markdown components={SUMMARY_COMPONENTS}>{summary}</Markdown>
-      {body && (
+      <Markdown components={SUMMARY_COMPONENTS}>{article.summary}</Markdown>
+      {article.body && (
         <div className="type-body-lg mt-4">
-          <Markdown components={COMPONENTS}>{body}</Markdown>
+          <Markdown components={COMPONENTS}>{article.body}</Markdown>
         </div>
       )}
     </article>
     <div className="mx-auto mt-14 max-w-[680px] rounded-[2rem] bg-pca-grey-100 p-6 sm:p-8">
       <h2 className="type-label">More questions like this</h2>
       <div className="mt-3">
-        <HelpArticleList articles={relatedHelpArticles(article, section)} />
+        <HelpArticleList articles={related} />
       </div>
     </div>
     <Link

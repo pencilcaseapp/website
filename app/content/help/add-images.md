@@ -1,3 +1,9 @@
+---
+question: How do I add images?
+section: writing
+order: 4
+---
+
 Drag them in, paste them, or use the image button in the toolbar or the slash menu.
 
 JPEG, PNG, WebP, GIF and AVIF files work, up to 10 MB each. On a computer you can move an image by dragging it to another place in the document.

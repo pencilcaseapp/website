@@ -1,3 +1,9 @@
+---
+question: What can I format in a document?
+section: writing
+order: 1
+---
+
 Headings, text styles, lists, checklists, quotes, code, links, images and divider lines.
 
 - Headings in three sizes

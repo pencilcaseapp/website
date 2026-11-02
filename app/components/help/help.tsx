@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { Link } from 'react-router';
-import { HELP_SECTIONS } from '~/constants/help';
+import type { HelpSection } from '~/constants/help';
 import { Container } from '~/ui/container/container';
 import { HandArrowDown } from '~/ui/hand-note/hand-note';
 import { ContactForm } from '../contact-form/contact-form';
@@ -24,7 +24,7 @@ const SECTION = classNames(
 
 const SECTION_TITLE = 'type-subtitle text-[1.5rem] text-balance';
 
-const SectionNav: React.FC = () => (
+const SectionNav: React.FC<HelpProps> = ({ sections }) => (
   <nav
     aria-label="Help sections"
     className={classNames(
@@ -33,7 +33,7 @@ const SectionNav: React.FC = () => (
       'sm:flex-wrap sm:justify-center sm:overflow-visible sm:p-0',
     )}
   >
-    {HELP_SECTIONS.map(section => (
+    {sections.map(section => (
       <Link
         key={section.id}
         to={`#${section.id}`}
@@ -54,16 +54,20 @@ const SectionNav: React.FC = () => (
   </nav>
 );
 
+export interface HelpProps {
+  sections: HelpSection[];
+}
+
 /**
  * The help section: every question by topic, and a message to us for
  * whatever they leave open.
  */
-export const Help: React.FC = () => (
+export const Help: React.FC<HelpProps> = ({ sections }) => (
   <Container className="pt-14 sm:pt-20">
     <h1 className="type-section text-center">Help.</h1>
-    <SectionNav />
+    <SectionNav sections={sections} />
     <div className="mx-auto mt-7 flex max-w-[1040px] flex-col gap-4 sm:mt-16 sm:gap-6">
-      {HELP_SECTIONS.map(section => (
+      {sections.map(section => (
         <section
           key={section.id}
           id={section.id}

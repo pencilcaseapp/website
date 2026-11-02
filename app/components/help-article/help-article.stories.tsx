@@ -1,13 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { findHelpArticle } from '~/utils/help';
-import { getHelpAnswer } from '~/utils/help-content.server';
+import {
+  findHelpArticle,
+  relatedHelpArticles,
+} from '~/utils/help.server';
 import { HelpArticle } from './help-article';
 
 function articleArgs(slug: string) {
   const found = findHelpArticle(slug)!;
 
-  return { ...found, ...getHelpAnswer(found.article) };
+  return { ...found, related: relatedHelpArticles(found.article) };
 }
 
 /** One article of the help section. */

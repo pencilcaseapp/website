@@ -1,3 +1,11 @@
+---
+question: How do I delete a document?
+section: documents
+order: 5
+related:
+  - leave-a-shared-document
+---
+
 Open the menu of its row in the sidebar and choose **Delete**. You can restore it for 30 days.
 
 Deleting takes the document away from everybody else at once and turns its link off. After that you can still open it yourself, read-only, from the **Deleted** group in the sidebar.

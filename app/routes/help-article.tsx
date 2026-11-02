@@ -1,8 +1,11 @@
 import { data } from 'react-router';
 import { HelpArticle } from '~/components/help-article/help-article';
 import { PageLayout } from '~/components/page-layout/page-layout';
-import { findHelpArticle } from '~/utils/help';
-import { getHelpAnswer, stripMarkdown } from '~/utils/help-content.server';
+import {
+  findHelpArticle,
+  relatedHelpArticles,
+  stripMarkdown,
+} from '~/utils/help.server';
 import type { Route } from './+types/help-article';
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -12,12 +15,10 @@ export function loader({ params }: Route.LoaderArgs) {
     throw data(null, { status: 404 });
   }
 
-  const answer = getHelpAnswer(found.article);
-
   return {
     ...found,
-    ...answer,
-    description: stripMarkdown(answer.summary),
+    related: relatedHelpArticles(found.article),
+    description: stripMarkdown(found.article.summary),
   };
 }
 
@@ -36,9 +37,11 @@ export function meta({ loaderData }: Route.MetaArgs) {
 }
 
 export default function HelpArticlePage({ loaderData }: Route.ComponentProps) {
+  const { article, section, related } = loaderData;
+
   return (
     <PageLayout header="white">
-      <HelpArticle {...loaderData} />
+      <HelpArticle article={article} section={section} related={related} />
     </PageLayout>
   );
 }

@@ -1,5 +1,7 @@
-import { findHelpArticle } from '~/utils/help';
-import { getHelpArticleMarkdown } from '~/utils/help-content.server';
+import {
+  findHelpArticle,
+  getHelpArticleMarkdown,
+} from '~/utils/help.server';
 import type { Route } from './+types/help-article-markdown';
 
 /** An article as Markdown, for reading it outside the page. */

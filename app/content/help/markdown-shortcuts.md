@@ -1,3 +1,9 @@
+---
+question: Can I write in Markdown?
+section: writing
+order: 2
+---
+
 Yes. Type the Markdown as you write and it turns into formatting on the spot.
 
 At the start of a line, followed by a space:

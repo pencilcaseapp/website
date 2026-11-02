@@ -1,3 +1,9 @@
+---
+question: Where is my data stored?
+section: privacy
+order: 1
+---
+
 In the EU, with European providers and no US company behind them.
 
 - Clever Cloud runs the app, its database and its cache
