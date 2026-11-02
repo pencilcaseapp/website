@@ -6,13 +6,16 @@ import {
   LegalParagraph,
   LegalSection,
 } from '~/components/legal-page/legal-page';
-import { PROVIDER_ADDRESS } from '~/constants/legal';
+import {
+  PROVIDER_ADDRESS,
+  TERMS_OF_USE_UPDATED_AT,
+} from '~/constants/legal';
 import { CONTACT_EMAIL, CONTACT_FORM_HREF } from '~/constants/links';
 import { TextLink } from '~/ui/text-link/text-link';
 
 /** The terms of use of the web app and the native apps. */
 export const TermsOfUse: React.FC = () => (
-  <LegalPage title="Terms of Use">
+  <LegalPage title="Terms of Use" updatedAt={TERMS_OF_USE_UPDATED_AT}>
     <LegalSection id="terms-1" number={1} title="Scope">
       <LegalParagraph>
         These terms apply to your use of pencil case, a collaborative writing

@@ -3,6 +3,13 @@ import { describe, expect, it } from 'vitest';
 import { TermsOfUse } from './terms-of-use';
 
 describe('TermsOfUse', () => {
+  it('shows the version', () => {
+    render(<TermsOfUse />);
+
+    expect(screen.getByText('2 November 2026'))
+      .toHaveAttribute('datetime', '2026-11-02');
+  });
+
   it('has nine sections', () => {
     render(<TermsOfUse />);
 
