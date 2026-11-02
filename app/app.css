@@ -595,7 +595,7 @@ html {
   }
 
   @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
+    @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
       .stack-panel:not(:last-of-type) {
         transform-origin: bottom;
         animation: stack-leave linear both;
@@ -614,6 +614,62 @@ html {
         animation-timeline: --stack-4;
       }
     }
+  }
+
+  /* Safari 26 turns its bars solid over any sticky element along an edge,
+     so on touch screens a panel holds still by moving down with the scroll
+     instead of sticking. Like the sticky one, a panel taller than the
+     screen holds by its bottom edge, so Get started stays in reach. Safari
+     does not draw a held panel with a perspective transform, so it shrinks
+     back instead of tipping back. Both are CSS only, which keeps them in
+     step with the scroll. */
+  @supports (animation-timeline: view()) {
+    @media (pointer: coarse) {
+      .stack-panel {
+        --stack-hold-range: exit-crossing
+          max(0px, var(--panel-height, 0px) - 100lvh) exit-crossing 100%;
+
+        position: relative;
+        top: auto;
+      }
+
+      .stack-panel:not(:last-of-type) {
+        animation: stack-hold linear both;
+        animation-timeline: view();
+        animation-range: var(--stack-hold-range);
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .stack-panel:not(:last-of-type) {
+          transform-origin: bottom;
+          animation: stack-hold linear both, stack-shrink linear both;
+          animation-timeline: view();
+          animation-range: var(--stack-hold-range);
+        }
+      }
+    }
+  }
+}
+
+@keyframes stack-hold {
+  to {
+    translate: 0 min(100%, 100lvh);
+  }
+}
+
+@keyframes stack-shrink {
+  0% {
+    opacity: 1;
+    scale: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    scale: 0.85;
   }
 }
 

@@ -16,7 +16,11 @@ export const SmallTech: React.FC = () => {
   const ref = useStackedPanels<HTMLElement>();
 
   return (
-    <section id="small-tech" ref={ref} className="stack relative">
+    <section
+      id="small-tech"
+      ref={ref}
+      className="stack relative overflow-y-clip"
+    >
       <Container className="py-24 text-center lg:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center">
           <h2 className="type-section">{TITLE}</h2>
@@ -42,20 +46,20 @@ interface PanelProps {
 
 const Panel: React.FC<PanelProps> = ({ principle, index }) => (
   <article
-    className="stack-panel sticky min-h-lvh overflow-hidden"
+    className="stack-panel sticky min-h-lvh overflow-x-clip"
     style={{ zIndex: index + 1 }}
   >
     <div
       aria-hidden="true"
       className={classNames(
-        'absolute -inset-x-[4vw] top-[1.2vh] -bottom-[6vh] -z-10',
+        'absolute -inset-x-[4vw] -top-[1.2vh] -bottom-[6vh] -z-10',
         principle.background,
         principle.tilt,
       )}
     />
     <Container
       className={classNames(
-        'flex min-h-lvh flex-col pt-8 pb-32 sm:pt-14 sm:pb-22 lg:py-16',
+        'flex min-h-svh flex-col pt-8 pb-32 sm:pt-14 sm:pb-22 lg:py-16',
         principle.dark ? 'text-pca-grey-900' : 'text-pca-white',
       )}
     >
