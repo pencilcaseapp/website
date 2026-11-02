@@ -10,6 +10,7 @@ export const NAV_ITEMS = [
 /** The pills of the footer. */
 export const FOOTER_LINKS = [
   { href: '/blog', label: 'Blog', isExternal: false },
+  { href: '/help', label: 'Help', isExternal: false },
   {
     href: 'https://github.com/pencilcaseapp/',
     label: 'GitHub',
@@ -41,3 +42,6 @@ export const CONTACT_EMAIL = 'inbox@pencilcase.app';
 
 /** The contact form the legal texts point to. */
 export const CONTACT_FORM_HREF = '/contact';
+
+/** The help section, with its form at the end. */
+export const HELP_HREF = '/help';

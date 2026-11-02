@@ -4,11 +4,13 @@ import { MemoryRouter } from 'react-router';
 import { SiteFooter } from './site-footer';
 
 describe('SiteFooter', () => {
-  it('links to the blog, the code and the social accounts', () => {
+  it('links to the blog, the help, the code and the social accounts', () => {
     render(<SiteFooter />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('link', { name: 'Blog' }))
       .toHaveAttribute('href', '/blog');
+    expect(screen.getByRole('link', { name: 'Help' }))
+      .toHaveAttribute('href', '/help');
     expect(screen.getByRole('link', { name: 'GitHub' }))
       .toHaveAttribute('href', 'https://github.com/pencilcaseapp/');
     expect(screen.getByRole('link', { name: 'Mastodon' }))
