@@ -1,4 +1,9 @@
-import { CONTACT_EMAIL } from './links';
+import {
+  APP_URL,
+  CONTACT_EMAIL,
+  CONTACT_FORM_HREF,
+  GITHUB_HREF,
+} from './links';
 import { PLANS } from './plans';
 
 export type HelpBlock
@@ -26,12 +31,21 @@ export interface HelpSection {
 
 const PRO_PRICE = PLANS.find(plan => plan.id === 'pro')?.price;
 
+const SIGN_IN_HREF = `${APP_URL}/signin`;
+const UPGRADE_HREF = `${APP_URL}/upgrade`;
+const PRICING_HREF = '/#pricing';
+const PRIVACY_HREF = '/privacy';
+
+const link = (text: string, href: string) => `[${text}](${href})`;
+const EMAIL_LINK = link(CONTACT_EMAIL, `mailto:${CONTACT_EMAIL}`);
+
 const paragraph = (text: string): HelpBlock => ({ type: 'paragraph', text });
 const list = (...items: string[]): HelpBlock => ({ type: 'list', items });
 const steps = (...items: string[]): HelpBlock => ({ type: 'steps', items });
 
 /**
- * The help articles by section. Text may set `**bold**` and `` `code` ``.
+ * The help articles by section. Text may set `**bold**`, `` `code` `` and
+ * `[links](href)`.
  */
 export const HELP_SECTIONS: HelpSection[] = [
   {
@@ -59,10 +73,10 @@ export const HELP_SECTIONS: HelpSection[] = [
       {
         slug: 'create-an-account',
         question: 'How do I create an account?',
-        summary: 'Enter your e-mail address on the sign in page and type the code we send you. There is no password and no separate sign-up.',
+        summary: `Enter your e-mail address on the ${link('sign in page', SIGN_IN_HREF)} and type the code we send you. There is no password and no separate sign-up.`,
         body: [
           steps(
-            'Go to **Sign in** and enter your e-mail address.',
+            `Go to ${link('Sign in', SIGN_IN_HREF)} and enter your e-mail address.`,
             'Type the code from the e-mail we send you.',
             'Add your name if you like. It is what other people see in a shared document.',
           ),
@@ -76,7 +90,7 @@ export const HELP_SECTIONS: HelpSection[] = [
         summary: 'Yes. The Free plan gives you 5 documents for life, with sharing by link, live collaboration and every editor feature.',
         body: [
           paragraph(
-            `Pro costs ${PRO_PRICE} a year and is for when you want more than 5 documents or want to invite people by e-mail.`,
+            `${link('Pro', PRICING_HREF)} costs ${PRO_PRICE} a year and is for when you want more than 5 documents or want to invite people by e-mail.`,
           ),
         ],
         related: ['what-does-pro-include', 'document-limit'],
@@ -84,7 +98,7 @@ export const HELP_SECTIONS: HelpSection[] = [
       {
         slug: 'contact-support',
         question: 'How do I reach you?',
-        summary: `Write to ${CONTACT_EMAIL} or use the contact form. We answer in English and German.`,
+        summary: `Write to ${EMAIL_LINK} or use the ${link('contact form', CONTACT_FORM_HREF)}. We answer in English and German.`,
         body: [
           paragraph(
             'In the app you also find the address under **Settings → Support**.',
@@ -113,7 +127,7 @@ export const HELP_SECTIONS: HelpSection[] = [
             'Divider lines',
           ),
           paragraph(
-            'The most common ones are in the toolbar. All of them are a few keystrokes away, through the slash menu or Markdown shortcuts.',
+            `The most common ones are in the toolbar. All of them are a few keystrokes away, through the ${link('slash menu', '/help/slash-menu')} or ${link('Markdown shortcuts', '/help/markdown-shortcuts')}.`,
           ),
         ],
       },
@@ -375,7 +389,7 @@ export const HELP_SECTIONS: HelpSection[] = [
         summary: 'Select **Report** at the top of the document, where the owner has Share, then choose a reason and add details if you like.',
         body: [
           paragraph(
-            `You need to be signed in. Without an account, write to ${CONTACT_EMAIL} with the link and what you consider illegal or wrong. The owner is not told who reported the document.`,
+            `You need to be signed in. Without an account, write to ${EMAIL_LINK} with the link and what you consider illegal or wrong. The owner is not told who reported the document.`,
           ),
         ],
       },
@@ -422,10 +436,10 @@ export const HELP_SECTIONS: HelpSection[] = [
       {
         slug: 'no-sign-in-code',
         question: 'I did not get my sign-in code. What now?',
-        summary: 'Check your spam folder and the spelling of the address, then ask for a new code.',
+        summary: `Check your spam folder and the spelling of the address, then ${link('ask for a new code', SIGN_IN_HREF)}.`,
         body: [
           paragraph(
-            `If it still does not arrive, write to ${CONTACT_EMAIL} from that address and we will look into it.`,
+            `If it still does not arrive, write to ${EMAIL_LINK} from that address and we will look into it.`,
           ),
         ],
       },
@@ -477,7 +491,7 @@ export const HELP_SECTIONS: HelpSection[] = [
       {
         slug: 'what-does-pro-include',
         question: 'What does Pro include?',
-        summary: `Unlimited documents and inviting people by e-mail with their own access. It costs ${PRO_PRICE} a year.`,
+        summary: `Unlimited documents and inviting people by e-mail with their own access. It costs ${link(`${PRO_PRICE} a year`, PRICING_HREF)}.`,
         body: [
           paragraph(
             'Everything else is the same on both plans: every editor feature, sharing by link and live collaboration. Pro also pays for a small team and its servers, which is what keeps pencil case independent.',
@@ -488,7 +502,7 @@ export const HELP_SECTIONS: HelpSection[] = [
       {
         slug: 'upgrade-to-pro',
         question: 'How do I upgrade to Pro?',
-        summary: 'Go to **Settings → Subscription** in your browser and select **Upgrade to Pro**. You pay on Creem’s checkout page and come straight back.',
+        summary: `Go to ${link('Settings → Subscription', UPGRADE_HREF)} in your browser and select **Upgrade to Pro**. You pay on Creem’s checkout page and come straight back.`,
         related: ['who-handles-payment'],
       },
       {
@@ -544,7 +558,7 @@ export const HELP_SECTIONS: HelpSection[] = [
         summary: 'Refunds and your right of withdrawal come under Creem’s terms, as Creem is who you buy Pro from.',
         body: [
           paragraph(
-            `If you are not sure where you stand, write to ${CONTACT_EMAIL} and we will help you sort it out.`,
+            `If you are not sure where you stand, write to ${EMAIL_LINK} and we will help you sort it out.`,
           ),
         ],
       },
@@ -599,7 +613,7 @@ export const HELP_SECTIONS: HelpSection[] = [
             'Lettermint sends our e-mails',
             'Creem handles payments',
           ),
-          paragraph('The privacy policy has the details on each of them.'),
+          paragraph(`The ${link('privacy policy', PRIVACY_HREF)} has the details on each of them.`),
         ],
       },
       {
@@ -636,14 +650,14 @@ export const HELP_SECTIONS: HelpSection[] = [
       {
         slug: 'open-source',
         question: 'Is pencil case open source?',
-        summary: 'Yes. The code is public on GitHub under the AGPL-3.0 licence, so anyone can check what runs their documents.',
+        summary: `Yes. The code is public on ${link('GitHub', GITHUB_HREF)} under the AGPL-3.0 licence, so anyone can check what runs their documents.`,
       },
       {
         slug: 'deleted-data',
         question: 'How long do you keep what I delete?',
         summary: 'Deleted documents and their images stay restorable for 30 days and are then deleted for good.',
         body: [
-          paragraph('The privacy policy lists how long we keep everything else.'),
+          paragraph(`The ${link('privacy policy', PRIVACY_HREF)} lists how long we keep everything else.`),
         ],
         related: ['restore-a-document'],
       },
