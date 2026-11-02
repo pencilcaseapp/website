@@ -1,5 +1,6 @@
 import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+import { MemoryRouter } from 'react-router';
 import { FREE_DOCUMENT_LIMIT } from '~/constants/plans';
 import { Pricing } from './pricing';
 
@@ -9,14 +10,14 @@ function getPlan(name: string) {
 
 describe('Pricing', () => {
   it('shows the free and the pro plan', () => {
-    render(<Pricing />);
+    render(<Pricing />, { wrapper: MemoryRouter });
 
     expect(within(getPlan('Free')).getByText('0 €')).toBeInTheDocument();
     expect(within(getPlan('Pro')).getByText('25 €')).toBeInTheDocument();
   });
 
   it('tells how many docs are free', () => {
-    render(<Pricing />);
+    render(<Pricing />, { wrapper: MemoryRouter });
 
     expect(within(getPlan('Free'))
       .getByText(`${FREE_DOCUMENT_LIMIT} documents, everything else included.`))
@@ -24,7 +25,7 @@ describe('Pricing', () => {
   });
 
   it('tells screen readers what the free plan leaves out', () => {
-    render(<Pricing />);
+    render(<Pricing />, { wrapper: MemoryRouter });
 
     expect(within(getPlan('Free')).getAllByText('(not included)'))
       .toHaveLength(2);
@@ -33,7 +34,7 @@ describe('Pricing', () => {
   });
 
   it('sends both buttons to the app', () => {
-    render(<Pricing />);
+    render(<Pricing />, { wrapper: MemoryRouter });
 
     for (const name of ['Don’t buy', 'Buy']) {
       expect(screen.getByRole('link', { name }))
@@ -42,10 +43,17 @@ describe('Pricing', () => {
   });
 
   it('answers the questions', () => {
-    render(<Pricing />);
+    render(<Pricing />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('heading', { name: 'Questions? Answers.' }))
       .toBeInTheDocument();
     expect(screen.getAllByRole('heading', { level: 4 })).toHaveLength(6);
+  });
+
+  it('leads to the help section after the questions', () => {
+    render(<Pricing />, { wrapper: MemoryRouter });
+
+    expect(screen.getByRole('link', { name: 'See all questions' }))
+      .toHaveAttribute('href', '/help');
   });
 });

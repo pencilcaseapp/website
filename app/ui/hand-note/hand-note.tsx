@@ -49,3 +49,20 @@ export const HandArrow: React.FC<HandArrowProps> = ({ className }) => (
     <path d="M66 24 L 53 22 M66 24 L 63 11" />
   </svg>
 );
+
+/** A drawn arrow pointing down at what follows a handwritten line. */
+export const HandArrowDown: React.FC<HandArrowProps> = ({ className }) => (
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 36 56"
+    className={classNames('h-14 w-9 overflow-visible', className)}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M16 3 C 6 18, 28 30, 18 50" />
+    <path d="M18 50 L 9 42 M18 50 L 26 41" />
+  </svg>
+);
