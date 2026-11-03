@@ -25,7 +25,7 @@ export const Hero: React.FC = () => {
             dead simple.
           </h1>
           <p className="type-lead mx-auto mt-8 max-w-[34ch] text-balance lg:max-w-none xl:whitespace-nowrap">
-            The European alternative for writing docs and sharing them with your
+            A European alternative for writing docs and sharing them with your
             friends.
           </p>
           <div className="mt-10 flex flex-col items-center gap-5">
