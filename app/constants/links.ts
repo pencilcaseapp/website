@@ -1,5 +1,8 @@
 export const APP_URL = 'https://docs.pencilcase.app';
 
+/** Signs the visitor in if needed and opens the checkout of pro. */
+export const CHECKOUT_URL = `${APP_URL}/checkout`;
+
 export const GITHUB_HREF = 'https://github.com/pencilcaseapp/';
 
 export const NAV_ITEMS = [
