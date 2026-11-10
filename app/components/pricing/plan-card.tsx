@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { APP_URL } from '~/constants/links';
 import type { Plan } from '~/constants/plans';
 import { Button, type ButtonColor } from '~/ui/button/button';
 import { Icon } from '~/ui/icon/icon';
@@ -59,7 +58,7 @@ export const PlanCard: React.FC<PlanCardProps> = ({ plan }) => {
       </ul>
       <Button
         as="a"
-        href={APP_URL}
+        href={plan.href}
         colorLight={look.button}
         size="medium"
         className="mt-auto w-full"

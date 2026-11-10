@@ -33,13 +33,13 @@ describe('Pricing', () => {
       .not.toBeInTheDocument();
   });
 
-  it('sends both buttons to the app', () => {
+  it('sends the free plan to the app and pro to the checkout', () => {
     render(<Pricing />, { wrapper: MemoryRouter });
 
-    for (const name of ['Don’t buy', 'Buy']) {
-      expect(screen.getByRole('link', { name }))
-        .toHaveAttribute('href', 'https://docs.pencilcase.app');
-    }
+    expect(screen.getByRole('link', { name: 'Don’t buy' }))
+      .toHaveAttribute('href', 'https://docs.pencilcase.app');
+    expect(screen.getByRole('link', { name: 'Buy' }))
+      .toHaveAttribute('href', 'https://docs.pencilcase.app/checkout');
   });
 
   it('answers the questions', () => {
