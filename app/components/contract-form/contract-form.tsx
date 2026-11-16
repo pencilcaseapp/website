@@ -2,7 +2,12 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import { FIELD, SendableForm } from '../sendable-form/sendable-form';
 
-const RADIO = 'size-5 accent-pca-grey-900';
+const RADIO = classNames(
+  'size-5 shrink-0 appearance-none rounded-full border-2 border-pca-grey-500',
+  'bg-pca-white checked:border-[6px] checked:border-pca-grey-900',
+  'focus-visible:outline-2 focus-visible:outline-offset-2',
+  'focus-visible:outline-pca-grey-900',
+);
 
 /**
  * What both laws allow us to ask for: who the customer is, which contract
