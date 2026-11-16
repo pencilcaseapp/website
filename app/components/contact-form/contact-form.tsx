@@ -18,7 +18,8 @@ type SendState = 'idle' | 'sending' | 'sent' | 'failed';
 /**
  * A message to our inbox: an e-mail address to answer and the text. Posts
  * from the browser to the app, which mails it, and thanks the sender in
- * place of the form once it is sent.
+ * place of the form once it is sent. The form stays, hidden, under the
+ * thanks, so the box keeps its height.
  */
 export const ContactForm: React.FC = () => {
   const [state, setState] = useState<SendState>('idle');
@@ -41,62 +42,77 @@ export const ContactForm: React.FC = () => {
     }
   }
 
-  if (state === 'sent') {
-    return (
-      <p role="status" className="type-body">
-        Thanks, your message is on its way. We’ll get back to you soon.
-      </p>
-    );
-  }
+  const isSent = state === 'sent';
 
   return (
-    <form method="post" action={CONTACT_ENDPOINT} onSubmit={handleSubmit}>
-      <label htmlFor="contact-email" className="type-label block">
-        Your e-mail address
-      </label>
-      <input
-        id="contact-email"
-        name="email"
-        type="email"
-        autoComplete="email"
-        spellCheck={false}
-        required
-        className={classNames(FIELD, 'h-14')}
-      />
-      <label htmlFor="contact-message" className="type-label mt-7 block">
-        Your message
-      </label>
-      <textarea
-        id="contact-message"
-        name="message"
-        rows={7}
-        maxLength={5000}
-        required
-        className={classNames(FIELD, 'min-h-48 resize-y py-4')}
-      />
-      {state === 'failed' && (
-        <p role="alert" className="type-body mt-6 text-pca-red-600">
-          Your message didn’t go through. Please try again, or write to
+    <div className="relative">
+      {isSent && (
+        <div
+          role="status"
+          className="absolute inset-0 flex flex-col items-center justify-center text-center"
+        >
+          <p className="type-subtitle text-balance">
+            Thanks, your message is on its way.
+          </p>
+          <p className="type-body mt-3 text-pca-grey-700">
+            We’ll get back to you soon.
+          </p>
+        </div>
+      )}
+      <form
+        method="post"
+        action={CONTACT_ENDPOINT}
+        onSubmit={handleSubmit}
+        inert={isSent}
+        className={classNames(isSent && 'invisible')}
+      >
+        <label htmlFor="contact-email" className="type-label block">
+          Your e-mail address
+        </label>
+        <input
+          id="contact-email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          spellCheck={false}
+          required
+          className={classNames(FIELD, 'h-14')}
+        />
+        <label htmlFor="contact-message" className="type-label mt-7 block">
+          Your message
+        </label>
+        <textarea
+          id="contact-message"
+          name="message"
+          rows={7}
+          maxLength={5000}
+          required
+          className={classNames(FIELD, 'min-h-48 resize-y py-4')}
+        />
+        {state === 'failed' && (
+          <p role="alert" className="type-body mt-6 text-pca-red-600">
+            Your message didn’t go through. Please try again, or write to
+            {' '}
+            {CONTACT_EMAIL}
+            .
+          </p>
+        )}
+        <Button
+          type="submit"
+          size="compact"
+          disabled={isSending}
+          className="mt-8 px-7"
+        >
+          {isSending ? 'Sending …' : 'Send message'}
+        </Button>
+        <p className="type-caption mt-6 text-pca-grey-700">
+          We use your e-mail address and message only to answer you, and
+          delete both once your request is done. More in our
           {' '}
-          {CONTACT_EMAIL}
+          <TextLink as={Link} to="/privacy">privacy policy</TextLink>
           .
         </p>
-      )}
-      <Button
-        type="submit"
-        size="compact"
-        disabled={isSending}
-        className="mt-8 px-7"
-      >
-        {isSending ? 'Sending …' : 'Send message'}
-      </Button>
-      <p className="type-caption mt-6 text-pca-grey-700">
-        We use your e-mail address and message only to answer you, and
-        delete both once your request is done. More in our
-        {' '}
-        <TextLink as={Link} to="/privacy">privacy policy</TextLink>
-        .
-      </p>
-    </form>
+      </form>
+    </div>
   );
 };

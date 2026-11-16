@@ -36,7 +36,8 @@ describe('ContactForm', () => {
       email: 'ada@example.com',
       message: 'Hello there',
     });
-    expect(screen.queryByLabelText('Your message')).not.toBeInTheDocument();
+    expect(screen.getByLabelText('Your message').closest('form'))
+      .toHaveAttribute('inert');
   });
 
   it.each([
