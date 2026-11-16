@@ -33,6 +33,7 @@ describe('ContactForm', () => {
     const [url, init] = fetch.mock.calls[0];
     expect(url).toBe('http://localhost:3000/contact');
     expect(Object.fromEntries(init.body)).toEqual({
+      form: 'message',
       email: 'ada@example.com',
       message: 'Hello there',
     });

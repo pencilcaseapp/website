@@ -48,8 +48,8 @@ describe('SiteFooter', () => {
         'legal notice',
         'privacy policy',
         'terms of use',
-        'cancel contract',
-        'withdraw contract',
+        'cancel contracts here',
+        'withdraw from contract here',
       ]);
   });
 
@@ -62,6 +62,10 @@ describe('SiteFooter', () => {
       .toHaveAttribute('href', '/privacy');
     expect(screen.getByRole('link', { name: 'terms of use' }))
       .toHaveAttribute('href', '/terms');
+    expect(screen.getByRole('link', { name: 'cancel contracts here' }))
+      .toHaveAttribute('href', '/cancel-contract');
+    expect(screen.getByRole('link', { name: 'withdraw from contract here' }))
+      .toHaveAttribute('href', '/withdraw-contract');
   });
 
   it('shows the e-mail address', () => {

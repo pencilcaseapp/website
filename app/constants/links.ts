@@ -34,13 +34,17 @@ export const FOOTER_LINKS = [
   },
 ] as const;
 
-/** Cancelling and withdrawing have no page yet. */
+/**
+ * The legal texts, and the buttons § 312k and § 356a BGB ask for: their
+ * labels are the law's own (“Verträge hier kündigen”, “Vertrag widerrufen”)
+ * in English, so keep them.
+ */
 export const LEGAL_LINKS = [
   { href: '/legal-notice', label: 'legal notice' },
   { href: '/privacy', label: 'privacy policy' },
   { href: '/terms', label: 'terms of use' },
-  { href: '#', label: 'cancel contract' },
-  { href: '#', label: 'withdraw contract' },
+  { href: '/cancel-contract', label: 'cancel contracts here' },
+  { href: '/withdraw-contract', label: 'withdraw from contract here' },
 ] as const;
 
 export const CONTACT_EMAIL = 'inbox@pencilcase.app';
