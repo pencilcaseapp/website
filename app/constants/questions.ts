@@ -30,7 +30,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'withdraw',
     question: 'What if I change my mind?',
-    answer: 'Withdraw through “withdraw contract” at the bottom of this page. You need no reason and no sign-in, and we e-mail you a confirmation.',
+    answer: 'You can withdraw within 14 days of buying Pro, through “withdraw contract” at the bottom of this page. You need no reason and no sign-in, and we e-mail you a confirmation.',
   },
   {
     id: 'app-stores',

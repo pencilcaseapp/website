@@ -6,7 +6,7 @@ related:
   - cancel-subscription
 ---
 
-To withdraw from your purchase, use the [withdraw contract](/withdraw-contract) form. You need no reason and no sign-in, and we e-mail you a confirmation.
+You can withdraw from Pro within 14 days of buying it. Use the [withdraw contract](/withdraw-contract) form. You need no reason and no sign-in, and we e-mail you a confirmation.
 
 Refunds and your right of withdrawal come under Creem’s terms, as Creem is who you buy Pro from. If you cancel after the first year, we refund the unused part of the year you paid for.
 
