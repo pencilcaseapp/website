@@ -1,3 +1,5 @@
+import { APP_URL, CHECKOUT_URL } from './links';
+
 export const FREE_DOCUMENT_LIMIT = 5;
 
 export interface PlanPoint {
@@ -15,6 +17,7 @@ export interface Plan {
   lead: string;
   points: PlanPoint[];
   cta: string;
+  href: string;
 }
 
 const SHARED_POINTS: PlanPoint[] = [
@@ -36,6 +39,7 @@ export const PLANS: Plan[] = [
       { label: 'Support small tech', included: false },
     ],
     cta: 'Don’t buy',
+    href: APP_URL,
   },
   {
     id: 'pro',
@@ -50,5 +54,6 @@ export const PLANS: Plan[] = [
       { label: 'Support small tech', included: true },
     ],
     cta: 'Buy',
+    href: CHECKOUT_URL,
   },
 ];
