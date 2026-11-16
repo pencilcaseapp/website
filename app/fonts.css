@@ -2,29 +2,30 @@
 @import "@fontsource/inter/500.css";
 @import "@fontsource/inter/600.css";
 @import "@fontsource/inter/700.css";
-@import "@fontsource-variable/archivo/wdth.css";
 @import "@fontsource/hanken-grotesk/700.css";
 @import "@fontsource/covered-by-your-grace/400.css";
 
-/* PP Agrandir: the free personal use files, to try the font out before
-   buying the web licence. Swap them for the licensed files then. */
+/* Fig Grotesk: the trial files (under Typeji's trial licence), to try
+   the font out before buying the web licence. Swap them for the licensed
+   files then. The trial holds the letters and basic punctuation only:
+   figures, currency signs and accented letters fall back to Inter. */
 @font-face {
-  font-family: 'PP Agrandir Grand';
-  font-weight: 800;
-  font-display: swap;
-  src: url('/fonts/PPAgrandir-GrandHeavy.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'PP Agrandir';
+  font-family: 'Fig Grotesk';
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/PPAgrandir-Regular.woff2') format('woff2');
+  src: url('/fonts/FigGroteskTrial-Regular.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'PP Agrandir';
+  font-family: 'Fig Grotesk';
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/PPAgrandirText-Bold.woff2') format('woff2');
+  src: url('/fonts/FigGroteskTrial-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Fig Grotesk';
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/FigGroteskTrial-Black.woff2') format('woff2');
 }

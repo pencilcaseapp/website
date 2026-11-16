@@ -32,12 +32,11 @@
   --font-inter: Inter, ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-  /* PP Agrandir comes from `fonts.css`; Archivo stands in until it has
-     loaded (stretched to 125% for the Grand cut). */
-  --font-display: 'PP Agrandir Grand', 'Archivo Variable', Inter,
-    ui-sans-serif, system-ui, sans-serif;
-  --font-text: 'PP Agrandir', 'Archivo Variable', Inter, ui-sans-serif,
-    system-ui, sans-serif;
+  /* Fig Grotesk comes from `fonts.css`, one family for both roles: text
+     is its Regular and Bold, display its Black, or its Bold drawn wide
+     (`type-wide`). */
+  --font-display: 'Fig Grotesk', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-text: 'Fig Grotesk', Inter, ui-sans-serif, system-ui, sans-serif;
   --font-hand: 'Covered By Your Grace', 'Bradley Hand', cursive;
   --font-logo: 'Hanken Grotesk', Inter, sans-serif;
 
@@ -48,33 +47,45 @@
   --shadow-floating: 0 8px 24px -8px rgb(0 0 0 / 0.35);
 }
 
-@utility type-hero {
+/* The headline style: Fig Grotesk Bold drawn one and a half times as
+   wide, set tight, with a hair of outline to sit between Bold and Black.
+   The family has no wide cut, so the width is a transform, and a
+   transform leaves the layout alone: the heading takes two thirds of the
+   width it may have, wraps its text there and is drawn out to the full
+   width from its middle. That lands in the right place however the text
+   is aligned, as long as the heading is a block of its own. */
+@utility type-wide {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-stretch: 125%;
+  font-weight: 700;
   font-kerning: normal;
   text-rendering: optimizeLegibility;
-  letter-spacing: -0.02em;
-  font-size: clamp(2rem, 9vw, 7rem);
-  line-height: 0.98;
+  letter-spacing: -0.035em;
+  line-height: 0.9;
+  -webkit-text-stroke: 0.012em currentColor;
+  width: calc(100% / 1.5);
+  margin-inline: auto;
+  scale: 1.5 1;
 }
 
+@utility type-hero {
+  @apply type-wide;
+
+  font-size: clamp(2rem, 9vw, 7rem);
+}
+
+/* 0.98, not the headline's 0.9: a section's title wraps on a narrow
+   screen, and at 0.9 a y's tail lies on the letters of the line below. */
 @utility type-section {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-stretch: 125%;
-  font-kerning: normal;
-  text-rendering: optimizeLegibility;
-  letter-spacing: -0.02em;
+  @apply type-wide;
+
+  line-height: 0.98;
   text-wrap: balance;
   font-size: clamp(2rem, 5.6vw, 4rem);
-  line-height: 1.02;
 }
 
 @utility type-title {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-stretch: 125%;
+  font-weight: 900;
   font-kerning: normal;
   text-rendering: optimizeLegibility;
   letter-spacing: -0.02em;
@@ -84,8 +95,7 @@
 
 @utility type-subtitle {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-stretch: 125%;
+  font-weight: 900;
   font-kerning: normal;
   text-rendering: optimizeLegibility;
   letter-spacing: -0.01em;
@@ -93,10 +103,11 @@
   line-height: 1.1;
 }
 
+/* The headline style on a figure that stands in a row: it is as wide as
+   its text, so `PlanCard` makes the room it is drawn out into. */
 @utility type-price {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-stretch: 125%;
+  font-weight: 700;
   font-kerning: normal;
   text-rendering: optimizeLegibility;
   letter-spacing: -0.02em;
@@ -104,6 +115,9 @@
   white-space: nowrap;
   font-size: clamp(3rem, 5vw, 3.75rem);
   line-height: 1;
+  -webkit-text-stroke: 0.012em currentColor;
+  scale: 1.5 1;
+  transform-origin: left center;
 }
 
 @utility type-question {
@@ -116,8 +130,7 @@
 
 @utility type-menu {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-stretch: 125%;
+  font-weight: 900;
   font-kerning: normal;
   letter-spacing: -0.02em;
   font-size: clamp(2.25rem, 11.5vw, 3.25rem);
@@ -480,6 +493,11 @@ html {
 
 .fan-card {
   perspective: 1800px;
+
+  /* A card's title is a headline of its own. */
+  .type-title {
+    @apply type-wide;
+  }
 }
 
 .fan-card-body {
