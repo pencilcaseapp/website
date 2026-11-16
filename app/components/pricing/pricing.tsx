@@ -15,7 +15,7 @@ export const Pricing: React.FC = () => (
       <div className="mx-auto mt-14 grid max-w-[880px] gap-6 md:grid-cols-2">
         {PLANS.map(plan => <PlanCard key={plan.id} plan={plan} />)}
       </div>
-      <Questions className="mx-auto mt-14 max-w-[760px]" />
+      <Questions className="mx-auto mt-14 max-w-[880px]" />
     </Container>
   </section>
 );

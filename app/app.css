@@ -110,7 +110,10 @@
   font-weight: 700;
   font-kerning: normal;
   text-rendering: optimizeLegibility;
-  letter-spacing: -0.02em;
+  /* Opened up, not tightened like the headlines: a price is set without
+     its space ("25€"), and tightened, the euro sign's bars run into the
+     figure before it. */
+  letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
   font-size: clamp(3rem, 5vw, 3.75rem);
