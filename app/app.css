@@ -526,13 +526,10 @@ html {
 .fan-face {
   backface-visibility: hidden;
 
-  /* Safari gives an element with a transform a layer of its own, and
-     that layer does not turn away with its face: the title, drawn wide
-     by a transform, showed through mirrored on the other side while the
-     card turned. */
-  .type-title {
-    backface-visibility: hidden;
-  }
+  /* Without a 3D transform of its own, Safari leaves the title (drawn
+     wide by `scale`, so on a layer of its own) out of the face's
+     backface culling, and it shows mirrored through the back. */
+  transform: rotateY(0deg);
 }
 
 .fan-face-back {
