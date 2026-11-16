@@ -9,7 +9,7 @@ import { getConfigTest } from './test';
 export interface Config {
   environment: 'development' | 'test' | 'prod';
 
-  /** Where the contact form posts: the app's `/contact`. */
+  /** Where the contact, cancel and withdraw forms post: the app's /contact. */
   contactUrl: string;
 
   /** Whether Plausible counts the visit. Never on localhost. */

@@ -62,6 +62,10 @@ describe('SiteFooter', () => {
       .toHaveAttribute('href', '/privacy');
     expect(screen.getByRole('link', { name: 'terms of use' }))
       .toHaveAttribute('href', '/terms');
+    expect(screen.getByRole('link', { name: 'cancel contract' }))
+      .toHaveAttribute('href', '/cancel-contract');
+    expect(screen.getByRole('link', { name: 'withdraw contract' }))
+      .toHaveAttribute('href', '/withdraw-contract');
   });
 
   it('shows the e-mail address', () => {
