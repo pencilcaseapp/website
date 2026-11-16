@@ -20,7 +20,7 @@ const MAX_RELATED_ARTICLES = 6;
 function parseArticle(path: string, file: string): HelpArticle {
   const slug = path.slice(path.lastIndexOf('/') + 1, -'.md'.length);
   const [frontmatter, yaml = ''] = FRONTMATTER.exec(file) ?? [];
-  const { question, section, order, related, draft } = parse(yaml) ?? {};
+  const { question, section, order, related } = parse(yaml) ?? {};
 
   if (
     typeof question !== 'string'
@@ -43,7 +43,6 @@ function parseArticle(path: string, file: string): HelpArticle {
     section,
     order,
     ...related && { related },
-    ...draft && { draft: true },
     summary,
     body: body.join('\n\n'),
   };
@@ -53,10 +52,9 @@ export const HELP_ARTICLES = Object.entries(FILES)
   .map(([path, file]) => parseArticle(path, file))
   .sort((a, b) => a.order - b.order);
 
-const toLink = ({ slug, question, draft }: HelpArticle): HelpArticleLink => ({
+const toLink = ({ slug, question }: HelpArticle): HelpArticleLink => ({
   slug,
   question,
-  ...draft && { draft },
 });
 
 /** Every section with the questions of its articles, in order. */
@@ -77,7 +75,7 @@ export function findHelpArticle(slug: string) {
 
 /**
  * The articles to read next: the ones the article names first, then the
- * rest of its section. A draft is only suggested from another draft.
+ * rest of its section.
  */
 export function relatedHelpArticles(article: HelpArticle): HelpArticleLink[] {
   const named = (article.related ?? []).flatMap((slug) => {
@@ -90,7 +88,6 @@ export function relatedHelpArticles(article: HelpArticle): HelpArticleLink[] {
 
   return [...new Set([...named, ...sameSection])]
     .filter(item => item !== article)
-    .filter(item => article.draft || !item.draft)
     .slice(0, MAX_RELATED_ARTICLES)
     .map(toLink);
 }
@@ -129,11 +126,7 @@ export function getHelpArticlePage(slug: string) {
   const { article, section } = found;
 
   return {
-    article: {
-      slug: article.slug,
-      question: article.question,
-      ...article.draft && { draft: true },
-    },
+    article: { slug: article.slug, question: article.question },
     summary: parseHelpMarkdown(article.summary),
     body: parseHelpMarkdown(article.body),
     section,

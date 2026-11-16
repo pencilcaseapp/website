@@ -46,13 +46,6 @@ describe('HelpArticle', () => {
       .toHaveAttribute('href', '/help/share-with-a-link.md');
   });
 
-  it('says when it is a draft', () => {
-    renderArticle('what-are-spaces');
-
-    expect(screen.getByText(/^Draft: the app does not do this yet/))
-      .toBeInTheDocument();
-  });
-
   it('links to the pages the text names', () => {
     renderArticle('create-an-account');
 

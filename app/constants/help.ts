@@ -9,7 +9,6 @@ export const HELP_SECTIONS: HelpSectionInfo[] = [
   { id: 'writing', title: 'Writing' },
   { id: 'documents', title: 'Documents' },
   { id: 'sharing', title: 'Sharing and collaboration' },
-  { id: 'spaces', title: 'Spaces' },
   { id: 'account', title: 'Account' },
   { id: 'subscription', title: 'Subscription' },
   { id: 'devices', title: 'Apps and devices' },
@@ -20,8 +19,6 @@ export const HELP_SECTIONS: HelpSectionInfo[] = [
 export interface HelpArticleLink {
   slug: string;
   question: string;
-  /** Describes something the app does not do yet, kept out of search. */
-  draft?: boolean;
 }
 
 /**

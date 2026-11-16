@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { MemoryRouter } from 'react-router';
 import { FREE_DOCUMENT_LIMIT } from '~/constants/plans';
+import { QUESTIONS } from '~/constants/questions';
 import { Pricing } from './pricing';
 
 function getPlan(name: string) {
@@ -47,7 +48,7 @@ describe('Pricing', () => {
 
     expect(screen.getByRole('heading', { name: 'Questions? Answers.' }))
       .toBeInTheDocument();
-    expect(screen.getAllByRole('heading', { level: 4 })).toHaveLength(6);
+    expect(screen.getAllByRole('heading', { level: 4 })).toHaveLength(QUESTIONS.length);
   });
 
   it('leads to the help section after the questions', () => {

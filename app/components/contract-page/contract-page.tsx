@@ -36,7 +36,7 @@ export const CancelContract: React.FC = () => (
 export const WithdrawContract: React.FC = () => (
   <ContractPage
     title="Withdraw contract."
-    lead="Changed your mind about pencil case Pro? Withdraw here, no reason needed."
+    lead="Changed your mind about pencil case Pro? Withdraw within 14 days of buying it, no reason needed."
   >
     <WithdrawContractForm />
   </ContractPage>

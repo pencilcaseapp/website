@@ -42,7 +42,6 @@ describe('help articles', () => {
     expect(article.body).toMatch(/^1\. Go to \[Sign in\]/);
     expect(article.body).toMatch(/16 years old to create an account\.$/);
     expect(getArticle('saving').body).toBe('');
-    expect(getArticle('what-are-spaces').draft).toBe(true);
   });
 
   it('gives each article of a section its own place', () => {
@@ -108,13 +107,6 @@ describe('help articles', () => {
         'change-or-remove-access',
         'who-is-in-a-document',
       ]);
-  });
-
-  it('suggests a draft only from another draft', () => {
-    expect(slugsOf(relatedHelpArticles(getArticle('finding-documents'))))
-      .not.toContain('what-are-spaces');
-    expect(slugsOf(relatedHelpArticles(getArticle('what-are-spaces'))))
-      .toEqual(['share-a-space']);
   });
 
   it('links to the article and its Markdown', () => {

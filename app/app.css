@@ -525,14 +525,15 @@ html {
   }
 }
 
-/* The face that is turned away is taken out of the picture, not only
-   turned away. `backface-visibility` hides a face, but in Safari on iOS
-   not what stands on it in a layer of its own while the card turns, and
-   the title, drawn wide by a transform, is such a layer: it showed
-   through mirrored on the other side. The faces change places when the
-   card is edge on, which this easing reaches 16% into the turn. */
+/* Safari on iOS drew the title, which `scale` draws wide and so puts on
+   a layer of its own, mirrored through the back of a turning card. Two
+   things keep it away. Each face has a 3D transform of its own, which
+   brings that layer into the face's backface culling. And the face that
+   is turned away is taken out of the picture altogether, from the moment
+   the card is edge on, which this easing reaches 16% into the turn. */
 .fan-face {
   backface-visibility: hidden;
+  transform: rotateY(0deg);
   transition: visibility 0s calc(var(--fan-turn) * 0.16);
 }
 
