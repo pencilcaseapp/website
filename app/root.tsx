@@ -12,7 +12,19 @@ import './app.css';
 import { useInstantPageChange } from './hooks/use-instant-page-change';
 import fontsHref from './fonts.css?url';
 
+// Found through `fonts.css` alone, Fig Grotesk arrives after the first
+// paint and everything set in it jumps over from Inter. Preloaded, it is
+// there in time. The paths are the ones `fonts.css` names.
+const FONT_CUTS = ['Regular', 'Bold', 'Black'];
+
 export const links: Route.LinksFunction = () => [
+  ...FONT_CUTS.map(cut => ({
+    rel: 'preload',
+    href: `/fonts/FigGroteskTrial-${cut}.woff2`,
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous' as const,
+  })),
   { rel: 'icon', href: '/favicon.ico', sizes: '48x48' },
   { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
   { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
