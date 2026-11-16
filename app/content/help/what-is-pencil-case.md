@@ -8,8 +8,12 @@ related:
   - hosted-in-the-eu
 ---
 
-A simple editor for writing documents, alone or with other people at the same time.
+Docs, dead simple. pencil case is a European alternative for writing docs and sharing them with your friends.
 
-Open a document, write, send the link. Everyone in it sees the same text and each other’s cursors as they type. You get headings, lists, checklists, code blocks, images and Markdown shortcuts.
+- **Write** in a simple editor with no distractions: headings, lists, checklists, quotes, images and Markdown.
+- **Share** a document with a link that lets people view or edit, or invite friends by e-mail.
+- **Collaborate** in real time, with everyone’s cursor in the text. Nobody needs an account to join.
 
-It is made by a small team in Berlin, hosted in the EU and open source, with no investors, ads or tracking.
+It runs in your browser and as an app for iOS and Android. The first 5 documents are free.
+
+pencil case is small on purpose: hosted in the EU, open source and paid for by subscriptions, not investors. There is no tracking, no ads and no AI trained on your writing.
