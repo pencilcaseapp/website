@@ -67,13 +67,11 @@ order live in `app/constants/help.ts`. Files are parsed on the server only
 article describes something the app doesn't do yet: it gets a badge and
 `noindex`.
 
-**Contact form.** `/help` and `/contact` share `ContactForm`, whose fetcher
-posts to the action of `routes/contact.tsx` (`/contact.data` on the wire)
-from both. `app/utils/contact.server.ts` checks the fields and mails the
-message to `CONTACT_EMAIL` through Lettermint
-(`app/clients/lettermint.server.ts`, like the app's), with the sender as
-reply-to. The token is `EMAIL_API_TOKEN`; without it, dev skips the send
-and prod fails it. Rate limiting is Bunny's job, not the site's.
+**Contact form.** `/help` and `/contact` share `ContactForm`, which posts
+from the browser to the app's `/contact` (`CONTACT_ENDPOINT`, the local
+app in dev). The app mails it to our inbox, and its Bunny Shield rate
+limits it per visitor; the website's own Shield plan has no room for that,
+which is why the form doesn't post to the website.
 
 **Analytics.** Plausible, rendered in `app/root.tsx` only when
 `import.meta.env.PROD`, so localhost is never counted. It sets no cookies.

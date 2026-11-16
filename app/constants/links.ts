@@ -45,6 +45,14 @@ export const LEGAL_LINKS = [
 
 export const CONTACT_EMAIL = 'inbox@pencilcase.app';
 
+/**
+ * Where the contact form posts: the app, whose Bunny Shield rate limits
+ * it. The local app in dev, so trying the form never mails our inbox.
+ */
+export const CONTACT_ENDPOINT = import.meta.env.DEV
+  ? 'http://localhost:3000/contact'
+  : `${APP_URL}/contact`;
+
 /** The contact form the legal texts point to. */
 export const CONTACT_FORM_HREF = '/contact';
 

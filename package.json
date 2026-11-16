@@ -21,7 +21,6 @@
     "@react-router/serve": "8.5.1",
     "classnames": "^2.5.1",
     "isbot": "^5.2.2",
-    "lettermint": "^3.3.0",
     "mdast-util-from-markdown": "^2.1.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",

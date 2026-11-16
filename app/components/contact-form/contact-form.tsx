@@ -1,6 +1,7 @@
 import classNames from 'classnames';
-import { href, Link, useFetcher } from 'react-router';
-import { CONTACT_EMAIL } from '~/constants/links';
+import { useState } from 'react';
+import { Link } from 'react-router';
+import { CONTACT_EMAIL, CONTACT_ENDPOINT } from '~/constants/links';
 import { Button } from '~/ui/button/button';
 import { TextLink } from '~/ui/text-link/text-link';
 
@@ -12,16 +13,35 @@ const FIELD = classNames(
   'focus-visible:outline-offset-2 focus-visible:outline-pca-grey-900',
 );
 
+type SendState = 'idle' | 'sending' | 'sent' | 'failed';
+
 /**
  * A message to our inbox: an e-mail address to answer and the text. Posts
- * to the contact route wherever it is shown, and thanks the sender in
+ * from the browser to the app, which mails it, and thanks the sender in
  * place of the form once it is sent.
  */
 export const ContactForm: React.FC = () => {
-  const fetcher = useFetcher<{ sent: boolean }>();
-  const isSending = fetcher.state !== 'idle';
+  const [state, setState] = useState<SendState>('idle');
+  const isSending = state === 'sending';
 
-  if (fetcher.data?.sent) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setState('sending');
+
+    try {
+      const response = await fetch(CONTACT_ENDPOINT, {
+        method: 'POST',
+        body: new FormData(event.currentTarget),
+      });
+
+      setState(response.ok ? 'sent' : 'failed');
+    }
+    catch {
+      setState('failed');
+    }
+  }
+
+  if (state === 'sent') {
     return (
       <p role="status" className="type-body">
         Thanks, your message is on its way. We’ll get back to you soon.
@@ -30,7 +50,7 @@ export const ContactForm: React.FC = () => {
   }
 
   return (
-    <fetcher.Form method="post" action={href('/contact')}>
+    <form method="post" action={CONTACT_ENDPOINT} onSubmit={handleSubmit}>
       <label htmlFor="contact-email" className="type-label block">
         Your e-mail address
       </label>
@@ -54,7 +74,7 @@ export const ContactForm: React.FC = () => {
         required
         className={classNames(FIELD, 'min-h-48 resize-y py-4')}
       />
-      {fetcher.data && !isSending && (
+      {state === 'failed' && (
         <p role="alert" className="type-body mt-6 text-pca-red-600">
           Your message didn’t go through. Please try again, or write to
           {' '}
@@ -77,6 +97,6 @@ export const ContactForm: React.FC = () => {
         <TextLink as={Link} to="/privacy">privacy policy</TextLink>
         .
       </p>
-    </fetcher.Form>
+    </form>
   );
 };

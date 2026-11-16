@@ -1,19 +1,12 @@
 import { render, screen, within } from '@testing-library/react';
-import { createRoutesStub } from 'react-router';
+import { MemoryRouter } from 'react-router';
 import { describe, expect, it } from 'vitest';
 import { getHelpSections } from '~/utils/help.server';
 import { Help } from './help';
 
-/** Renders in a data router, which the contact form's fetcher needs. */
-function renderInRouter(ui: React.ReactElement) {
-  const Stub = createRoutesStub([{ path: '/', Component: () => ui }]);
-
-  return render(<Stub />);
-}
-
 describe('Help', () => {
   it('lists every section with its questions', () => {
-    renderInRouter(<Help sections={getHelpSections()} />);
+    render(<Help sections={getHelpSections()} />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('heading', { level: 1 }))
       .toHaveTextContent('Help.');
@@ -30,7 +23,7 @@ describe('Help', () => {
   });
 
   it('jumps to a section from the pills', () => {
-    renderInRouter(<Help sections={getHelpSections()} />);
+    render(<Help sections={getHelpSections()} />, { wrapper: MemoryRouter });
 
     const nav = screen.getByRole('navigation', { name: 'Help sections' });
 
@@ -41,14 +34,14 @@ describe('Help', () => {
   });
 
   it('marks the drafts', () => {
-    renderInRouter(<Help sections={getHelpSections()} />);
+    render(<Help sections={getHelpSections()} />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('link', { name: 'What are spaces? Draft' }))
       .toBeInTheDocument();
   });
 
   it('ends with the contact form', () => {
-    renderInRouter(<Help sections={getHelpSections()} />);
+    render(<Help sections={getHelpSections()} />, { wrapper: MemoryRouter });
 
     const form = screen.getByRole('region', {
       name: 'Didn’t find your answer?',
