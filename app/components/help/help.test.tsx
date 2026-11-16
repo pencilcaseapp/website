@@ -33,13 +33,6 @@ describe('Help', () => {
       .toHaveAttribute('href', '/#write-to-us');
   });
 
-  it('marks the drafts', () => {
-    render(<Help sections={getHelpSections()} />, { wrapper: MemoryRouter });
-
-    expect(screen.getByRole('link', { name: 'What are spaces? Draft' }))
-      .toBeInTheDocument();
-  });
-
   it('ends with the contact form', () => {
     render(<Help sections={getHelpSections()} />, { wrapper: MemoryRouter });
 

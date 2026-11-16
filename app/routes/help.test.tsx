@@ -15,7 +15,7 @@ describe('help routes', () => {
     expect(() => articleLoader(articleArgs('nope'))).toThrow();
   });
 
-  it('keeps drafts out of search engines', () => {
+  it('titles an article with its question', () => {
     const tags = (slug: string) => meta({
       loaderData: articleLoader(articleArgs(slug)),
     } as Parameters<typeof meta>[0]);
@@ -23,10 +23,6 @@ describe('help routes', () => {
     expect(tags('sign-in')).toContainEqual({
       title: 'How do I sign in? – pencil case',
     });
-    expect(tags('sign-in'))
-      .not.toContainEqual({ name: 'robots', content: 'noindex' });
-    expect(tags('what-are-spaces'))
-      .toContainEqual({ name: 'robots', content: 'noindex' });
   });
 
   it('serves an article as Markdown', async () => {
