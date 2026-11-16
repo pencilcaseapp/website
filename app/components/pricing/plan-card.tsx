@@ -24,7 +24,12 @@ export const PlanCard: React.FC<PlanCardProps> = ({ plan }) => {
     >
       <h3 className="type-subtitle">{plan.name}</h3>
       <p className="mt-6 flex items-baseline gap-2">
-        <span className="type-price">{plan.price}</span>
+        {/* The price is drawn one and a half times as wide as it is laid
+            out (`type-price`); the empty second column is the room for
+            that, half the width of the first. */}
+        <span className="inline-grid grid-cols-[2fr_1fr]">
+          <span className="type-price">{plan.price}</span>
+        </span>
         <span className="type-body-lg">{plan.period}</span>
       </p>
       <p className="type-body-lg mt-3 min-h-[3.2em]">{plan.lead}</p>
