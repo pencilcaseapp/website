@@ -8,7 +8,7 @@ describe('CancelContract', () => {
     render(<CancelContract />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('heading', { level: 1 }))
-      .toHaveTextContent('Cancel your contract.');
+      .toHaveTextContent('Cancel contract.');
     expect(screen.getByRole('button', { name: 'Cancel now' }))
       .toBeInTheDocument();
   });
@@ -19,7 +19,7 @@ describe('WithdrawContract', () => {
     render(<WithdrawContract />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('heading', { level: 1 }))
-      .toHaveTextContent('Withdraw from your contract.');
+      .toHaveTextContent('Withdraw contract.');
     expect(screen.getByRole('button', { name: 'Confirm withdrawal' }))
       .toBeInTheDocument();
   });

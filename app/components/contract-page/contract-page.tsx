@@ -25,7 +25,7 @@ const ContractPage: React.FC<{
 /** Cancelling Pro without signing in, behind the footer's link. */
 export const CancelContract: React.FC = () => (
   <ContractPage
-    title="Cancel your contract."
+    title="Cancel contract."
     lead="Cancel pencil case Pro here, no sign-in needed."
   >
     <CancelContractForm />
@@ -35,7 +35,7 @@ export const CancelContract: React.FC = () => (
 /** Withdrawing from Pro without signing in, behind the footer's link. */
 export const WithdrawContract: React.FC = () => (
   <ContractPage
-    title="Withdraw from your contract."
+    title="Withdraw contract."
     lead="Changed your mind about pencil case Pro? Withdraw here, no reason needed."
   >
     <WithdrawContractForm />
