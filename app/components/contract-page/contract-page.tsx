@@ -12,7 +12,7 @@ const ContractPage: React.FC<{
   <Container className="pt-14 sm:pt-20">
     <header className="mb-12 text-center sm:mb-16">
       <h1 className="type-hero text-balance">{title}</h1>
-      <p className="type-lead mx-auto mt-6 max-w-[32ch] text-balance sm:mt-8 lg:max-w-[40ch]">
+      <p className="type-lead mx-auto mt-6 max-w-[32ch] sm:mt-8 lg:max-w-none">
         {lead}
       </p>
     </header>
