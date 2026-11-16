@@ -24,9 +24,15 @@ export const Hero: React.FC = () => {
             <br />
             dead simple.
           </h1>
-          <p className="type-lead mx-auto mt-8 max-w-[34ch] text-balance lg:max-w-none xl:whitespace-nowrap">
-            A European alternative for writing docs and sharing them with your
-            friends.
+          {/* Two lines below `lg`, broken where the sentence turns, and
+              one where there is room. The longer line is 18.6em wide, so
+              on a narrow phone the type shrinks just enough for it to fit
+              between the gutters. */}
+          <p className="type-lead mx-auto mt-8 whitespace-nowrap max-sm:text-[min(1.0625rem,calc((100vw-2rem)/19))] lg:whitespace-normal xl:whitespace-nowrap">
+            A European alternative for writing docs
+            <br className="lg:hidden" />
+            {' '}
+            and sharing them with your friends.
           </p>
           <div className="mt-10 flex flex-col items-center gap-5">
             <div className="relative">
