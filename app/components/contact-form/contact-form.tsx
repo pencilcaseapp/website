@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 import { Link } from 'react-router';
-import { CONTACT_EMAIL, CONTACT_ENDPOINT } from '~/constants/links';
+import { CONTACT_EMAIL } from '~/constants/links';
+import { useConfig } from '~/hooks/use-config';
 import { Button } from '~/ui/button/button';
 import { TextLink } from '~/ui/text-link/text-link';
 
@@ -22,6 +23,7 @@ type SendState = 'idle' | 'sending' | 'sent' | 'failed';
  * thanks, so the box keeps its height.
  */
 export const ContactForm: React.FC = () => {
+  const { contactUrl } = useConfig();
   const [state, setState] = useState<SendState>('idle');
   const isSending = state === 'sending';
 
@@ -30,7 +32,7 @@ export const ContactForm: React.FC = () => {
     setState('sending');
 
     try {
-      const response = await fetch(CONTACT_ENDPOINT, {
+      const response = await fetch(contactUrl, {
         method: 'POST',
         body: new FormData(event.currentTarget),
       });
@@ -61,7 +63,7 @@ export const ContactForm: React.FC = () => {
       )}
       <form
         method="post"
-        action={CONTACT_ENDPOINT}
+        action={contactUrl}
         onSubmit={handleSubmit}
         inert={isSent}
         className={classNames(isSent && 'invisible')}

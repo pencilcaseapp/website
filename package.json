@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "react-router-serve ./build/server/index.js",
-    "dev": "react-router dev",
+    "start": "ENV=prod react-router-serve ./build/server/index.js",
+    "dev": "ENV=development react-router dev",
     "build": "react-router build",
     "test": "vitest",
     "typecheck": "react-router typegen && tsc",
