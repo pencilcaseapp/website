@@ -13,12 +13,22 @@ const ROW_ID = 'feature-row';
 export const Features: React.FC = () => {
   const rowRef = useRef<HTMLDivElement>(null);
   const { atStart, atEnd, step } = useCarousel(rowRef, '.fan-card');
-  const [open, setOpen] = useState<number | null>(null);
-  const [flipped, setFlipped] = useState(false);
+  // A click on any card spreads the whole hand; gathering it again puts
+  // every card back on its front.
+  const [spread, setSpread] = useState(false);
+  const [flipped, setFlipped] = useState<number[]>([]);
 
-  const toggle = (index: number) => {
-    setOpen(open => (open === index ? null : index));
-    setFlipped(false);
+  const toggle = () => {
+    setSpread(spread => !spread);
+    setFlipped([]);
+  };
+
+  const flip = (index: number) => {
+    setFlipped(flipped =>
+      flipped.includes(index)
+        ? flipped.filter(item => item !== index)
+        : [...flipped, index],
+    );
   };
 
   return (
@@ -65,11 +75,10 @@ export const Features: React.FC = () => {
                   feature={feature}
                   index={index}
                   count={FEATURES.length}
-                  open={open === index}
-                  flipped={flipped}
-                  afterOpen={open === index - 1}
-                  onToggle={() => toggle(index)}
-                  onFlip={() => setFlipped(flipped => !flipped)}
+                  spread={spread}
+                  flipped={flipped.includes(index)}
+                  onToggle={toggle}
+                  onFlip={() => flip(index)}
                 />
               ))}
             </ol>
