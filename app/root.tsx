@@ -5,10 +5,13 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteLoaderData,
 } from 'react-router';
 
 import type { Route } from './+types/root';
 import './app.css';
+import { getConfig } from './config';
+import { ConfigContext, useConfig } from './hooks/use-config';
 import { useInstantPageChange } from './hooks/use-instant-page-change';
 import fontsHref from './fonts.css?url';
 
@@ -31,7 +34,29 @@ export const links: Route.LinksFunction = () => [
   { rel: 'stylesheet', href: fontsHref },
 ];
 
+export function loader() {
+  return { config: getConfig() };
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  // Left out when the root loader itself failed: the test config then.
+  const fallback = useConfig();
+  const config = useRouteLoaderData<typeof loader>('root')?.config ?? fallback;
+
+  return (
+    <ConfigContext value={config}>
+      <Document analytics={config.analytics}>{children}</Document>
+    </ConfigContext>
+  );
+}
+
+function Document({
+  analytics,
+  children,
+}: {
+  analytics: boolean;
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <head>
@@ -42,7 +67,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         />
         <Meta />
         <Links />
-        {import.meta.env.PROD && <Analytics />}
+        {analytics && <Analytics />}
       </head>
       <body>
         {children}
@@ -77,6 +102,7 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+  const { environment } = useConfig();
   let message = 'Oops!';
   let details = 'An unexpected error occurred.';
   let stack: string | undefined;
@@ -88,7 +114,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         ? 'The requested page could not be found.'
         : error.statusText || details;
   }
-  else if (import.meta.env.DEV && error && error instanceof Error) {
+  else if (environment === 'development' && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
   }

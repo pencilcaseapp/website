@@ -65,11 +65,23 @@ order live in `app/constants/help.ts`. Files are parsed on the server only
 (`app/utils/help.server.ts`, loaders hand data down) and rendered with
 `react-markdown`; links starting with `/` become router links. A `draft`
 article describes something the app doesn't do yet: it gets a badge and
-`noindex`. The help and `/contact` forms share `ContactForm` and don't
-submit anywhere yet.
+`noindex`.
+
+**Config — `app/config/`.** Like the app's: `getConfig()` switches on
+`process.env.ENV` (`development` from `npm run dev`, `prod` from
+`npm start`, test otherwise) and returns a typed `Config`. Nothing in it
+is secret: the root loader hands it down and components read it with
+`useConfig()` (the test config without a provider, in tests and
+Storybook). Tell environments apart through it, never `import.meta.env`.
+
+**Contact form.** `/help` and `/contact` share `ContactForm`, which posts
+from the browser to the app's `/contact` (`config.contactUrl`, the local
+app in dev). The app mails it to our inbox, and its Bunny Shield rate
+limits it per visitor; the website's own Shield plan has no room for that,
+which is why the form doesn't post to the website.
 
 **Analytics.** Plausible, rendered in `app/root.tsx` only when
-`import.meta.env.PROD`, so localhost is never counted. It sets no cookies.
+`config.analytics` (prod), so localhost is never counted. It sets no cookies.
 The privacy policy describes it; anything that changes what is collected
 updates the policy too.
 
