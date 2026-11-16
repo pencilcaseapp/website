@@ -1,11 +1,18 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router';
+import { createRoutesStub } from 'react-router';
 import { describe, expect, it } from 'vitest';
 import { Contact } from './contact';
 
+/** Renders in a data router, which the contact form's fetcher needs. */
+function renderInRouter(ui: React.ReactElement) {
+  const Stub = createRoutesStub([{ path: '/', Component: () => ui }]);
+
+  return render(<Stub />);
+}
+
 describe('Contact', () => {
   it('asks for an e-mail address and a message', () => {
-    render(<Contact />, { wrapper: MemoryRouter });
+    renderInRouter(<Contact />);
 
     expect(screen.getByRole('heading', { level: 1 }))
       .toHaveTextContent('Say hello.');
@@ -17,7 +24,7 @@ describe('Contact', () => {
   });
 
   it('points to the privacy policy and the inbox', () => {
-    render(<Contact />, { wrapper: MemoryRouter });
+    renderInRouter(<Contact />);
 
     expect(screen.getByRole('link', { name: 'privacy policy' }))
       .toHaveAttribute('href', '/privacy');

@@ -65,8 +65,15 @@ order live in `app/constants/help.ts`. Files are parsed on the server only
 (`app/utils/help.server.ts`, loaders hand data down) and rendered with
 `react-markdown`; links starting with `/` become router links. A `draft`
 article describes something the app doesn't do yet: it gets a badge and
-`noindex`. The help and `/contact` forms share `ContactForm` and don't
-submit anywhere yet.
+`noindex`.
+
+**Contact form.** `/help` and `/contact` share `ContactForm`, whose fetcher
+posts to the action of `routes/contact.tsx` (`/contact.data` on the wire)
+from both. `app/utils/contact.server.ts` checks the fields and mails the
+message to `CONTACT_EMAIL` through Lettermint
+(`app/clients/lettermint.server.ts`, like the app's), with the sender as
+reply-to. The token is `EMAIL_API_TOKEN`; without it, dev skips the send
+and prod fails it. Rate limiting is Bunny's job, not the site's.
 
 **Analytics.** Plausible, rendered in `app/root.tsx` only when
 `import.meta.env.PROD`, so localhost is never counted. It sets no cookies.
