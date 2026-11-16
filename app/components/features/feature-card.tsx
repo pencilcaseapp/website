@@ -24,6 +24,10 @@ const LOOKS = [
   },
 ];
 
+// The card's name: as large as the longest one ("Collaborate") can be on
+// a narrow phone without reaching the strip the next card lies over.
+const TITLE = 'type-title text-[clamp(1.25rem,6.4vw,2rem)]';
+
 const FOCUS_RING = classNames(
   'focus-visible:outline-2 focus-visible:outline-offset-2',
   'focus-visible:outline-pca-grey-900',
@@ -33,12 +37,13 @@ export interface FeatureCardProps {
   feature: Feature;
   index: number;
   count: number;
-  /** Picked out of the fan: straightened, on top, with room on both sides. */
-  open: boolean;
+  /**
+   * The hand is spread out: every card is straightened, has room on both
+   * sides and shows its turn over button.
+   */
+  spread: boolean;
   /** Showing its back, the list of what the feature does. */
   flipped: boolean;
-  /** The card before this one is open, so this one moves aside. */
-  afterOpen: boolean;
   onToggle: () => void;
   onFlip: () => void;
 }
@@ -47,9 +52,8 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
   feature,
   index,
   count,
-  open,
+  spread,
   flipped,
-  afterOpen,
   onToggle,
   onFlip,
 }) => {
@@ -60,19 +64,22 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
     'fan-face flex flex-col rounded-[2.75rem] p-8 sm:p-10',
     look.color,
   );
-  const showsBack = open && flipped;
+  const showsBack = spread && flipped;
 
   return (
     <li
       className={classNames(
         'fan-card relative w-[min(25rem,calc(100vw-4rem))] shrink-0 snap-start',
         'transition-[rotate,translate,margin-left] duration-300 ease-in-out',
-        'hover:z-10 hover:rotate-0 motion-reduce:transition-none',
-        'lg:hover:-translate-y-2',
-        index > 0 && (open || afterOpen ? 'ml-5' : '-ml-9'),
+        'motion-reduce:transition-none',
+        // In the fan a card under the pointer straightens and lifts, to
+        // say it can be picked. Spread out, the cards hold still: there
+        // the turn over button is what to press.
+        !spread && 'hover:z-10 hover:rotate-0 lg:hover:-translate-y-2',
+        index > 0 && (spread ? 'ml-5' : '-ml-9'),
         look.tilt,
       )}
-      style={{ zIndex: open ? count : index, rotate: open ? '0deg' : undefined }}
+      style={{ zIndex: index, rotate: spread ? '0deg' : undefined }}
     >
       <div
         className="fan-card-body relative"
@@ -81,8 +88,8 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
         <div className={face} inert={showsBack}>
           <button
             type="button"
-            aria-label={open ? `Close ${name}` : `Open ${name}`}
-            aria-expanded={open}
+            aria-label={spread ? `Close ${name}` : `Open ${name}`}
+            aria-expanded={spread}
             onClick={onToggle}
             className={classNames(
               'absolute inset-0 cursor-pointer rounded-[2.75rem]',
@@ -91,10 +98,10 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
           />
           <FlipButton
             label="Turn the card over"
-            shown={open && !flipped}
+            shown={spread && !flipped}
             onClick={onFlip}
           />
-          <p className="type-hand-lg text-center">{label}</p>
+          <p className="type-hand text-center">{label}</p>
           <div
             aria-hidden="true"
             className="mt-6 flex h-52 items-end justify-center sm:h-64"
@@ -107,8 +114,14 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
               className="pointer-events-none h-full w-auto select-none"
             />
           </div>
-          <h3 className="type-title mt-8">{feature.title}</h3>
-          <p className="type-card mt-4">{feature.lead}</p>
+          {/* The next card lies over this one's right edge: 36px of it,
+              and a little more where the two tilt towards each other. The
+              text keeps clear of that strip, so the cards overlap without
+              covering a word. */}
+          <div className="mt-8 pr-6 sm:pr-4">
+            <h3 className={TITLE}>{feature.title}</h3>
+            <p className="type-card mt-2 text-[1rem]">{feature.lead}</p>
+          </div>
         </div>
         <div className={classNames(face, 'fan-face-back')} inert={!showsBack}>
           <button
@@ -125,8 +138,8 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
             shown={showsBack}
             onClick={onFlip}
           />
-          <p className="type-hand-lg text-center">{label}</p>
-          <h3 className="type-title mt-8">{feature.title}</h3>
+          <p className="type-hand text-center">{label}</p>
+          <h3 className={classNames(TITLE, 'mt-8')}>{feature.title}</h3>
           <ul className="mt-6 flex flex-col gap-2.5">
             {feature.points.map(point => (
               <li key={point} className="type-body flex items-start gap-3">

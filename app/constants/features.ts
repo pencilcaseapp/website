@@ -31,7 +31,7 @@ export const FEATURES: Feature[] = [
   {
     id: 'collaborate',
     title: 'Collaborate',
-    lead: 'Edit the same doc together, in real time.',
+    lead: 'Edit the same doc together with your friends, in real time.',
     points: ['Live cursors with avatars', 'No account needed to join a doc'],
   },
   {
