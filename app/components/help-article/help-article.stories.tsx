@@ -18,8 +18,3 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-
-/** About something the app does not do yet. */
-export const Draft: Story = {
-  args: articleArgs('what-are-spaces'),
-};

@@ -55,12 +55,6 @@ export const HelpArticle: React.FC<HelpArticleProps> = ({
   <Container className="pt-10 sm:pt-14">
     <article className="mx-auto max-w-[680px]">
       <Breadcrumb section={section} />
-      {article.draft && (
-        <p className="type-body mt-6 rounded-[1.5rem] bg-pca-pop-yellow px-6 py-5">
-          Draft: the app does not do this yet, or not everywhere. This page
-          stays out of search engines until it does.
-        </p>
-      )}
       <h1 className="type-subtitle mt-6 text-balance sm:mt-8 sm:text-[2.75rem]">
         {article.question}
       </h1>

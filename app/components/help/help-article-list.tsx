@@ -24,18 +24,6 @@ export const RowArrow: React.FC = () => (
   </svg>
 );
 
-/** Marks an article about something the app does not do yet. */
-export const DraftBadge: React.FC = () => (
-  <span
-    className={classNames(
-      'type-caption ml-2 inline-block rounded-full bg-pca-pop-yellow',
-      'px-2.5 align-[0.1em] font-normal whitespace-nowrap',
-    )}
-  >
-    Draft
-  </span>
-);
-
 export interface HelpArticleListProps {
   articles: HelpArticleLink[];
 }
@@ -57,7 +45,6 @@ export const HelpArticleList: React.FC<HelpArticleListProps> = ({
         >
           <span className="decoration-2 underline-offset-[0.2em] group-hover:underline">
             {article.question}
-            {article.draft && <DraftBadge />}
           </span>
           <RowArrow />
         </Link>

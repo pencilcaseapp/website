@@ -29,7 +29,6 @@ export function meta({ loaderData }: Route.MetaArgs) {
   return [
     { title: `${article.question} – pencil case` },
     { name: 'description', content: description },
-    ...article.draft ? [{ name: 'robots', content: 'noindex' }] : [],
   ];
 }
 
