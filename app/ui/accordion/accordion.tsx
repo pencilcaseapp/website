@@ -38,18 +38,32 @@ export const Accordion: React.FC<AccordionProps> = ({
           'group rounded-[1.75rem] bg-pca-grey-100 transition-colors',
           'duration-150 ease-out data-open:bg-pca-pop-yellow',
           'motion-reduce:transition-none',
+          // The focus ring belongs to the whole card, drawn a little
+          // inside its edge: around the question alone, its lower line
+          // ran right over the first line of an open answer.
+          'has-[[data-trigger]:focus-visible]:outline-2',
+          'has-[[data-trigger]:focus-visible]:-outline-offset-[6px]',
+          'has-[[data-trigger]:focus-visible]:outline-pca-grey-900',
         )}
       >
         <BaseAccordion.Header render={<Heading />}>
           {/* `select-none`: clicking a question twice in a row would
               otherwise select its text. */}
           <BaseAccordion.Trigger
+            data-trigger=""
             className={classNames(
-              'type-question flex min-h-11 w-full cursor-pointer items-center',
+              // Lighter than `type-question` on its own, and in three
+              // steps beside `type-lead` (18, 20 and 22px to its 17, 19
+              // and 22): a question is the title of its answer, not of
+              // the section. It stops at 22px: the longest question of
+              // the startpage still fits on one line of the full-width
+              // card there.
+              'type-question text-[1.125rem] font-medium',
+              'sm:text-[1.25rem] lg:text-[1.375rem]',
+              'flex min-h-11 w-full cursor-pointer items-center',
               'justify-between gap-6 rounded-[1.75rem] px-6 py-5 text-left',
               'select-none sm:px-7',
-              'focus-visible:outline-2 focus-visible:outline-offset-2',
-              'focus-visible:outline-pca-grey-900',
+              'focus-visible:outline-none',
             )}
           >
             {item.title}
@@ -77,7 +91,10 @@ export const Accordion: React.FC<AccordionProps> = ({
             'motion-reduce:transition-none',
           )}
         >
-          <div className="type-body-lg max-w-[56ch] px-6 pb-6 sm:px-7">
+          {/* The answer is a step smaller than its question at every
+              width, the size of the text in the plan cards, and keeps to
+              a reading width however wide the card is. */}
+          <div className="type-card max-w-[62ch] px-6 pb-6 leading-[1.55] max-sm:text-[1rem] sm:px-7">
             {item.content}
           </div>
         </BaseAccordion.Panel>

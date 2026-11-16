@@ -24,7 +24,7 @@ export const Questions: React.FC<QuestionsProps> = ({ className }) => (
       <HandArrowDown className="mx-auto mt-2" />
     </div>
     <Accordion items={ITEMS} headingLevel="h4" className="mt-6" />
-    <p className="type-body-lg mt-8 text-center">
+    <p className="type-card mt-8 text-center max-sm:text-[1rem]">
       <TextLink as={Link} to={HELP_HREF} className="font-semibold">
         See all questions
       </TextLink>

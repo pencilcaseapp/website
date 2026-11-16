@@ -12,8 +12,8 @@ describe('Pricing', () => {
   it('shows the free and the pro plan', () => {
     render(<Pricing />, { wrapper: MemoryRouter });
 
-    expect(within(getPlan('Free')).getByText('0 €')).toBeInTheDocument();
-    expect(within(getPlan('Pro')).getByText('25 €')).toBeInTheDocument();
+    expect(within(getPlan('Free')).getByText('0€')).toBeInTheDocument();
+    expect(within(getPlan('Pro')).getByText('25€')).toBeInTheDocument();
   });
 
   it('tells how many docs are free', () => {

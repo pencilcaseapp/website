@@ -22,34 +22,43 @@ export const PlanCard: React.FC<PlanCardProps> = ({ plan }) => {
         look.card,
       )}
     >
-      <h3 className="type-subtitle">{plan.name}</h3>
+      {/* The name steps back so the price leads: the same face at its
+          regular weight. The lighter cuts get faint at the 22px this has
+          on a phone. */}
+      <h3 className="type-subtitle font-normal">{plan.name}</h3>
       <p className="mt-6 flex items-baseline gap-2">
         {/* The price is drawn one and a half times as wide as it is laid
             out (`type-price`); the empty second column is the room for
             that, half the width of the first. */}
         <span className="inline-grid grid-cols-[2fr_1fr]">
-          <span className="type-price">{plan.price}</span>
+          {/* Set tight, "25€": at this size the space of "25 €" (as it
+              is written everywhere else) reads as a gap. */}
+          <span className="type-price">{plan.price.replace(/\s/, '')}</span>
         </span>
-        <span className="type-body-lg">{plan.period}</span>
+        <span className="type-card max-sm:text-[1rem]">{plan.period}</span>
       </p>
-      <p className="type-body-lg mt-3 min-h-[3.2em]">{plan.lead}</p>
+      {/* One line in the full-width card. Narrower cards wrap it, and
+          keep room for two lines so the lists start level. */}
+      <p className="type-card mt-3 max-lg:min-h-[2.8em] max-sm:text-[1rem]">
+        {plan.lead}
+      </p>
       <ul className="mt-8 mb-10 flex flex-col gap-2.5">
         {plan.points.map(point => (
           <li
             key={point.label}
             className={classNames(
-              'type-body flex items-start gap-3',
+              'type-card flex items-start gap-3 max-sm:text-[1rem]',
               !point.included && 'text-pca-grey-600',
             )}
           >
             <Icon
               icon={point.included ? 'check' : 'minus'}
-              className="mt-[0.15em] size-5 shrink-0"
+              className="mt-[0.1em] size-5.5 shrink-0"
             />
             <span>
               {point.highlight && (
                 <>
-                  <strong className="font-semibold">{point.highlight}</strong>
+                  <strong className="font-bold">{point.highlight}</strong>
                   {' '}
                 </>
               )}

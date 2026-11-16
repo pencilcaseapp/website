@@ -7,7 +7,7 @@ exports[`Accordion > matches snapshot 1`] = `
     data-orientation="vertical"
   >
     <div
-      class="group rounded-[1.75rem] bg-pca-grey-100 transition-colors duration-150 ease-out data-open:bg-pca-pop-yellow motion-reduce:transition-none"
+      class="group rounded-[1.75rem] bg-pca-grey-100 transition-colors duration-150 ease-out data-open:bg-pca-pop-yellow motion-reduce:transition-none has-[[data-trigger]:focus-visible]:outline-2 has-[[data-trigger]:focus-visible]:-outline-offset-[6px] has-[[data-trigger]:focus-visible]:outline-pca-grey-900"
       data-closed=""
       data-hidden=""
       data-index="0"
@@ -21,10 +21,11 @@ exports[`Accordion > matches snapshot 1`] = `
       >
         <button
           aria-expanded="false"
-          class="type-question flex min-h-11 w-full cursor-pointer items-center justify-between gap-6 rounded-[1.75rem] px-6 py-5 text-left select-none sm:px-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pca-grey-900"
+          class="type-question text-[1.125rem] font-medium sm:text-[1.25rem] lg:text-[1.375rem] flex min-h-11 w-full cursor-pointer items-center justify-between gap-6 rounded-[1.75rem] px-6 py-5 text-left select-none sm:px-7 focus-visible:outline-none"
           data-hidden=""
           data-index="0"
           data-orientation="vertical"
+          data-trigger=""
           id="base-ui-_r_q_"
           tabindex="0"
           type="button"
@@ -67,14 +68,14 @@ exports[`Accordion > matches snapshot 1`] = `
         style="--accordion-panel-height: auto; --accordion-panel-width: auto;"
       >
         <div
-          class="type-body-lg max-w-[56ch] px-6 pb-6 sm:px-7"
+          class="type-card max-w-[62ch] px-6 pb-6 leading-[1.55] max-sm:text-[1rem] sm:px-7"
         >
           First answer
         </div>
       </div>
     </div>
     <div
-      class="group rounded-[1.75rem] bg-pca-grey-100 transition-colors duration-150 ease-out data-open:bg-pca-pop-yellow motion-reduce:transition-none"
+      class="group rounded-[1.75rem] bg-pca-grey-100 transition-colors duration-150 ease-out data-open:bg-pca-pop-yellow motion-reduce:transition-none has-[[data-trigger]:focus-visible]:outline-2 has-[[data-trigger]:focus-visible]:-outline-offset-[6px] has-[[data-trigger]:focus-visible]:outline-pca-grey-900"
       data-closed=""
       data-hidden=""
       data-index="1"
@@ -88,10 +89,11 @@ exports[`Accordion > matches snapshot 1`] = `
       >
         <button
           aria-expanded="false"
-          class="type-question flex min-h-11 w-full cursor-pointer items-center justify-between gap-6 rounded-[1.75rem] px-6 py-5 text-left select-none sm:px-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pca-grey-900"
+          class="type-question text-[1.125rem] font-medium sm:text-[1.25rem] lg:text-[1.375rem] flex min-h-11 w-full cursor-pointer items-center justify-between gap-6 rounded-[1.75rem] px-6 py-5 text-left select-none sm:px-7 focus-visible:outline-none"
           data-hidden=""
           data-index="1"
           data-orientation="vertical"
+          data-trigger=""
           id="base-ui-_r_u_"
           tabindex="0"
           type="button"
@@ -134,7 +136,7 @@ exports[`Accordion > matches snapshot 1`] = `
         style="--accordion-panel-height: auto; --accordion-panel-width: auto;"
       >
         <div
-          class="type-body-lg max-w-[56ch] px-6 pb-6 sm:px-7"
+          class="type-card max-w-[62ch] px-6 pb-6 leading-[1.55] max-sm:text-[1rem] sm:px-7"
         >
           Second answer
         </div>
