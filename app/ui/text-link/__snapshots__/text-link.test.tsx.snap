@@ -3,7 +3,7 @@
 exports[`TextLink > matches snapshot 1`] = `
 <div>
   <a
-    class="type-link rounded-sm font-medium [overflow-wrap:anywhere] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pca-grey-900"
+    class="type-link rounded-sm font-medium [overflow-wrap:anywhere] transition-colors duration-150 ease-out hover:text-[color-mix(in_oklab,currentColor_60%,transparent)] motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pca-grey-900"
     href="/privacy"
   >
     privacy policy
