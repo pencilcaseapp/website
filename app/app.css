@@ -515,24 +515,30 @@ html {
 }
 
 .fan-card-body {
+  --fan-turn: 0.5s;
+
   transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: transform var(--fan-turn) cubic-bezier(0.32, 0.72, 0, 1);
 
   &[data-flipped] {
     transform: rotateY(180deg);
   }
 }
 
+/* The face that is turned away is taken out of the picture, not only
+   turned away. `backface-visibility` hides a face, but in Safari on iOS
+   not what stands on it in a layer of its own while the card turns, and
+   the title, drawn wide by a transform, is such a layer: it showed
+   through mirrored on the other side. The faces change places when the
+   card is edge on, which this easing reaches 16% into the turn. */
 .fan-face {
   backface-visibility: hidden;
+  transition: visibility 0s calc(var(--fan-turn) * 0.16);
+}
 
-  /* Safari gives an element with a transform a layer of its own, and
-     that layer does not turn away with its face: the title, drawn wide
-     by a transform, showed through mirrored on the other side while the
-     card turned. */
-  .type-title {
-    backface-visibility: hidden;
-  }
+.fan-card-body:not([data-flipped]) > .fan-face-back,
+.fan-card-body[data-flipped] > .fan-face:not(.fan-face-back) {
+  visibility: hidden;
 }
 
 .fan-face-back {
@@ -738,7 +744,8 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fan-card-body {
+  .fan-card-body,
+  .fan-face {
     transition: none;
   }
 }
