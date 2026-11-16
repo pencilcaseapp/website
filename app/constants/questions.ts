@@ -40,6 +40,6 @@ export const QUESTIONS: Question[] = [
   {
     id: 'friends',
     question: 'Do my friends need an account to collaborate with me?',
-    answer: 'No. Turn on the link, send it, and they are in the document right away — as a Capybara or an Axolotl. Only the person who owns the document needs an account.',
+    answer: 'No. Turn on the link, send it, and they are in the document right away. Only the person who owns the document needs an account.',
   },
 ];
