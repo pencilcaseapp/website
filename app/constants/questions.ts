@@ -25,7 +25,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'cancel',
     question: 'How can I cancel my subscription?',
-    answer: 'In the settings of the app, or without signing in through “cancel contract” at the bottom of this page. The first year runs to its end; after that you can cancel with one month’s notice and we refund the rest of the year. You keep every document either way.',
+    answer: 'In the settings of the app, or without signing in through “cancel contract” at the bottom of this page. The first year runs to its end. After that you can cancel with one month’s notice and we refund the rest of the year. You keep every document either way.',
   },
   {
     id: 'withdraw',
