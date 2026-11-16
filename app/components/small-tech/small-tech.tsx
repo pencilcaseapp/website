@@ -63,11 +63,10 @@ const Panel: React.FC<PanelProps> = ({ principle, index }) => (
         principle.dark ? 'text-pca-grey-900' : 'text-pca-white',
       )}
     >
-      <p className="type-label tracking-[0.14em] uppercase">{TITLE}</p>
       <div
         className={classNames(
-          'flex flex-1 flex-col justify-end pt-6 sm:grid sm:grid-cols-[3fr_2fr]',
-          'sm:items-center sm:gap-x-8 sm:pt-8 lg:grid-cols-[7fr_5fr]',
+          'flex flex-1 flex-col justify-end sm:grid sm:grid-cols-[3fr_2fr]',
+          'sm:items-center sm:gap-x-8 lg:grid-cols-[7fr_5fr]',
           'lg:gap-x-12',
         )}
       >
@@ -81,9 +80,16 @@ const Panel: React.FC<PanelProps> = ({ principle, index }) => (
             'sm:text-left',
           )}
         >
+          {/* Three clear steps: a small label that says where you are,
+              right on top of the headline it belongs to, the headline,
+              and the text at a reading size and a reading width, closer
+              to its headline than to the button. */}
+          <p className="type-label mb-3 text-[0.8125rem] tracking-[0.14em] uppercase lg:mb-5">
+            {TITLE}
+          </p>
           <h3
             className={classNames(
-              'type-hero text-[clamp(2.25rem,7.2vw,6rem)]',
+              'type-hero text-[clamp(2.5rem,7.2vw,6rem)]',
               'sm:max-lg:text-[clamp(2.25rem,5.6vw,6rem)]',
               'lg:text-[clamp(2.5rem,6.2vw,5.5rem)]',
             )}
@@ -95,7 +101,7 @@ const Panel: React.FC<PanelProps> = ({ principle, index }) => (
               </span>
             ))}
           </h3>
-          <p className="type-lead mt-6 max-w-[26ch] text-pretty lg:mt-8">
+          <p className="type-lead mt-5 max-w-[34ch] leading-[1.55] sm:max-w-[40ch] lg:mt-6">
             {principle.body}
           </p>
           <Button
@@ -103,7 +109,7 @@ const Panel: React.FC<PanelProps> = ({ principle, index }) => (
             href={APP_URL}
             colorLight={principle.dark ? 'grey-900' : 'white'}
             outlineColor={principle.dark ? 'grey-900' : 'white'}
-            className="mt-6 sm:mt-8 lg:mt-10"
+            className="mt-8 lg:mt-10"
           >
             Get started
           </Button>
