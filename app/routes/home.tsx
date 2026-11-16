@@ -1,3 +1,4 @@
+import { Apps } from '~/components/apps/apps';
 import { Features } from '~/components/features/features';
 import { Hero } from '~/components/hero/hero';
 import { PageLayout } from '~/components/page-layout/page-layout';
@@ -21,6 +22,7 @@ export default function Home() {
       <Features />
       <SmallTech />
       <Pricing />
+      <Apps />
     </PageLayout>
   );
 }
