@@ -8,7 +8,7 @@ related:
   - hosted-in-the-eu
 ---
 
-Docs, dead simple. pencil case is a European alternative for writing docs and sharing them with your friends.
+pencil case is a European alternative for writing docs and sharing them with your friends.
 
 - **Write** in a simple editor with no distractions: headings, lists, checklists, quotes, images and Markdown.
 - **Share** a document with a link that lets people view or edit, or invite friends by e-mail.
