@@ -14,6 +14,7 @@ import { NotFound } from './components/not-found/not-found';
 import { getConfig } from './config';
 import { ConfigContext, useConfig } from './hooks/use-config';
 import { useInstantPageChange } from './hooks/use-instant-page-change';
+import { usePlausiblePageviews } from './hooks/use-plausible-pageviews';
 import fontsHref from './fonts.css?url';
 
 import interRegular from
@@ -105,7 +106,7 @@ function Document({
 
 const plausibleInit = `
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-  plausible.init()
+  plausible.init({ hashBasedRouting: true, autoCapturePageviews: false })
 `;
 
 function Analytics() {
@@ -122,6 +123,7 @@ function Analytics() {
 
 export default function App() {
   useInstantPageChange();
+  usePlausiblePageviews();
 
   return <Outlet />;
 }
