@@ -28,8 +28,7 @@ export const Features: React.FC = () => {
     setFlipped(flipped =>
       flipped.includes(index)
         ? flipped.filter(item => item !== index)
-        : [...flipped, index],
-    );
+        : [...flipped, index]);
   };
 
   return (
