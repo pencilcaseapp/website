@@ -10,6 +10,8 @@ import {
 
 import type { Route } from './+types/root';
 import './app.css';
+import { NotFound } from './components/not-found/not-found';
+import { PageLayout } from './components/page-layout/page-layout';
 import { getConfig } from './config';
 import { ConfigContext, useConfig } from './hooks/use-config';
 import { useInstantPageChange } from './hooks/use-instant-page-change';
@@ -127,16 +129,22 @@ export default function App() {
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   const { environment } = useConfig();
+
+  if (isRouteErrorResponse(error) && error.status === 404) {
+    return (
+      <PageLayout header="white">
+        <NotFound />
+      </PageLayout>
+    );
+  }
+
   let message = 'Oops!';
   let details = 'An unexpected error occurred.';
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '404' : 'Error';
-    details
-      = error.status === 404
-        ? 'The requested page could not be found.'
-        : error.statusText || details;
+    message = 'Error';
+    details = error.statusText || details;
   }
   else if (environment === 'development' && error && error instanceof Error) {
     details = error.message;
