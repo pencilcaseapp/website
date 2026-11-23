@@ -7,8 +7,8 @@ describe('TermsOfUse', () => {
   it('shows the version', () => {
     render(<TermsOfUse />, { wrapper: MemoryRouter });
 
-    expect(screen.getByText('2 November 2026'))
-      .toHaveAttribute('datetime', '2026-11-02');
+    expect(screen.getByText('23 November 2026'))
+      .toHaveAttribute('datetime', '2026-11-23');
   });
 
   it('has nine sections', () => {
