@@ -10,6 +10,7 @@ import { Button } from '~/ui/button/button';
 import { Container } from '~/ui/container/container';
 import { Eyes } from '~/ui/eyes/eyes';
 import { Logo } from '~/ui/logo/logo';
+import { plausibleEvent } from '~/utils/analytics';
 
 const TILTS = [
   '-rotate-2',
@@ -67,7 +68,11 @@ export const SiteFooter: React.FC = () => (
             colorLight="pop-yellow"
             size="compact"
             outlineColor="white"
-            className={classNames(PILL, 'rotate-2')}
+            className={classNames(
+              PILL,
+              'rotate-2',
+              plausibleEvent('Get started', { location: 'footer' }),
+            )}
           >
             Get started
           </Button>

@@ -4,6 +4,7 @@ import { PRINCIPLES, type Principle } from '~/constants/small-tech';
 import { useStackedPanels } from '~/hooks/use-stacked-panels';
 import { Button } from '~/ui/button/button';
 import { Container } from '~/ui/container/container';
+import { plausibleEvent } from '~/utils/analytics';
 
 const TITLE = 'Small Tech';
 
@@ -27,7 +28,14 @@ export const SmallTech: React.FC = () => {
           <p className="type-lead mt-4 text-balance">
             We build a product for people, not machines.
           </p>
-          <Button as="a" href={APP_URL} className="mt-8">
+          <Button
+            as="a"
+            href={APP_URL}
+            className={classNames(
+              'mt-8',
+              plausibleEvent('Get started', { location: 'small tech' }),
+            )}
+          >
             Get started
           </Button>
         </div>
@@ -109,7 +117,10 @@ const Panel: React.FC<PanelProps> = ({ principle, index }) => (
             href={APP_URL}
             colorLight={principle.dark ? 'grey-900' : 'white'}
             outlineColor={principle.dark ? 'grey-900' : 'white'}
-            className="mt-8 lg:mt-10"
+            className={classNames(
+              'mt-8 lg:mt-10',
+              plausibleEvent('Get started', { location: 'small tech panel' }),
+            )}
           >
             Get started
           </Button>
