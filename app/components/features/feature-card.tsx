@@ -3,6 +3,7 @@ import { APP_URL } from '~/constants/links';
 import type { Feature } from '~/constants/features';
 import { Button } from '~/ui/button/button';
 import { Icon } from '~/ui/icon/icon';
+import { plausibleEvent } from '~/utils/analytics';
 
 const LOOKS = [
   {
@@ -149,7 +150,15 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
             ))}
           </ul>
           <div className="relative z-10 mt-auto pt-8">
-            <Button as="a" href={APP_URL} size="medium" className="w-full">
+            <Button
+              as="a"
+              href={APP_URL}
+              size="medium"
+              className={classNames(
+                'w-full',
+                plausibleEvent('Get started', { location: 'feature card' }),
+              )}
+            >
               Get started
             </Button>
           </div>

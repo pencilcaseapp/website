@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import type { Plan } from '~/constants/plans';
 import { Button, type ButtonColor } from '~/ui/button/button';
 import { Icon } from '~/ui/icon/icon';
+import { plausibleEvent } from '~/utils/analytics';
 
 const LOOKS: Record<Plan['id'], { card: string; button: ButtonColor }> = {
   free: { card: 'bg-pca-grey-100', button: 'white' },
@@ -75,7 +76,7 @@ export const PlanCard: React.FC<PlanCardProps> = ({ plan }) => {
         href={plan.href}
         colorLight={look.button}
         size="medium"
-        className="mt-auto w-full"
+        className={classNames('mt-auto w-full', plausibleEvent(plan.event))}
       >
         {plan.cta}
       </Button>

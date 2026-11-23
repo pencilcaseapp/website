@@ -7,6 +7,7 @@ import { Button } from '~/ui/button/button';
 import { Container } from '~/ui/container/container';
 import { Icon } from '~/ui/icon/icon';
 import { FeatureCard } from './feature-card';
+import { plausibleEvent } from '~/utils/analytics';
 
 const ROW_ID = 'feature-row';
 
@@ -44,7 +45,14 @@ export const Features: React.FC = () => {
               {' '}
               <span className="sm:block">These five are just the start.</span>
             </p>
-            <Button as="a" href={APP_URL} className="mt-8">
+            <Button
+              as="a"
+              href={APP_URL}
+              className={classNames(
+                'mt-8',
+                plausibleEvent('Get started', { location: 'features' }),
+              )}
+            >
               Get started
             </Button>
           </div>

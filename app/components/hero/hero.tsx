@@ -6,6 +6,7 @@ import { HandArrow } from '~/ui/hand-note/hand-note';
 import { useScrollDrift } from '~/hooks/use-scroll-drift';
 import { useScrolledOut } from '~/hooks/use-scrolled-out';
 import { ProductDemo } from '../product-demo/product-demo';
+import { plausibleEvent } from '~/utils/analytics';
 
 export const Hero: React.FC = () => {
   const driftRef = useScrollDrift<HTMLDivElement>();
@@ -36,7 +37,13 @@ export const Hero: React.FC = () => {
           </p>
           <div className="mt-10 flex flex-col items-center gap-5">
             <div className="relative">
-              <Button as="a" href={APP_URL}>Get started</Button>
+              <Button
+                as="a"
+                href={APP_URL}
+                className={plausibleEvent('Get started', { location: 'hero' })}
+              >
+                Get started
+              </Button>
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute top-1/2 right-full mr-3 hidden -translate-y-1/2 items-center gap-2 select-none lg:flex"

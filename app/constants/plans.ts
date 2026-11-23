@@ -18,6 +18,8 @@ export interface Plan {
   points: PlanPoint[];
   cta: string;
   href: string;
+  /** The Plausible event a click on the button sends. */
+  event: string;
 }
 
 const SHARED_POINTS: PlanPoint[] = [
@@ -40,6 +42,7 @@ export const PLANS: Plan[] = [
     ],
     cta: 'Don’t buy',
     href: APP_URL,
+    event: 'Don\'t buy',
   },
   {
     id: 'pro',
@@ -55,5 +58,6 @@ export const PLANS: Plan[] = [
     ],
     cta: 'Buy',
     href: CHECKOUT_URL,
+    event: 'Buy',
   },
 ];
