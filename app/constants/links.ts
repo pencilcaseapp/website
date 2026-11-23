@@ -9,19 +9,22 @@ export const NAV_ITEMS = [
   { href: '/#features', label: 'Features' },
   { href: '/#small-tech', label: 'Small tech' },
   { href: '/#pricing', label: 'Pricing' },
-  { href: '/blog', label: 'Blog' },
 ] as const;
 
 /** The pills of the footer. */
 export const FOOTER_LINKS = [
-  { href: '/blog', label: 'Blog', isExternal: false },
   { href: '/help', label: 'Help', isExternal: false },
+  { href: '/contact', label: 'Contact', isExternal: false },
+  {
+    href: 'https://plausible.io/pencilcase.app',
+    label: 'Stats',
+    isExternal: true,
+  },
   {
     href: GITHUB_HREF,
     label: 'GitHub',
     isExternal: true,
   },
-  { href: '/contact', label: 'Contact', isExternal: false },
   {
     href: 'https://mastodon.social/@pencilcaseapp',
     label: 'Mastodon',
