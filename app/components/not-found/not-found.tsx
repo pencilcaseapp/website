@@ -7,12 +7,6 @@ import { useConfig } from '~/hooks/use-config';
 import { Button } from '~/ui/button/button';
 import { Container } from '~/ui/container/container';
 
-declare global {
-  interface Window {
-    plausible?: (event: string) => void;
-  }
-}
-
 /**
  * The page for an address with nothing behind it, under the white header
  * and without the footer: the sad pencil and the way back home.
