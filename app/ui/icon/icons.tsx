@@ -1,23 +1,23 @@
-export type IconName
-  = | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'bold'
-    | 'italic'
-    | 'underline'
-    | 'listUl'
-    | 'listOl'
-    | 'listCheck'
-    | 'share'
-    | 'sidebar'
-    | 'chevronLeft'
-    | 'chevronRight'
-    | 'link'
-    | 'check'
-    | 'arrowRight'
-    | 'turnOver'
-    | 'plus'
-    | 'minus';
+export type IconName =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'bold'
+  | 'italic'
+  | 'underline'
+  | 'listUl'
+  | 'listOl'
+  | 'listCheck'
+  | 'share'
+  | 'sidebar'
+  | 'chevronLeft'
+  | 'chevronRight'
+  | 'link'
+  | 'check'
+  | 'arrowRight'
+  | 'turnOver'
+  | 'plus'
+  | 'minus';
 
 export const icons: {
   [index in IconName]: React.ReactElement<SVGPathElement>;
