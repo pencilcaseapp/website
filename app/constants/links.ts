@@ -52,3 +52,6 @@ export const CONTACT_FORM_HREF = '/contact';
 
 /** The help section, with its form at the end. */
 export const HELP_HREF = '/help';
+
+/** The website's own address, the one canonical URLs and the sitemap use. */
+export const SITE_URL = 'https://pencilcase.app';

@@ -11,4 +11,6 @@ export default [
   route('help', 'routes/help.tsx'),
   route('help/:slug', 'routes/help-article.tsx'),
   route('help/:slug.md', 'routes/help-article-markdown.ts'),
+  route('robots.txt', 'routes/robots.ts'),
+  route('sitemap.xml', 'routes/sitemap.ts'),
 ] satisfies RouteConfig;
