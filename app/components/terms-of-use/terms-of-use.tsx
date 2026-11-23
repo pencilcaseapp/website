@@ -78,7 +78,7 @@ export const TermsOfUse: React.FC = () => (
         {' '}
         The Free plan has no time limit. We may change its features, but we
         will never lower its usage limits, such as the number of documents and
-        spaces.
+        folders.
       </LegalParagraph>
       <LegalParagraph>
         <LegalLead>Pro.</LegalLead>
@@ -102,7 +102,7 @@ export const TermsOfUse: React.FC = () => (
         at pencilcase.app, not in our apps.
       </LegalParagraph>
       <LegalParagraph>
-        If Pro ends and you have more documents or spaces than the Free plan
+        If Pro ends and you have more documents or folders than the Free plan
         allows, you keep all of them and can still open, edit and delete them.
         You can only create new ones once you are below the limit again.
       </LegalParagraph>

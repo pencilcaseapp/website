@@ -37,10 +37,10 @@ export const FEATURES: Feature[] = [
   {
     id: 'organize',
     title: 'Organize',
-    lead: 'Group your docs into your own spaces, the way you like.',
+    lead: 'Group your docs into your own folders, the way you like.',
     points: [
-      'Your own spaces to structure your docs',
-      'Share spaces with others',
+      'Your own folders to structure your docs',
+      'Share folders with others',
     ],
   },
   {

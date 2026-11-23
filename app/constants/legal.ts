@@ -10,4 +10,4 @@ export const PROVIDER_ADDRESS = `${PROVIDER.name}, ${PROVIDER.street}, ${PROVIDE
 
 /** The versions of the legal texts, shown at their top. */
 export const PRIVACY_POLICY_UPDATED_AT = '2026-11-02';
-export const TERMS_OF_USE_UPDATED_AT = '2026-11-02';
+export const TERMS_OF_USE_UPDATED_AT = '2026-11-23';
