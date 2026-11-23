@@ -18,6 +18,7 @@ import { useInstantPageChange } from './hooks/use-instant-page-change';
 import { usePlausiblePageviews } from './hooks/use-plausible-pageviews';
 import fontsHref from './fonts.css?url';
 import { startAnalytics } from './utils/analytics';
+import { FAVICON_SCRIPT } from './utils/favicon';
 
 import interRegular from
   '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
@@ -102,6 +103,9 @@ function Document({
         />
         <Meta />
         <Links />
+        <script
+          dangerouslySetInnerHTML={{ __html: FAVICON_SCRIPT }}
+        />
       </head>
       <body>
         {children}
