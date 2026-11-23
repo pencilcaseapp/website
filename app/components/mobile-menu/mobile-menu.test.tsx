@@ -24,7 +24,7 @@ describe('MobileMenu', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Menu' }));
 
     const dialog = await screen.findByRole('dialog', { name: 'Menu' });
-    expect(dialog).toHaveTextContent('FeaturesSmall techPricingBlog');
+    expect(dialog).toHaveTextContent('FeaturesSmall techPricing');
   });
 
   it('closes the navigation', async () => {

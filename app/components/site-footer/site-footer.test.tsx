@@ -4,13 +4,15 @@ import { MemoryRouter } from 'react-router';
 import { SiteFooter } from './site-footer';
 
 describe('SiteFooter', () => {
-  it('links to the blog, the help, the code and the social accounts', () => {
+  it('links to the help, the stats, the code and the social accounts', () => {
     render(<SiteFooter />, { wrapper: MemoryRouter });
 
-    expect(screen.getByRole('link', { name: 'Blog' }))
-      .toHaveAttribute('href', '/blog');
     expect(screen.getByRole('link', { name: 'Help' }))
       .toHaveAttribute('href', '/help');
+    expect(screen.getByRole('link', { name: 'Contact' }))
+      .toHaveAttribute('href', '/contact');
+    expect(screen.getByRole('link', { name: 'Stats' }))
+      .toHaveAttribute('href', 'https://plausible.io/pencilcase.app');
     expect(screen.getByRole('link', { name: 'GitHub' }))
       .toHaveAttribute('href', 'https://github.com/pencilcaseapp/');
     expect(screen.getByRole('link', { name: 'Mastodon' }))
@@ -25,10 +27,21 @@ describe('SiteFooter', () => {
   it('opens the other sites in a new tab', () => {
     render(<SiteFooter />, { wrapper: MemoryRouter });
 
+    expect(screen.getByRole('link', { name: 'Stats' }))
+      .toHaveAttribute('target', '_blank');
     expect(screen.getByRole('link', { name: 'GitHub' }))
       .toHaveAttribute('target', '_blank');
-    expect(screen.getByRole('link', { name: 'Blog' }))
+    expect(screen.getByRole('link', { name: 'Help' }))
       .not.toHaveAttribute('target');
+  });
+
+  it('lists the help, contact, stats and code links first', () => {
+    render(<SiteFooter />, { wrapper: MemoryRouter });
+
+    expect(screen.getAllByRole('link')
+      .slice(0, 4)
+      .map(link => link.textContent))
+      .toEqual(['Help', 'Contact', 'Stats', 'GitHub']);
   });
 
   it('leads to the app', () => {

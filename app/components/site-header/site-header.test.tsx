@@ -24,7 +24,7 @@ describe('SiteHeader', () => {
 
     const nav = screen.getByRole('navigation', { name: 'Sections' });
 
-    expect(nav).toHaveTextContent('FeaturesSmall techPricingBlog');
+    expect(nav).toHaveTextContent('FeaturesSmall techPricing');
   });
 
   it('signs in on the app', () => {
