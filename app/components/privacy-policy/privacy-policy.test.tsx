@@ -7,7 +7,7 @@ describe('PrivacyPolicy', () => {
     render(<PrivacyPolicy />);
 
     expect(screen.getByText('23 November 2026'))
-      .toHaveAttribute('datetime', '2026-11-02');
+      .toHaveAttribute('datetime', '2026-11-23');
   });
 
   it('numbers the sections', () => {
