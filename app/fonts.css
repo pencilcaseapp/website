@@ -9,26 +9,26 @@
    the font out before buying the web licence. Swap them for the licensed
    files then. The trial holds the letters and basic punctuation only:
    figures, currency signs and accented letters fall back to Inter.
-   `optional`: a font that misses the first paint (about 100 ms, even
-   preloaded) leaves the page in Inter until the next load rather than
-   jumping over mid-read. */
+   `block`: text set in it stays invisible until the font is there, so
+   it is never drawn in Inter first. Past about 3 s the browser shows
+   Inter after all and swaps once the font arrives. */
 @font-face {
   font-family: 'Fig Grotesk';
   font-weight: 400;
-  font-display: optional;
+  font-display: block;
   src: url('/fonts/FigGroteskTrial-Regular.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Fig Grotesk';
   font-weight: 700;
-  font-display: optional;
+  font-display: block;
   src: url('/fonts/FigGroteskTrial-Bold.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Fig Grotesk';
   font-weight: 900;
-  font-display: optional;
+  font-display: block;
   src: url('/fonts/FigGroteskTrial-Black.woff2') format('woff2');
 }
