@@ -8,12 +8,14 @@ describe('not found', () => {
     expect(loader()).toMatchObject({ init: { status: 404 } });
   });
 
-  it('shows the page between the header and the footer', async () => {
+  it('shows the page without the header and the footer', async () => {
     const Stub = createRoutesStub([{ path: '*', Component: NotFoundPage }]);
     render(<Stub initialEntries={['/nope']} />);
 
     expect(await screen.findByRole('heading', { level: 1 }))
       .toHaveTextContent('Page not found.');
     expect(screen.getByRole('main')).toHaveAttribute('id', 'main');
+    expect(screen.queryByRole('banner')).not.toBeInTheDocument();
+    expect(screen.queryByRole('contentinfo')).not.toBeInTheDocument();
   });
 });

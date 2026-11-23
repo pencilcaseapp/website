@@ -11,7 +11,6 @@ import {
 import type { Route } from './+types/root';
 import './app.css';
 import { NotFound } from './components/not-found/not-found';
-import { PageLayout } from './components/page-layout/page-layout';
 import { getConfig } from './config';
 import { ConfigContext, useConfig } from './hooks/use-config';
 import { useInstantPageChange } from './hooks/use-instant-page-change';
@@ -131,11 +130,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   const { environment } = useConfig();
 
   if (isRouteErrorResponse(error) && error.status === 404) {
-    return (
-      <PageLayout header="white">
-        <NotFound />
-      </PageLayout>
-    );
+    return <NotFound />;
   }
 
   let message = 'Oops!';

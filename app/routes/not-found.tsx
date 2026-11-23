@@ -1,6 +1,5 @@
 import { data } from 'react-router';
 import { NotFound } from '~/components/not-found/not-found';
-import { PageLayout } from '~/components/page-layout/page-layout';
 
 /**
  * Every address no other route has. A route of its own rather than the
@@ -12,9 +11,5 @@ export function loader() {
 }
 
 export default function NotFoundPage() {
-  return (
-    <PageLayout header="white">
-      <NotFound />
-    </PageLayout>
-  );
+  return <NotFound />;
 }
