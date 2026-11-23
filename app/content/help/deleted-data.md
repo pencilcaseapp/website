@@ -7,7 +7,7 @@ related:
   - delete-account
 ---
 
-Deleted documents and their images stay restorable for 30 days and are then deleted for good.
+Deleted documents stay restorable for 30 days and are then deleted for good.
 
 A deleted account works the same way. Sign in within 30 days to restore it, with all your documents. After that the account and everything in it are deleted for good.
 
