@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   isRouteErrorResponse,
   Links,
@@ -16,6 +17,7 @@ import { ConfigContext, useConfig } from './hooks/use-config';
 import { useInstantPageChange } from './hooks/use-instant-page-change';
 import { usePlausiblePageviews } from './hooks/use-plausible-pageviews';
 import fontsHref from './fonts.css?url';
+import { startAnalytics } from './utils/analytics';
 
 import interRegular from
   '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
@@ -83,6 +85,13 @@ function Document({
   analytics: boolean;
   children: React.ReactNode;
 }) {
+  // Here rather than in `App`, which the error pages leave out.
+  useEffect(() => {
+    if (analytics) {
+      startAnalytics();
+    }
+  }, [analytics]);
+
   return (
     <html lang="en">
       <head>
@@ -93,7 +102,6 @@ function Document({
         />
         <Meta />
         <Links />
-        {analytics && <Analytics />}
       </head>
       <body>
         {children}
@@ -101,23 +109,6 @@ function Document({
         <Scripts />
       </body>
     </html>
-  );
-}
-
-const plausibleInit = `
-  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-  plausible.init({ hashBasedRouting: true, autoCapturePageviews: false })
-`;
-
-function Analytics() {
-  return (
-    <>
-      <script
-        async
-        src="https://plausible.io/js/pa-POGXETO_1FgJMezhrCH8J.js"
-      />
-      <script dangerouslySetInnerHTML={{ __html: plausibleInit }} />
-    </>
   );
 }
 

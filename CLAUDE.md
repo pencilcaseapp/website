@@ -80,8 +80,13 @@ app in dev). The app mails it to our inbox, and its Bunny Shield rate
 limits it per visitor; the website's own Shield plan has no room for that,
 which is why the form doesn't post to the website.
 
-**Analytics.** Plausible, rendered in `app/root.tsx` only when
-`config.analytics` (prod), so localhost is never counted. It sets no cookies.
+**Analytics.** Plausible, bundled from `@plausible-analytics/tracker`
+and started in `app/root.tsx` only when `config.analytics` (prod), so
+localhost is never counted. It sets no cookies. Events go to our own
+`/api/event` (`routes/api-event.ts`), which passes them on to Plausible
+with the visitor's `User-Agent` and `X-Forwarded-For`, so ad blockers that
+block plausible.io let them through. Track through `trackEvent` and
+`plausibleEvent` (`app/utils/analytics.ts`), never `window.plausible`.
 The privacy policy describes it; anything that changes what is collected
 updates the policy too.
 

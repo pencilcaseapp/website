@@ -17,6 +17,7 @@
     "@fontsource/covered-by-your-grace": "^5.3.0",
     "@fontsource/hanken-grotesk": "^5.3.0",
     "@fontsource/inter": "^5.3.0",
+    "@plausible-analytics/tracker": "^0.4.7",
     "@react-router/node": "8.5.1",
     "@react-router/serve": "8.5.1",
     "classnames": "^2.5.1",
