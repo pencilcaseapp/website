@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 import { href, Link } from 'react-router';
+import { FloatingNav } from '~/components/floating-nav/floating-nav';
+import { MobileMenu } from '~/components/mobile-menu/mobile-menu';
+import { SiteHeader } from '~/components/site-header/site-header';
 import { useConfig } from '~/hooks/use-config';
 import { Button } from '~/ui/button/button';
-import { Logo } from '~/ui/logo/logo';
+import { Container } from '~/ui/container/container';
 
 declare global {
   interface Window {
@@ -11,8 +14,8 @@ declare global {
 }
 
 /**
- * The page for an address with nothing behind it, on its own without the
- * header and the footer: the logo, the sad pencil and the way back home.
+ * The page for an address with nothing behind it, under the startpage's
+ * header and without the footer: the sad pencil and the way back home.
  * Reports itself to Plausible as a `404` event.
  */
 export const NotFound: React.FC = () => {
@@ -25,31 +28,29 @@ export const NotFound: React.FC = () => {
   }, [analytics]);
 
   return (
-    <main
-      id="main"
-      className="flex min-h-svh flex-col items-center justify-center bg-pca-white px-4 py-14 text-center"
-    >
+    <div className="flex min-h-svh flex-col bg-pca-white">
       <title>Page not found – pencil case</title>
-      <Link
-        to={href('/')}
-        className="rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pca-grey-900"
-      >
-        <Logo />
-      </Link>
-      <img
-        src="/sad-pencil.svg"
-        alt=""
-        width={180}
-        height={180}
-        className="mt-12 size-36 sm:size-45"
-      />
-      <h1 className="type-hero mt-8 text-balance">Page not found.</h1>
-      <p className="type-lead mx-auto mt-6 max-w-[32ch] sm:mt-8">
-        This page doesn’t exist. Maybe it moved, or the link has a typo.
-      </p>
-      <Button as={Link} to={href('/')} className="mt-10">
-        Back to home
-      </Button>
-    </main>
+      <SiteHeader />
+      <FloatingNav />
+      <MobileMenu />
+      <main id="main" className="flex flex-1 items-center py-14">
+        <Container className="flex flex-col items-center text-center">
+          <img
+            src="/sad-pencil.svg"
+            alt=""
+            width={180}
+            height={180}
+            className="size-36 sm:size-45"
+          />
+          <h1 className="type-hero mt-8 text-balance">Page not found.</h1>
+          <p className="type-lead mx-auto mt-6 max-w-[32ch] sm:mt-8">
+            This page doesn’t exist. Maybe it moved, or the link has a typo.
+          </p>
+          <Button as={Link} to={href('/')} className="mt-10">
+            Back to home
+          </Button>
+        </Container>
+      </main>
+    </div>
   );
 };

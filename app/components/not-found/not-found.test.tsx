@@ -10,14 +10,12 @@ describe('NotFound', () => {
     delete window.plausible;
   });
 
-  it('says the page is missing and links back home, logo included', () => {
+  it('says the page is missing and links back home', () => {
     render(<NotFound />, { wrapper: MemoryRouter });
 
     expect(screen.getByRole('heading', { level: 1 }))
       .toHaveTextContent('Page not found.');
     expect(screen.getByRole('link', { name: 'Back to home' }))
-      .toHaveAttribute('href', '/');
-    expect(screen.getByRole('link', { name: 'pencil case' }))
       .toHaveAttribute('href', '/');
   });
 
