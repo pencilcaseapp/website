@@ -119,7 +119,9 @@ const Panel: React.FC<PanelProps> = ({ principle, index }) => (
             outlineColor={principle.dark ? 'grey-900' : 'white'}
             className={classNames(
               'mt-8 lg:mt-10',
-              plausibleEvent('Get started', { location: 'small tech panel' }),
+              plausibleEvent('Get started', {
+                location: `small tech ${principle.id}`,
+              }),
             )}
           >
             Get started
