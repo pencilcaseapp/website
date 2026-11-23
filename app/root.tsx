@@ -15,15 +15,39 @@ import { ConfigContext, useConfig } from './hooks/use-config';
 import { useInstantPageChange } from './hooks/use-instant-page-change';
 import fontsHref from './fonts.css?url';
 
-// Found through `fonts.css` alone, Fig Grotesk arrives after the first
-// paint and everything set in it jumps over from Inter. Preloaded, it is
-// there in time. The paths are the ones `fonts.css` names.
-const FONT_CUTS = ['Regular', 'Bold', 'Black'];
+import interRegular from
+  '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
+import interMedium from
+  '@fontsource/inter/files/inter-latin-500-normal.woff2?url';
+import interSemiBold from
+  '@fontsource/inter/files/inter-latin-600-normal.woff2?url';
+import interBold from
+  '@fontsource/inter/files/inter-latin-700-normal.woff2?url';
+import hankenBold from
+  '@fontsource/hanken-grotesk/files/hanken-grotesk-latin-700-normal.woff2?url';
+import coveredRegular from
+  '@fontsource/covered-by-your-grace/files/covered-by-your-grace-latin-400-normal.woff2?url';
+
+// Found through `fonts.css` alone, the fonts arrive after the first paint,
+// and its text, held back by `font-display: block`, shows up late.
+// Preloaded, they are there in time. The files are the Latin ones
+// `fonts.css` names, the ones the pages draw with.
+const FONTS = [
+  ...['Regular', 'Bold', 'Black'].map(
+    cut => `/fonts/FigGroteskTrial-${cut}.woff2`,
+  ),
+  interRegular,
+  interMedium,
+  interSemiBold,
+  interBold,
+  hankenBold,
+  coveredRegular,
+];
 
 export const links: Route.LinksFunction = () => [
-  ...FONT_CUTS.map(cut => ({
+  ...FONTS.map(href => ({
     rel: 'preload',
-    href: `/fonts/FigGroteskTrial-${cut}.woff2`,
+    href,
     as: 'font',
     type: 'font/woff2',
     crossOrigin: 'anonymous' as const,
