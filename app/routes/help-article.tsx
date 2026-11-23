@@ -1,4 +1,4 @@
-import { data } from 'react-router';
+import { data, href } from 'react-router';
 import { HelpArticle } from '~/components/help-article/help-article';
 import { PageLayout } from '~/components/page-layout/page-layout';
 import {
@@ -6,6 +6,7 @@ import {
   getHelpArticlePage,
   stripMarkdown,
 } from '~/utils/help.server';
+import { pageMeta } from '~/utils/meta';
 import type { Route } from './+types/help-article';
 
 export function loader({ params }: Route.LoaderArgs) {
@@ -26,10 +27,11 @@ export function meta({ loaderData }: Route.MetaArgs) {
 
   const { article, description } = loaderData;
 
-  return [
-    { title: `${article.question} – pencil case` },
-    { name: 'description', content: description },
-  ];
+  return pageMeta({
+    title: `${article.question} – pencil case`,
+    description,
+    path: href('/help/:slug', { slug: article.slug }),
+  });
 }
 
 export default function HelpArticlePage({ loaderData }: Route.ComponentProps) {
