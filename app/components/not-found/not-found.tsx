@@ -6,6 +6,7 @@ import { SiteHeader } from '~/components/site-header/site-header';
 import { useConfig } from '~/hooks/use-config';
 import { Button } from '~/ui/button/button';
 import { Container } from '~/ui/container/container';
+import { trackEvent } from '~/utils/analytics';
 
 /**
  * The page for an address with nothing behind it, under the white header
@@ -17,7 +18,7 @@ export const NotFound: React.FC = () => {
 
   useEffect(() => {
     if (analytics) {
-      window.plausible?.('404');
+      trackEvent('404');
     }
   }, [analytics]);
 

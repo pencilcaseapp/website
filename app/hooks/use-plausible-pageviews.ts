@@ -1,12 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { useConfig } from '~/hooks/use-config';
-
-declare global {
-  interface Window {
-    plausible?: (event: string) => void;
-  }
-}
+import { trackEvent } from '~/utils/analytics';
 
 /**
  * With hash-based routing Plausible only listens to `hashchange`, which a
@@ -19,7 +14,7 @@ export function usePlausiblePageviews() {
 
   useEffect(() => {
     if (analytics) {
-      window.plausible?.('pageview');
+      trackEvent('pageview');
     }
   }, [analytics, pathname, hash]);
 }

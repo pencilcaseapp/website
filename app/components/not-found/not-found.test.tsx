@@ -4,10 +4,16 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { getConfigTest } from '~/config/test';
 import { ConfigContext } from '~/hooks/use-config';
 import { NotFound } from './not-found';
+import { trackEvent } from '~/utils/analytics';
+
+vi.mock('~/utils/analytics', async importOriginal => ({
+  ...await importOriginal(),
+  trackEvent: vi.fn(),
+}));
 
 describe('NotFound', () => {
   afterEach(() => {
-    delete window.plausible;
+    vi.clearAllMocks();
   });
 
   it('says the page is missing and links back home', () => {
@@ -20,22 +26,18 @@ describe('NotFound', () => {
   });
 
   it('reports a 404 event to Plausible', () => {
-    window.plausible = vi.fn();
-
     render(
       <ConfigContext value={{ ...getConfigTest(), analytics: true }}>
         <MemoryRouter><NotFound /></MemoryRouter>
       </ConfigContext>,
     );
 
-    expect(window.plausible).toHaveBeenCalledWith('404');
+    expect(trackEvent).toHaveBeenCalledWith('404');
   });
 
   it('reports nothing without analytics', () => {
-    window.plausible = vi.fn();
-
     render(<NotFound />, { wrapper: MemoryRouter });
 
-    expect(window.plausible).not.toHaveBeenCalled();
+    expect(trackEvent).not.toHaveBeenCalled();
   });
 });
