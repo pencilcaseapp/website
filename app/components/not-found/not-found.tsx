@@ -14,8 +14,8 @@ declare global {
 }
 
 /**
- * The page for an address with nothing behind it, under the startpage's
- * header and without the footer: the sad pencil and the way back home.
+ * The page for an address with nothing behind it, under the white header
+ * and without the footer: the sad pencil and the way back home.
  * Reports itself to Plausible as a `404` event.
  */
 export const NotFound: React.FC = () => {
@@ -30,7 +30,7 @@ export const NotFound: React.FC = () => {
   return (
     <div className="flex min-h-svh flex-col bg-pca-white">
       <title>Page not found – pencil case</title>
-      <SiteHeader />
+      <SiteHeader tone="white" />
       <FloatingNav />
       <MobileMenu />
       <main id="main" className="flex flex-1 items-center py-14">
