@@ -7,4 +7,4 @@ related:
   - leave-a-shared-document
 ---
 
-In the sidebar: one list, with the document you edited last at the top. Documents shared with you are in it too.
+In the sidebar. The switch at its top picks a folder. **All Docs** holds your own documents and the ones shared with you, with the one you edited last at the top. **Shared with you** shows only the shared ones, and **Deleted** the ones you deleted in the last 30 days.
