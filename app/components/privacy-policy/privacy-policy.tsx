@@ -175,7 +175,7 @@ export const PrivacyPolicy: React.FC = () => (
             'session',
             'Cookie',
             'Keeps you signed in',
-            '90 days, renewed each time you use pencil case',
+            '180 days, renewed each time you use pencil case',
           ],
           [
             'csrf',
@@ -362,7 +362,7 @@ export const PrivacyPolicy: React.FC = () => (
           ],
           [
             'Sessions',
-            'The night after they expire, at the latest 90 days after your last visit',
+            'The night after they expire, at the latest 180 days after your last visit',
           ],
           [
             'Deleted documents and their images',
