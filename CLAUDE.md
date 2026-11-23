@@ -28,6 +28,15 @@ must all pass before a PR is done. Snapshot tests pin full class strings:
 after a `className` change, update them with `npx vitest run -u` and commit
 the `__snapshots__`. Pushing to `main` deploys to Clever Cloud (`cd.yml`).
 
+Node.js runs the latest LTS, pinned exactly in `.nvmrc` (nvm and fnm
+locally, `setup-node` in CI and CD) and in `engines.node` (what Clever
+Cloud deploys: it deletes `.nvmrc`, and a `CC_NODE_VERSION` in its console
+would override `engines`). Change both together. Every Monday
+`update-node.yml` runs `.github/scripts/update-node.mjs` and opens a PR
+when a newer LTS is out, moving `@types/node` along on a new major
+(Dependabot ignores its majors). CI doesn't start on a PR opened by a
+workflow: close and reopen it.
+
 TypeScript stays on 5.9 (`^5.9.2`), like the app repo, and Dependabot
 ignores `typescript >=6`: typescript-eslint doesn't support 6.1+ yet. Lift
 the pin in both repos together.
